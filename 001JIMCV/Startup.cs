@@ -1,3 +1,4 @@
+using _001JIMCV.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,11 @@ namespace _001JIMCV
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+
+            using (BDDContext ctx = new BDDContext())
+            {
+                ctx.InitializeDb();
             }
 
             app.UseRouting();
