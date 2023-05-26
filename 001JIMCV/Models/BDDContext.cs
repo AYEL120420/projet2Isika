@@ -38,10 +38,7 @@ namespace _001JIMCV.Models
             User client3 = new User() { Name = "Raounak Elassaoui", Email = "raounak.elassaoui@gmail.com", Password = "admin", Role = 0 };
             this.Users.AddRange(client1, client, client2, client3);
 
-            User client34 = new User() { Name = "Anthony Dumas", Email = "anthony.dumas@gmail.com", Password = "admin", Role = 0 };
-
-
-            this. SaveChanges();
+            this.SaveChanges();
         }
     }
 }
