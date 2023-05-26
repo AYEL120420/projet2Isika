@@ -26,7 +26,7 @@ namespace _001JIMCV.Models
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             
-            User admin = new User() { Name = "Anthony Dumas",  Email = "anthony.dumas@gmail.com" , Password="Isika24admin", Role= UserEnum.Admin};
+            User admin = new User() { Name = "TESTTTTT",  Email = "anthony.dumas@gmail.com" , Password="Isika24admin", Role= UserEnum.Admin};
             User admin1 = new User() { Name = "Rudiger Hasselberg", Email = "miaourudiger@gmail.com", Password = "Isika24admin", Role = UserEnum.Admin};
             User admin2 = new User() { Name = "Thomas Salmon", Email = "thomas.salmon@gmail.com", Password = "Isika24admin", Role = UserEnum.Admin };
             User admin3 = new User() { Name = "Raounak Elassaoui", Email = "raounak.elassaoui@gmail.com", Password = "Isika24admin", Role = UserEnum.Admin };
