@@ -1,5 +1,4 @@
-﻿using _001JIMCV.Models.Classes.Users;
-using _001JIMCV.Models.Classes;
+﻿using _001JIMCV.Models.Classes;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 
@@ -15,9 +14,6 @@ namespace _001JIMCV.Models
         public DbSet<PackServices> PackService { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Provider> Providers { get; set; }
-        public DbSet<Client> Clients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,10 +23,12 @@ namespace _001JIMCV.Models
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-            Client client = new Client() { Name = "Anthony Dumas", Birthday = "11/05/1994", Email = "anthony.dumas@gmail.com" };
-            Client client1 = new Client() { Name = "Rudiger Hasselberg", Birthday = "26/07/2000", Email = "miaourudiger@gmail.com" };
-            Client client2 = new Client() { Name = "Thomas Salmon", Birthday = "14/09/1999", Email = "thomas.salmon@gmail.com" };
-            this.Clients.AddRange(client1, client, client2);
+            
+            User client = new User() { Name = "Anthony Dumas",  Email = "anthony.dumas@gmail.com" , Password="admin", Role="ADMIN"};
+            User client1 = new User() { Name = "Rudiger Hasselberg", Email = "miaourudiger@gmail.com", Password = "admin", Role = "ADMIN" };
+            User client2 = new User() { Name = "Thomas Salmon", Email = "thomas.salmon@gmail.com", Password = "admin", Role = "ADMIN" };
+            User client3 = new User() { Name = "Raounak Elassaoui", Email = "raounak.elassaoui@gmail.com", Password = "admin", Role = "ADMIN" };
+            this.Users.AddRange(client1, client, client2, client3);
 
             this. SaveChanges();
         }

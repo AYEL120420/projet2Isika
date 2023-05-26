@@ -1,5 +1,4 @@
-﻿using _001JIMCV.Models.Classes.Users;
-using _001JIMCV.Models.Classes;
+﻿using _001JIMCV.Models.Classes;
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -22,17 +21,6 @@ namespace _001JIMCV.Models
         {
             _bddcontext.Database.EnsureDeleted();
             _bddcontext.Database.EnsureCreated();
-        }
-        public void InitializeDB()
-        {
-            _bddcontext.Database.EnsureDeleted();
-            _bddcontext.Database.EnsureCreated();
-            Client client = new Client() { Name = "Anthony Dumas", Birthday = "11/05/1994", Email = "anthony.dumas@gmail.com" };
-            Client client1 = new Client() { Name = "Rudiger Hasselberg", Birthday = "26/07/2000", Email = "miaourudiger@gmail.com" };
-            Client client2 = new Client() { Name = "Thomas Salmon", Birthday = "14/09/1999", Email = "thomas.salmon@gmail.com" };
-            _bddcontext.Clients.AddRange(client1, client, client2);
-
-            _bddcontext.SaveChanges();
         }
         //méthode pour obtenir la liste des hébergements
         public List<Accommodation> GetAllAccommodations()
@@ -64,35 +52,34 @@ namespace _001JIMCV.Models
             return activity.Id;
         }
 
-        public List<Client> GetAllClient()
+        public List<User> GetAllUsers()
         {
-            return _bddcontext.Clients.ToList();
+            return _bddcontext.Users.ToList();
         }
 
-        public int CreateClient(int id, string name, string birthday, string email)
+        public int CreateUser(int id, string name, string birthday, string email)
         {
-            Client client = new Client() { };
-            _bddcontext.Clients.Add(client);
+            User client = new User() { };
+            _bddcontext.Users.Add(client);
             _bddcontext.SaveChanges();
 
             return client.Id;
         }
 
-        public void EditClient(int id, string name, string birthday, string email)
+        public void EditUser(int id, string name, string birthday, string email)
         {
-            Client client = _bddcontext.Clients.Find(id);
+            User client = _bddcontext.Users.Find(id);
             if (client != null)
             {
                 client.Name = name;
-                client.Birthday = birthday;
                 client.Email = email;
                 _bddcontext.SaveChanges();
             }
         }
 
-        public void EditClient(Client client)
+        public void EditClient(User client)
         {
-            _bddcontext.Clients.Update(client);
+            _bddcontext.Users.Update(client);
             _bddcontext.SaveChanges();
         }
 

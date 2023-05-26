@@ -7,5 +7,8 @@
         public string Description { get; set; }
         public float Price { get; set; }
         public string State { get; set; }
+
+        public int IdUser { get; set; }
+        public User UserProvider { get; set; }
     }
 }

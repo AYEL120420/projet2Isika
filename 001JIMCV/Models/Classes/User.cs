@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace _001JIMCV.Models.Classes.Users
+namespace _001JIMCV.Models.Classes
 {
-    public class Client
+    public class User
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Birthday { get; set; }
 
         [Required(ErrorMessage = "L'e-mail est requis.")]
         [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Veuillez saisir une adresse e-mail valide.")]
         public string Email { get; set; }
-
+        public string Password { get; set; }
+        public string Role { get; set; }
     }
 }
