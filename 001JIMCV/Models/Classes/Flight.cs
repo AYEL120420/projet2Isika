@@ -2,6 +2,7 @@
 {
     public class Flight
     {
+        public int Id {  get; set; }
         public string FlightId { get; set; }
         public string Airline { get; set; }
         public float FlightNumber { get; set; }
