@@ -19,7 +19,7 @@ namespace _001JIMCV.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=;database=001JIMCV");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=001JIMCV");
         }
         public void InitializeDb()
         {

@@ -3,10 +3,12 @@
     public class Accommodation
     {
         public int Id { get; set; }
-        public string type { get; set; }
-        public string location { get; set; }
-        public string arrivalDate { get; set; }
-        public string departureDate { get; set; }
-        public string description { get; set; }
+        public string Type { get; set; }
+        public string Location { get; set; }
+        public string ArrivalDate { get; set; }
+        public string DepartureDate { get; set; }
+        public string Description { get; set; }
+
+
     }
 }
