@@ -75,12 +75,6 @@ namespace _001JIMCV.Models
             this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie);
             
             this.SaveChanges();
-            User client = new User() { Name = "Anthony Dumas",  Email = "anthony.dumas@gmail.com" , Password="admin", Role=UserEnum.Admin};
-            User client1 = new User() { Name = "Rudiger Hasselberg", Email = "miaourudiger@gmail.com", Password = "admin", Role = UserEnum.Admin };
-            User client2 = new User() { Name = "Thomas Salmon", Email = "thomas.salmon@gmail.com", Password = "admin", Role = UserEnum.Admin };
-            User client3 = new User() { Name = "Raounak Elassaoui", Email = "raounak.elassaoui@gmail.com", Password = "admin", Role = UserEnum.Admin };
-            this.Users.AddRange(client1, client, client2, client3); 
-
         }
     }
 }
