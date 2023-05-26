@@ -2,19 +2,28 @@
 using _001JIMCV.Models;
 using Microsoft.AspNetCore.Mvc;
 using _001JIMCV.Models.Dals;
+using System.Collections.Generic;
 
 namespace _001JIMCV.Controllers
 {
     public class ServiceController : Controller
     {
-        private ServiceDal ServiceDal;
+        private ServiceDal serviceDal;
         public ServiceController()
         {
-            ServiceDal = new ServiceDal();
+            serviceDal = new ServiceDal();
         }
         public IActionResult Index()
         {
-            return View("ServiceView");
+            return View();
+        }
+        [HttpGet]
+        public IActionResult List()
+        {
+
+            var services = serviceDal.GetAllServices();
+            ViewData["Services"] = services;
+            return View();
         }
         [HttpGet]
         public IActionResult AddService()
@@ -28,8 +37,9 @@ namespace _001JIMCV.Controllers
             {
                 return View("ServiceView", service);
             }
-            ServiceDal.AddService(service);
+            serviceDal.AddService(service);
             return RedirectToAction("AddService");
         }
+        
     }
 }

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListeServices</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>Type</th> 
+            <th>Description </th>
+            <th>Price</th>
+        </tr>
+        @foreach (_001JIMCV.Models.Classes.Service service in ViewData["Services"] as List<_001JIMCV.Models.Classes.Service>)
+        {
+            <tr>
+                <td>@service.Type</td>
+                <td>@service.Description</td>
+                <td>@service.Price</td>
+            </tr>
+        }
+    </table>
+    <ul>
+        <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+        <li>@Html.ActionLink("Service", "AddService", "Service")</li>
+        <li>@Html.ActionLink("Tout les Services", "List", "Service")</li>
+    </ul>
+</body>
+</html>
