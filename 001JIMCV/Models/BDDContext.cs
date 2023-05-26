@@ -16,6 +16,12 @@ namespace _001JIMCV.Models
         public DbSet<PackServices> PackService { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ServicePackServices> ServicePackServices { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ServicePackServices>().HasKey(sps => new { sps.ServiceId, sps.PackServicesId });
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,6 +39,7 @@ namespace _001JIMCV.Models
             this.Users.AddRange(client1, client, client2, client3);
 
             User client34 = new User() { Name = "Anthony Dumas", Email = "anthony.dumas@gmail.com", Password = "admin", Role = 0 };
+
 
             this. SaveChanges();
         }
