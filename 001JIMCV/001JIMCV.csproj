@@ -7,7 +7,10 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Css\Site.css" />
   </ItemGroup>
 
 	<ItemGroup>
