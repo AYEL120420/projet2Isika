@@ -13,18 +13,18 @@
             <div>
                 @Html.LabelFor(m => m.Type)
                 <div>
-                    <label>
+                    <label class="form-control">
                         @Html.RadioButtonFor(m => m.Type, "Hebergement")
                         Hebergement
                     </label>
                 </div>
                 <div>
-                    <label>
+                    <label class="form-control">
                         @Html.RadioButtonFor(m => m.Type, "Vol")
                         Vol
                     </label>
                 </div>
-                <div class="form-check">
+                <div class="form-control">
                     <label class="form-check-label">
                         @Html.RadioButtonFor(m => m.Type, "Activité")
                         Activité
@@ -33,7 +33,7 @@
                 @Html.ValidationMessageFor(m => m.Type)
             </div>
             <br />
-            <div>
+            <div class="form-control">
                 @Html.LabelFor(m => m.Description)<br>
                 @Html.TextAreaFor(m => m.Description)
                 @Html.ValidationMessageFor(m => m.Description)
@@ -42,15 +42,14 @@
                 @Html.LabelFor(m => m.Price)<br>
                 @Html.TextBoxFor(m => m.Price)
                 @Html.ValidationMessageFor(m => m.Price)<br>
-            </div>
-            <div>
-                <input type="submit" value="Ajouter" class="btn btn-primary" />
+            </div><br>
+           <div class="form-control">
+                <input type="submit" value="Modifier" class="btn btn-primary" />
             </div>
         </fieldset>
     }
     <ul>
         <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-        <li>@Html.ActionLink("Service", "AddService", "Service")</li>
         <li>@Html.ActionLink("Tout les Services", "List", "Service")</li>
     </ul>
 </body>

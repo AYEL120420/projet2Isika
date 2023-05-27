@@ -28,18 +28,98 @@ namespace _001JIMCV.Controllers
         [HttpGet]
         public IActionResult AddService()
         {
-            return View("ServiceView");
+            return View("AddService");
         }
         [HttpPost]
         public IActionResult AddService(Service service)
         {
             if (!ModelState.IsValid)
             {
-                return View("ServiceView", service);
+                return View("AddService", service);
             }
             serviceDal.AddService(service);
             return RedirectToAction("AddService");
         }
-        
+
+        [HttpGet]
+        public IActionResult EditService(int id)
+        {
+
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            Service service = serviceDal.GetServiceById(id);
+            {
+                if (service == null)
+                {
+                    return View("Error");
+                }
+                return View(service);
+            }
+            return View("Error");
+        }
+
+        [HttpPost]
+        public IActionResult EditService(Service service)
+        {
+
+            if (!ModelState.IsValid)
+                return View(service);
+            ModelState.Clear();
+
+            if (service.Id != 0)
+            {
+                {
+                    serviceDal.EditService(service);
+                    return RedirectToAction("List", new { @id = service.Id });
+                }
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult DeleteService(int id)
+        {
+
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            Service service = serviceDal.GetServiceById(id);
+            {
+                if (service == null)
+                {
+                    return View("Error");
+                }
+                return View(service);
+            }
+            return View("Error");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteService(Service service)
+        {
+
+            if (!ModelState.IsValid)
+                return View(service);
+
+            if (service.Id != 0)
+            {
+                {
+                    serviceDal.DeleteService(service);
+                    return RedirectToAction("List", new { @id = service.Id });
+                }
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
     }
 }
+

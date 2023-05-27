@@ -39,6 +39,44 @@ namespace _001JIMCV.Models.Dals
             _bddcontext.SaveChanges();
         }
 
+        public Service GetServiceById(int id)
+        {
+            return _bddcontext.Services.FirstOrDefault(s => s.Id == id);
+        }
+
+        public void EditService(int id, string type, string description, float price)
+        {
+            Service service = _bddcontext.Services.Find(id);
+            if (service != null)
+            {
+                service.Type = type;
+                service.Description = description;
+                service.Price = price;
+                _bddcontext.SaveChanges();
+            }
+        }
+        public void EditService(Service service)
+        {
+            _bddcontext.Services.Update(service);
+            _bddcontext.SaveChanges();
+        }
+        public void DeleteService(int id)
+        {
+            Service service = _bddcontext.Services.Find(id);
+            if (service != null)
+            {
+                service.Type = null;
+                service.Description = null;
+                _bddcontext.SaveChanges();
+
+            }
+        }
+        public void DeleteService(Service service)
+        {
+            _bddcontext.Services.Remove(service);
+            _bddcontext.SaveChanges();
+        }
+
         public void Dispose()
         {
             _bddcontext.Dispose();

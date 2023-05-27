@@ -25,7 +25,7 @@ namespace _001JIMCV.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=;database=001JIMCV");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=001JIMCV");
         }
         public void InitializeDb()
         {
@@ -74,7 +74,13 @@ namespace _001JIMCV.Models
             Flight FlightMaroc = new Flight() { FlightId = "FlightMaroc", Airline = "Boeing Maroc", DepartureCity = "Bordeaux-Mérignac", DepartureDate = "10/02/2024", DestinationCity = "Marrakech", FlightNumber = 548675 };
             Flight FlightItalie = new Flight() { FlightId = "FlightItalie", Airline = "Itaflyairway", DepartureCity = "Nantes Atlantique", DepartureDate = "10/02/2024", DestinationCity = "Naples", FlightNumber = 397668 };
             this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie);
-        
+
+            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Price=40 };
+            Service serv2 = new Service() { Type = "Vol", Description = "", Price = 200 };
+            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Price = 10 };
+
+            this.Services.AddRange(serv1, serv2, serv3);
+
             this.SaveChanges(); 
         }
         
