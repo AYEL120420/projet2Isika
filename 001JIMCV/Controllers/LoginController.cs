@@ -53,7 +53,7 @@ namespace _001JIMCV.Controllers
 
                     return Redirect("Login/Index");
                 }
-                ModelState.AddModelError("Utilisateur.Email", "Email et/ou mot de passe incorrect(s)");
+                ModelState.AddModelError("User.Email", "Email et/ou mot de passe incorrect(s)");
             }
             return View(viewModel);
         }
@@ -68,11 +68,12 @@ namespace _001JIMCV.Controllers
         {
             if (ModelState.IsValid)
             {
-                int id = dal.AddUser(user.Email, user.Password);
+                int id = dal.AddUser(user.Name, user.Email, user.Password, user.Role);
 
                 var userClaims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name, id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.ToString()),
                 };
 
                 var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");

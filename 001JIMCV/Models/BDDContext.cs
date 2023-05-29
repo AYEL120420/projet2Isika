@@ -31,36 +31,31 @@ namespace _001JIMCV.Models
         {
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=001JIMCV");
         }
-        public string EncodeMD5(string password)
-        {
-            string passwordSel = "JIMCV" + password + "ASP.NET MVC";
-            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(passwordSel)));
-        }
         public void InitializeDb()
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
 
-            User admin = new User() { Name = "Anthony Dumas", Email = "anthony.dumas@gmail.com", Password = EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
-            User admin1 = new User() { Name = "Rudiger Hasselberg", Email = "miaourudiger@gmail.com", Password = EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
-            User admin2 = new User() { Name = "Thomas Salmon", Email = "thomas.salmon@gmail.com", Password = EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
-            User admin3 = new User() { Name = "Raounak Elassaoui", Email = "raounak.elassaoui@gmail.com", Password = EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
+            User admin = new User() { Name = "Anthony Dumas", Email = "anthony.dumas@gmail.com", Password = LoginDal.EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
+            User admin1 = new User() { Name = "Rudiger Hasselberg", Email = "miaourudiger@gmail.com", Password = LoginDal.EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
+            User admin2 = new User() { Name = "Thomas Salmon", Email = "thomas.salmon@gmail.com", Password = LoginDal.EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
+            User admin3 = new User() { Name = "Raounak Elassaoui", Email = "raounak.elassaoui@gmail.com", Password = LoginDal.EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
             this.Users.AddRange(admin, admin1, admin2, admin3);
 
-            User customer = new User() { Name = "Frederic", Email = "frederic@gmail.com", Password = EncodeMD5("Isika24client"), Role = UserEnum.Customer };
-            User customer1 = new User() { Name = "Karen", Email = "karen@gmail.com", Password = EncodeMD5("Isika24client"), Role = UserEnum.Customer };
-            User customer2 = new User() { Name = "Serdar", Email = "serdar@gmail.com", Password = EncodeMD5("Isika24client"), Role = UserEnum.Customer };
-            User customer3 = new User() { Name = "Florian", Email = "florian@gmail.com", Password = EncodeMD5("Isika24client"), Role = UserEnum.Customer };
+            User customer = new User() { Name = "Frederic", Email = "frederic@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer };
+            User customer1 = new User() { Name = "Karen", Email = "karen@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer };
+            User customer2 = new User() { Name = "Serdar", Email = "serdar@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer };
+            User customer3 = new User() { Name = "Florian", Email = "florian@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer };
             this.Users.AddRange(customer, customer1, customer2, customer3);
 
-            User provider = new User() { Name = "Magdaline", Email = "magdaline@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
-            User provider1 = new User() { Name = "Fanta", Email = "fanta@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
-            User provider2 = new User() { Name = "Nway", Email = "nway@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
-            User provider3 = new User() { Name = "Andre", Email = "andre@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
-            User provider4 = new User() { Name = "David", Email = "david@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
-            User provider5 = new User() { Name = "Mounia", Email = "mounia@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
-            User provider6 = new User() { Name = "Marie", Email = "marie@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
-            User provider7 = new User() { Name = "Brendan", Email = "brendan@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider = new User() { Name = "Magdaline", Email = "magdaline@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider1 = new User() { Name = "Fanta", Email = "fanta@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider2 = new User() { Name = "Nway", Email = "nway@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider3 = new User() { Name = "Andre", Email = "andre@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider4 = new User() { Name = "David", Email = "david@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider5 = new User() { Name = "Mounia", Email = "mounia@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider6 = new User() { Name = "Marie", Email = "marie@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider7 = new User() { Name = "Brendan", Email = "brendan@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
             this.Users.AddRange(provider, provider1, provider2, provider3, provider4, provider5, provider6, provider7);
 
             Journey inde = new Journey() { CountryDestination = "Inde", DepartureDate = "10/02/2024", ReturnDate = "24/02/2024", Persons = 2 };
