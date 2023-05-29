@@ -1,7 +1,10 @@
 ﻿using _001JIMCV.Models.Classes;
 using _001JIMCV.Models.Classes.Enum;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Runtime.CompilerServices;
+using System.Text;
+using XSystem.Security.Cryptography;
 
 namespace _001JIMCV.Models
 {
@@ -27,35 +30,40 @@ namespace _001JIMCV.Models
         {
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=001JIMCV");
         }
-        public void InitializeDb()
+        public string EncodeMD5(string password)
+        {
+            string passwordSel = "JIMCV" + password + "ASP.NET MVC";
+            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(passwordSel)));
+        }
+            public void InitializeDb()
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
 
-            
-            User admin = new User() { Name = "Anthony Dumas",  Email = "anthony.dumas@gmail.com" , Password="Isika24admin", Role= UserEnum.Admin};
-            User admin1 = new User() { Name = "Rudiger Hasselberg", Email = "miaourudiger@gmail.com", Password = "Isika24admin", Role = UserEnum.Admin};
-            User admin2 = new User() { Name = "Thomas Salmon", Email = "thomas.salmon@gmail.com", Password = "Isika24admin", Role = UserEnum.Admin };
-            User admin3 = new User() { Name = "Raounak Elassaoui", Email = "raounak.elassaoui@gmail.com", Password = "Isika24admin", Role = UserEnum.Admin };
+
+            User admin = new User() { Name = "Anthony Dumas", Email = "anthony.dumas@gmail.com", Password = EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
+            User admin1 = new User() { Name = "Rudiger Hasselberg", Email = "miaourudiger@gmail.com", Password = EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
+            User admin2 = new User() { Name = "Thomas Salmon", Email = "thomas.salmon@gmail.com", Password = EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
+            User admin3 = new User() { Name = "Raounak Elassaoui", Email = "raounak.elassaoui@gmail.com", Password = EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
             this.Users.AddRange(admin, admin1, admin2, admin3);
 
 
-            User customer = new User() { Name = "Frederic", Email = "frederic@gmail.com", Password = "Isika24client", Role = UserEnum.Customer };
-            User customer1 = new User() { Name = "Karen", Email = "karen@gmail.com", Password = "Isika24client", Role = UserEnum.Customer };
-            User customer2 = new User() { Name = "Serdar", Email = "serdar@gmail.com", Password = "Isika24client", Role = UserEnum.Customer };
-            User customer3 = new User() { Name = "Florian", Email = "florian@gmail.com", Password = "Isika24client", Role = UserEnum.Customer };
+            User customer = new User() { Name = "Frederic", Email = "frederic@gmail.com", Password = EncodeMD5("Isika24client"), Role = UserEnum.Customer };
+            User customer1 = new User() { Name = "Karen", Email = "karen@gmail.com", Password = EncodeMD5("Isika24client"), Role = UserEnum.Customer };
+            User customer2 = new User() { Name = "Serdar", Email = "serdar@gmail.com", Password = EncodeMD5("Isika24client"), Role = UserEnum.Customer };
+            User customer3 = new User() { Name = "Florian", Email = "florian@gmail.com", Password = EncodeMD5("Isika24client"), Role = UserEnum.Customer };
             this.Users.AddRange(customer, customer1, customer2, customer3);
 
-            User provider = new User() { Name = "Magdaline", Email = "magdaline@gmail.com", Password = "Isika24provider", Role = UserEnum.Provider };
-            User provider1 = new User() { Name = "Fanta", Email = "fanta@gmail.com", Password = "Isika24provider", Role = UserEnum.Provider };
-            User provider2 = new User() { Name = "Nway", Email = "nway@gmail.com", Password = "Isika24provider", Role = UserEnum.Provider };
-            User provider3 = new User() { Name = "Andre", Email = "andre@gmail.com", Password = "Isika24provider", Role = UserEnum.Provider };
-            User provider4 = new User() { Name = "David", Email = "david@gmail.com", Password = "Isika24provider", Role = UserEnum.Provider };
-            User provider5 = new User() { Name = "Mounia", Email = "mounia@gmail.com", Password = "Isika24provider", Role = UserEnum.Provider };
-            User provider6 = new User() { Name = "Marie", Email = "marie@gmail.com", Password = "Isika24provider", Role = UserEnum.Provider };
-            User provider7 = new User() { Name = "Brendan", Email = "brendan@gmail.com", Password = "Isika24provider", Role = UserEnum.Provider };
-
+            User provider = new User() { Name = "Magdaline", Email = "magdaline@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider1 = new User() { Name = "Fanta", Email = "fanta@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider2 = new User() { Name = "Nway", Email = "nway@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider3 = new User() { Name = "Andre", Email = "andre@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider4 = new User() { Name = "David", Email = "david@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider5 = new User() { Name = "Mounia", Email = "mounia@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider6 = new User() { Name = "Marie", Email = "marie@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
+            User provider7 = new User() { Name = "Brendan", Email = "brendan@gmail.com", Password = EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
             this.Users.AddRange(provider, provider1, provider2, provider3, provider4, provider5, provider6, provider7);
+
             Journey inde = new Journey() { Id = 1, CountryDestination = "Inde", DepartureDate = "10/02/2024", ReturnDate = "24/02/2024", Persons = 2 };
             Journey thailande = new Journey() { Id = 2, CountryDestination = "Thailande", DepartureDate = "18/07/2024", ReturnDate = "30/07/2024", Persons = 4 };
             Journey mexique = new Journey() { Id = 3, CountryDestination = "Mexique", DepartureDate = "15/06/2024", ReturnDate = "30/06/2024", Persons = 2 };
@@ -65,6 +73,7 @@ namespace _001JIMCV.Models
             Journey maroc = new Journey() { Id = 7, CountryDestination = "Maroc", DepartureDate = "20/10/2023", ReturnDate = "02/11/2024", Persons = 2 };
             Journey italie = new Journey() { Id = 8, CountryDestination = "Italie", DepartureDate = "15/08/2024", ReturnDate = "26/08/2024", Persons = 2 };
             this.Journeys.AddRange(inde, thailande, mexique, ethiopie, france, japon, maroc, italie);
+
             Flight FlightInde = new Flight() { FlightId = "FlightInde", Airline = "Air India", DepartureCity = "CDG", DepartureDate = "10/02/2024", DestinationCity = "Dehli", FlightNumber = 547896 };
             Flight FlightThailande = new Flight() { FlightId = "FlightThailande", Airline = "Air thai", DepartureCity = "Paris Orly", DepartureDate = "18/07/2024", DestinationCity = "Pukhet", FlightNumber = 165866 };
             Flight FlightMexique = new Flight() { FlightId = "FlightMexique", Airline = "Mexico airline", DepartureCity = "Aéroport de Nice", DepartureDate = "10/02/2024", DestinationCity = "Mexico", FlightNumber = 465732 };

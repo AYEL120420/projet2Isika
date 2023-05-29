@@ -1,52 +1,26 @@
-﻿@model _001JIMCV.ViewModels.ListView
+﻿@model _001JIMCV.Models.Classes.Service
+
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ListeServices</title>
+   
+ <title>ListeServices</title>
 </head>
 <body>
-    <div style="width: 60%;">
-        <table border="1"  style="width:100%">
-
-            <tr>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Price</th>
-          
-        </tr>
-       
-    
-        @foreach (_001JIMCV.Models.Classes.Service service in ViewData["Services"] as List<_001JIMCV.Models.Classes.Service>
-            )
-        {
-            
-            <tr>
-                
-                <td>@service.Type</td>
-                <td>@service.Description</td>
-                <td>@service.Price</td>
-                <td style="width: 70px;">
-                        <form action="@Url.Action("EditService", "Service", new { id = service.Id })" method="get">
-                            <button type="submit">Modifier</button>
-                        </form>
-                </td>
-                <td style="width: 70px;">
-                        <form action="@Url.Action("DeleteService", "Service", new { id = service.Id })" method="post">
-                            <button type="submit">Supprimer</button>
-                        </form>
-                </td>
-            </tr>
-              
-        }
-       
-    </table>
-    </div>
     <ul>
         <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-        <li>@Html.ActionLink("Ajouter", "AddService", "Service")</li>
-    </ul>
+
+    </ul><br>
+    <div>
+        @Html.Partial("FormAddEdit")
+    </div>
+    <div>
+        @Html.Partial("ServiceList")
+    </div>
+    
+
 </body>
 
 

@@ -1,0 +1,32 @@
+﻿@model _001JIMCV.ViewModels.LoginViewModel
+
+@if (Model.Authentified)
+{
+    <h3>
+        Vous êtes déjà authentifié avec le compte @Model.User.Role.ToString() :
+        @Model.User.Email
+    </h3>
+    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnection")
+}
+else
+{
+    <p>
+        Veuillez vous authentifier :
+    </p>
+    using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(m => m.User.Email)
+            @Html.TextBoxFor(m => m.User.Email)
+            @Html.ValidationMessageFor(m => m.User.Email)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.User.Password)
+            @Html.PasswordFor(m => m.User.Password)
+            @Html.ValidationMessageFor(m => m.User.Password)
+        </div>
+        <input type="submit" value="Se connecter" />
+        <br />
+        @Html.ActionLink("Créer un compte", "CreateAccount")
+    }
+}

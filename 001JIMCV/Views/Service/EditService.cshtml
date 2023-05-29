@@ -1,61 +1,49 @@
 ﻿@model _001JIMCV.Models.Classes.Service
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Ma page</title>
-</head>
-<body>
-    <legend><h1> Ajouter un service :</h1></legend>
-    @using (Html.BeginForm())
-    {
-        <fieldset>
-            <div>
-                @Html.LabelFor(m => m.Type)
-                <div>
-                    <label class="form-control">
-                        @Html.RadioButtonFor(m => m.Type, "Hebergement")
-                        Hebergement
-                    </label>
-                </div>
-                <div>
-                    <label class="form-control">
-                        @Html.RadioButtonFor(m => m.Type, "Vol")
-                        Vol
-                    </label>
-                </div>
-                <div class="form-control">
-                    <label class="form-check-label">
-                        @Html.RadioButtonFor(m => m.Type, "Activité")
-                        Activité
-                    </label>
-                </div>
-                @Html.ValidationMessageFor(m => m.Type)
-            </div>
-            <br />
-            <div class="form-control">
-                @Html.LabelFor(m => m.Description)<br>
-                @Html.TextAreaFor(m => m.Description)
-                @Html.ValidationMessageFor(m => m.Description)
-            </div>
-            <div>
-                @Html.LabelFor(m => m.Price)<br>
-                @Html.TextBoxFor(m => m.Price)
-                @Html.ValidationMessageFor(m => m.Price)<br>
-            </div><br>
-           <div class="form-control">
-                <input type="submit" value="Modifier" class="btn btn-primary" />
-            </div>
-        </fieldset>
-    }
-    <ul>
-        <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-        <li>@Html.ActionLink("Tout les Services", "List", "Service")</li>
-    </ul>
-</body>
-</html>
-@section ExtraScript{
-    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate-vsdoc.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+@{
+    string formAction = ViewData["FormAction"] as string;
+    string formMethod = ViewData["FormMethod"] as string ?? "post";
+    string submitText = ViewData["SubmitText"] as string ?? "Enregistrer";
+}
+
+@using (Html.BeginForm(formAction, "Service", FormMethod.Post))
+{
+    <!-- Vos champs de formulaire ici -->
+    <div>
+        @Html.LabelFor(m => m.Type)
+        <div>
+            <label class="form-control">
+                @Html.RadioButtonFor(m => m.Type, "Hebergement")
+                Hebergement
+            </label>
+        </div>
+        <div>
+            <label class="form-control">
+                @Html.RadioButtonFor(m => m.Type, "Vol")
+                Vol
+            </label>
+        </div>
+        <div class="form-control">
+            <label class="form-check-label">
+                @Html.RadioButtonFor(m => m.Type, "Activité")
+                Activité
+            </label>
+        </div>
+        @Html.ValidationMessageFor(m => m.Type)
+    </div>
+    <br />
+    <div class="form-control">
+        @Html.LabelFor(m => m.Description)<br>
+        @Html.TextAreaFor(m => m.Description)
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Price)<br>
+        @Html.TextBoxFor(m => m.Price)
+        @Html.ValidationMessageFor(m => m.Price)<br>
+    </div>
+    <br>
+    <div class="form-control">
+        <input type="submit" value="@submitText" class="btn btn-primary" />
+    </div>
 }

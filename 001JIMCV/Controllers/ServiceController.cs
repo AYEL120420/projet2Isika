@@ -3,6 +3,7 @@ using _001JIMCV.Models;
 using Microsoft.AspNetCore.Mvc;
 using _001JIMCV.Models.Dals;
 using System.Collections.Generic;
+using _001JIMCV.ViewModels;
 
 namespace _001JIMCV.Controllers
 {
@@ -17,29 +18,37 @@ namespace _001JIMCV.Controllers
         {
             return View();
         }
-        [HttpGet]
+
+        //Afficher la liste des serices
+       
         public IActionResult List()
         {
-
-            var services = serviceDal.GetAllServices();
-            ViewData["Services"] = services;
-            return View();
+           
+                var services = serviceDal.GetAllServices();
+                ViewData["Services"] = services ?? new List<_001JIMCV.Models.Classes.Service>();
+                return View();
+          
         }
-        [HttpGet]
+
+        //Ajouter un service à la liste
+      /*  [HttpGet]
         public IActionResult AddService()
         {
-            return View("AddService");
-        }
+            return RedirectToAction("List");
+        }*/
+
         [HttpPost]
-        public IActionResult AddService(Service service)
+        public IActionResult CreateService(Service service)
         {
             if (!ModelState.IsValid)
             {
-                return View("AddService", service);
+                return View("List", service);
             }
             serviceDal.AddService(service);
-            return RedirectToAction("AddService");
+
+            return RedirectToAction("List");
         }
+
 
         [HttpGet]
         public IActionResult EditService(int id)
