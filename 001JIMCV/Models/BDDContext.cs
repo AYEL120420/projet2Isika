@@ -1,6 +1,7 @@
 ﻿using _001JIMCV.Models.Classes;
 using _001JIMCV.Models.Classes.Enum;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Runtime.CompilerServices;
 using _001JIMCV.Models.Dals;
 using System.Security.Cryptography;
@@ -31,7 +32,12 @@ namespace _001JIMCV.Models
         {
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=001JIMCV");
         }
-        public void InitializeDb()
+        public string EncodeMD5(string password)
+        {
+            string passwordSel = "JIMCV" + password + "ASP.NET MVC";
+            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(passwordSel)));
+        }
+            public void InitializeDb()
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
@@ -76,9 +82,16 @@ namespace _001JIMCV.Models
             Flight FlightJapon = new Flight() { Airline = "Fly Japan", DepartureCity = "Toulouse blagnac", DepartureDate = "10/02/2024", DestinationCity = "Osaka", FlightNumber = 386618 };
             Flight FlightMaroc = new Flight() { Airline = "Boeing Maroc", DepartureCity = "Bordeaux-Mérignac", DepartureDate = "10/02/2024", DestinationCity = "Marrakech", FlightNumber = 548675 };
             Flight FlightItalie = new Flight() { Airline = "Itaflyairway", DepartureCity = "Nantes Atlantique", DepartureDate = "10/02/2024", DestinationCity = "Naples", FlightNumber = 397668 };
-            this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie);
+            this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie);  
+            
+            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Price=40 };
+            Service serv2 = new Service() { Type = "Vol", Description = "", Price = 200 };
+            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Price = 10 };
+
+            this.Services.AddRange(serv1, serv2, serv3);
 
             this.SaveChanges();
         }
+        
     }
 }

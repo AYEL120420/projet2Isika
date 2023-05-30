@@ -53,7 +53,9 @@ namespace _001JIMCV.Controllers
 
                     return Redirect("Login/Index");
                 }
+
                 ModelState.AddModelError("User.Email", "Email et/ou mot de passe incorrect(s)");
+
             }
             return View(viewModel);
         }
@@ -92,4 +94,5 @@ namespace _001JIMCV.Controllers
             return Redirect("/");
         }
     }
+
 }
