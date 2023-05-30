@@ -35,6 +35,16 @@ header {
         width: 100%;
     }
 
+#NosMenus {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    #NosMenus p {
+        width: 100%;
+    }
+
 #photo-gallery {
     display: flex;
     justify-content: center;
