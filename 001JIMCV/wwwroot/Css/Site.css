@@ -35,6 +35,16 @@ header {
         width: 100%;
     }
 
+#NosMenus {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    #NosMenus p {
+        width: 100%;
+    }
+
 #photo-gallery {
     display: flex;
     justify-content: center;
@@ -44,8 +54,11 @@ header {
 }
 
 .image-container {
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     flex-basis: 20%;
-    height: auto;
+    min-height: 630px;
     width: auto;
     padding: 10px;
     box-sizing: border-box;
