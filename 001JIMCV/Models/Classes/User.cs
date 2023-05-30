@@ -11,6 +11,8 @@ namespace _001JIMCV.Models.Classes
         [Required(ErrorMessage = "L'e-mail est requis.")]
         [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Veuillez saisir une adresse e-mail valide.")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Le mot de passe est requis.")]
         public string Password { get; set; }
         public UserEnum Role { get; set; }
     }
