@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using _001JIMCV.Models.Classes.Enum;
+using System.Collections.Generic;
 
 namespace _001JIMCV.Models.Classes
 {
@@ -8,10 +9,11 @@ namespace _001JIMCV.Models.Classes
         public string Name { get; set; }    
         public string Type { get; set; }
         public string Description { get; set; }
+        public CountryEnum Country { get; set; }
         public float Price { get; set; }
         public string State { get; set; }
 
         public int IdUser { get; set; }
-        public User UserProvider { get; set; }
+        public virtual User UserProvider { get; set; }
     }
 }

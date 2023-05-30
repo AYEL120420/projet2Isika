@@ -60,14 +60,14 @@ namespace _001JIMCV.Models
             User provider7 = new User() { Name = "Brendan", Email = "brendan@gmail.com", Password = LoginDal.EncodeMD5("Isika24provider"), Role = UserEnum.Provider };
             this.Users.AddRange(provider, provider1, provider2, provider3, provider4, provider5, provider6, provider7);
 
-            Journey inde = new Journey() { CountryDestination = "Inde", DepartureDate = "10/02/2024", ReturnDate = "24/02/2024", Persons = 2 };
-            Journey thailande = new Journey() { CountryDestination = "Thailande", DepartureDate = "18/07/2024", ReturnDate = "30/07/2024", Persons = 4 };
-            Journey mexique = new Journey() { CountryDestination = "Mexique", DepartureDate = "15/06/2024", ReturnDate = "30/06/2024", Persons = 2 };
-            Journey ethiopie = new Journey() { CountryDestination = "Ethiopie", DepartureDate = "2/12/2024", ReturnDate = "20/12/2024", Persons = 2 };
-            Journey france = new Journey() { CountryDestination = "France", DepartureDate = "10/09/2023", ReturnDate = "24/09/2023", Persons = 4 };
-            Journey japon = new Journey() { CountryDestination = "Japon", DepartureDate = "20/05/2024", ReturnDate = "03/06/2024", Persons = 6 };
-            Journey maroc = new Journey() { CountryDestination = "Maroc", DepartureDate = "20/10/2023", ReturnDate = "02/11/2024", Persons = 2 };
-            Journey italie = new Journey() { CountryDestination = "Italie", DepartureDate = "15/08/2024", ReturnDate = "26/08/2024", Persons = 2 };
+            Journey inde = new Journey() { CountryDestination = CountryEnum.Inde, DepartureDate = "10/02/2024", ReturnDate = "24/02/2024", Persons = 2 };
+            Journey thailande = new Journey() { CountryDestination = CountryEnum.Thailande, DepartureDate = "18/07/2024", ReturnDate = "30/07/2024", Persons = 4 };
+            Journey mexique = new Journey() { CountryDestination = CountryEnum.Mexique, DepartureDate = "15/06/2024", ReturnDate = "30/06/2024", Persons = 2 };
+            Journey ethiopie = new Journey() { CountryDestination = CountryEnum.Ethiopie, DepartureDate = "2/12/2024", ReturnDate = "20/12/2024", Persons = 2 };
+            Journey france = new Journey() { CountryDestination = CountryEnum.France, DepartureDate = "10/09/2023", ReturnDate = "24/09/2023", Persons = 4 };
+            Journey japon = new Journey() { CountryDestination = CountryEnum.Japon, DepartureDate = "20/05/2024", ReturnDate = "03/06/2024", Persons = 6 };
+            Journey maroc = new Journey() { CountryDestination = CountryEnum.Maroc, DepartureDate = "20/10/2023", ReturnDate = "02/11/2024", Persons = 2 };
+            Journey italie = new Journey() { CountryDestination = CountryEnum.Italie, DepartureDate = "15/08/2024", ReturnDate = "26/08/2024", Persons = 2 };
             this.Journeys.AddRange(inde, thailande, mexique, ethiopie, france, japon, maroc, italie);
 
             Flight FlightInde = new Flight() { Airline = "Air India", DepartureCity = "CDG", DepartureDate = "10/02/2024", DestinationCity = "Dehli", FlightNumber = 547896 };

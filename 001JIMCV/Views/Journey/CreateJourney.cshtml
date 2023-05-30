@@ -1,0 +1,38 @@
+﻿@model _001JIMCV.ViewModels.JourneyViewModel
+@{
+    var countries = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.CountryEnum))
+    .Cast<_001JIMCV.Models.Classes.Enum.CountryEnum>()
+    .Select(e => new SelectListItem
+            {
+                Value = e.ToString(),
+                Text = e.ToString()
+            })
+    .ToList();
+}
+@using (Html.BeginForm("CreateService", "Service"))
+{
+    <fieldset>
+        <div>
+            @Html.LabelFor(m => m.Journey.CountryDestination)
+
+            @Html.DropDownListFor(m => m.Journey.CountryDestination, countries)
+            @Html.ValidationMessageFor(m => m.Journey.CountryDestination)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Journey.DepartureDate)
+            @Html.TextAreaFor(m => m.Journey.DepartureDate, new { @type="date" } )
+            @Html.ValidationMessageFor(m => m.Journey.DepartureDate)
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(m => m.Journey.ReturnDate)
+            @Html.TextAreaFor(m => m.Journey.ReturnDate, new { @type="date" } )
+            @Html.ValidationMessageFor(m => m.Journey.ReturnDate)
+        </div>
+        <br>
+        <div class="form-control">
+            <input type="submit" value="Enregistrer" class="btn btn-primary" />
+
+        </div>
+    </fieldset>
+}
