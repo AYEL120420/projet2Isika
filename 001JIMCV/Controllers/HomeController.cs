@@ -22,6 +22,12 @@ namespace _001JIMCV.Controllers
             return View();
         }
 
+        public IActionResult IndeFullPackage01()
+        {
+            return View();
+        }
     }
 }
+
+
 
