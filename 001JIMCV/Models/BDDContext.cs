@@ -32,12 +32,8 @@ namespace _001JIMCV.Models
         {
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=001JIMCV");
         }
-        public string EncodeMD5(string password)
-        {
-            string passwordSel = "JIMCV" + password + "ASP.NET MVC";
-            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(passwordSel)));
-        }
-            public void InitializeDb()
+        
+        public void InitializeDb()
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
