@@ -12,8 +12,7 @@ namespace _001JIMCV.ViewModels
         public PackServices PackServices { get; set; }
         public Service Service { get; set; }
         public ServicePackServices ServicePackServices { get; set; }
-
-        public CountryEnum CountryEnum { get; set; }
+             
         
 
     }

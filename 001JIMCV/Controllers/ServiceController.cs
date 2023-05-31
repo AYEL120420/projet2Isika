@@ -66,7 +66,6 @@ namespace _001JIMCV.Controllers
                 }
                 return View(service);
             }
-            return View("Error");
         }
 
         [HttpPost]

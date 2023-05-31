@@ -8,7 +8,7 @@ namespace _001JIMCV.Models.Classes
         public int Id { get; set; }
         public string DepartureDate { get; set; }
         public string ReturnDate { get; set; }
-        public CountryEnum CountryDestination { get; set; }
+        public string CountryDestination { get; set; }
         public int Persons { get; set; }
 
         public JourneyEnum JourneyState { get; set; }
