@@ -1,5 +1,7 @@
 ﻿using _001JIMCV.Models.Classes;
 using _001JIMCV.Models.Classes.Enum;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace _001JIMCV.Models.Dals
 {
@@ -20,5 +22,23 @@ namespace _001JIMCV.Models.Dals
             this._bddContext.SaveChanges();
             return journey.Id;
         }
+
+        public List<Journey> GetAllJourneys()
+        {
+            return _bddContext.Journeys.ToList();
+        }
+        public List<Flight> GetAllFLights()
+        {
+            return _bddContext.Flights.ToList();
+        }
+        public List<Accommodation> GetAllAccommodations()
+        {
+            return _bddContext.Accommodations.ToList();
+        }
+        public List<Activity> GetAllActivities()
+        {
+            return _bddContext.Activities.ToList();
+        }
+
     }
 }

@@ -9,6 +9,11 @@ namespace _001JIMCV.Models.Classes
         public float Total_price { get; set; }
         public Boolean All_Inclusive { get; set; }
 
+        public int DepartureFlightId { get; set; }
+        public Flight DepartureFlight { get; set; }
+        public int ReturnFlightId { get; set; }
+        public Flight ReturnFlight { get; set; }
+
 
     }
 }

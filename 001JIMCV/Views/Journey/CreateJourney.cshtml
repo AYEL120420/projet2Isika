@@ -6,20 +6,20 @@
     <title>Créer un voyage</title>
 </head>
 <body>
-@using (Html.BeginForm())
+    @using (Html.BeginForm())
 {
-        <fieldset>
-            <legend>Créer un voyage : </legend>
+    <fieldset>
+        <legend>Créer un voyage : </legend>
             @Html.LabelFor(m => m.Journey.CountryDestination)
-            @Html.TextAreaFor(m => m.Journey.CountryDestination)
+            @Html.TextBoxFor(m => m.Journey.CountryDestination)
             @Html.ValidationMessageFor(m => m.Journey.CountryDestination)
         <br/>
             @Html.LabelFor(m => m.Journey.DepartureDate)
-            @Html.TextAreaFor(m => m.Journey.DepartureDate, new { @type="date"} )
+            @Html.TextBoxFor(m => m.Journey.DepartureDate, new { @type="date"} )
             @Html.ValidationMessageFor(m => m.Journey.DepartureDate)
         <br />
             @Html.LabelFor(m => m.Journey.ReturnDate)
-            @Html.TextAreaFor(m => m.Journey.ReturnDate, new { @type="date" } )
+            @Html.TextBoxFor(m => m.Journey.ReturnDate, new { @type="date" } )
             @Html.ValidationMessageFor(m => m.Journey.ReturnDate)
         <br/>
         <input type="submit" value="Suivant" />

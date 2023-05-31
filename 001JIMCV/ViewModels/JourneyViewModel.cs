@@ -12,9 +12,15 @@ namespace _001JIMCV.ViewModels
         public PackServices PackServices { get; set; }
         public Service Service { get; set; }
         public ServicePackServices ServicePackServices { get; set; }
-             
-        
 
+        public Flight Flights { get; set; }
+        public Accommodation  Accommodations { get; set; }
+        public Activity Activities { get; set; }
+
+        public List<string> FlightsCocheIds { get; set; }
+        public List<string> AccommodationsCocheIds { get; set; }
+        public List<string> ActivitiesCocheIds { get; set; }
+             
     }
 
 
