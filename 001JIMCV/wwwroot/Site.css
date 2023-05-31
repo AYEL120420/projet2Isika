@@ -6,7 +6,7 @@
 }
 
 header {
-    background-color: #f2f2f2;
+    background-color: #DF3012;
     padding: 10px;
     height: 50px;
 }
@@ -26,9 +26,13 @@ header {
     }
 
 #logo {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
+
+    flex-basis: 20%;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
 }
 
     #logo img {

@@ -25,11 +25,7 @@ namespace _001JIMCV
                 });
 
             services.AddControllersWithViews();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-              .AddCookie(options =>
-              {
-                  options.LoginPath = "/Login/Index";
-              });
+          
 
         }
 

@@ -1,0 +1,78 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>JIMCV</title>
+    <link href="~/css/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+
+
+   <div style="display:flex; justify-content:space-between; align-items:center">
+        <div>
+            <nav role="navigation">
+  <div id="menuToggle">
+
+    <input type="checkbox" />
+    <span></span>
+    <span></span>
+    <span></span>
+
+    <ul id="menu">
+      <a href="/home';"><li>Bienvenue</li></a>
+      <a href="#"><li>Login/Inscription</li></a>
+      <a href="#"><li>Manger avant tout !</li></a>
+      <a href=""><li>Découvrir les pays</li></a>
+      <a href="#"><li>Contact</li></a>
+      <a href="https://youtube.com" target="_blank"><li>Show me more</li></a>
+    </ul>
+  </div>
+</nav>
+        </div>
+       <div>
+           <span id="">
+            <img src="/Images/logosimplifie.png" alt="Logo"
+                 style="width:200px;height:120px">
+            </span>
+       </div>
+
+       <div>
+            <span id="">
+             <a href="https://www.instagram.com/">
+                     <img src="Images/instagram.png" alt="Logo Instagram"
+                     style="width:"200px; height:120px;>
+                </a>
+            </span>
+
+          <span id="">
+                <a href="https://www.facebook.com/">
+                    <img src="Images/facebook.png" alt="Logo Facebook">
+                </a>
+            </span>
+       </div>
+   </div>
+ 
+
+
+ </header>
+
+
+    <div id="contenu">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="footer">
+        &copy; @DateTime.Now.Year - Partagez votre aventure ou vos expériences sur notre mail : Jimcv@gmail.com !
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
