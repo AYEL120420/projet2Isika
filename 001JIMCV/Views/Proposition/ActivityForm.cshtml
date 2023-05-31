@@ -1,0 +1,75 @@
+﻿@model _001JIMCV.Models.Classes.Activity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Mon formulaire</title>
+    <link href="/css/Forms.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("SubmitServiceProposal", "Proposition", FormMethod.Post))
+    {
+        <fieldset>
+            <div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Pays)<br>
+                    @Html.TextBoxFor(m => m.Pays, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(m => m.Pays)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Ville)<br>
+                    @Html.TextBoxFor(m => m.Ville, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(m => m.Ville)
+                </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Nom)
+            @Html.TextBoxFor(m => m.Nom, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Nom)
+        </div>
+        <br>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        </div>
+        <br>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Date)
+            @Html.TextBoxFor(m => m.Date, new { @type = "date", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Date)
+        </div>
+        <br>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Localisation)
+            @Html.TextBoxFor(m => m.Localisation, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Localisation)
+        </div>
+        <br>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Prix)
+            @Html.TextBoxFor(m => m.Prix, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Prix)
+        </div>
+        <br>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Image)
+            @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control-file" })
+            @Html.ValidationMessageFor(m => m.Image)
+        </div>
+        <br>
+
+        <div class="form-group">
+            <input type="submit" value="Enregistrer" class="btn btn-primary" />
+        </div>
+        </fieldset>
+    }
+</body>
+</html>
+

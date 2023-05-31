@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Provider\" />
   </ItemGroup>
 
   <ItemGroup>

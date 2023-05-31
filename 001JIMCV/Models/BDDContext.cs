@@ -32,11 +32,7 @@ namespace _001JIMCV.Models
         {
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=001JIMCV");
         }
-        public string EncodeMD5(string password)
-        {
-            string passwordSel = "JIMCV" + password + "ASP.NET MVC";
-            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(passwordSel)));
-        }
+       
             public void InitializeDb()
         {
             this.Database.EnsureDeleted();
@@ -84,9 +80,9 @@ namespace _001JIMCV.Models
             Flight FlightItalie = new Flight() { Airline = "Itaflyairway", DepartureCity = "Nantes Atlantique", DepartureDate = "10/02/2024", DestinationCity = "Naples", FlightNumber = 397668 };
             this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie);  
             
-            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Price=40 };
-            Service serv2 = new Service() { Type = "Vol", Description = "", Price = 200 };
-            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Price = 10 };
+            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Prix=40 };
+            Service serv2 = new Service() { Type = "Vol", Description = "", Prix = 200 };
+            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Prix = 10 };
 
             this.Services.AddRange(serv1, serv2, serv3);
 

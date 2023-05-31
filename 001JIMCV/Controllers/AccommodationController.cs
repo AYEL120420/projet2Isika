@@ -7,50 +7,48 @@ using _001JIMCV.ViewModels;
 
 namespace _001JIMCV.Controllers
 {
-    public class ServiceController : Controller
+    public class AccommodationController : Controller
     {
-        private ServiceDal serviceDal;
-        public ServiceController()
+        private AccommodationDal accommodationDal;
+        public AccommodationController()
         {
-            serviceDal = new ServiceDal();
+            accommodationDal = new AccommodationDal();
         }
         public IActionResult Index()
         {
             return View();
         }
 
-        //Afficher la liste des serices
-       
-        public IActionResult List()
+        public IActionResult AccommodationForm()
+        {
+            return View("AccommodationForm"); // Renvoie la vue du formulaire d'hébergement
+        }
+
+        //Afficher la liste des accommodations
+
+        public IActionResult GetList()
         {
            
-                var services = serviceDal.GetAllServices();
-                ViewData["Services"] = services ?? new List<_001JIMCV.Models.Classes.Service>();
+                var accommodations = accommodationDal.GetAllAccommodations();
+                ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
                 return View();
           
         }
 
-        //Ajouter un service à la liste
-      /*  [HttpGet]
-        public IActionResult AddService()
-        {
-            return RedirectToAction("List");
-        }*/
-
         [HttpPost]
-        public IActionResult CreateService(Service service)
+        public IActionResult CreateAccommodation(Accommodation accommodation)
         {
             if (!ModelState.IsValid)
             {
-                return View("List", service);
+                return View("List", accommodation);
             }
-            serviceDal.AddService(service);
+            accommodationDal.AddAccommodation(accommodation);
 
-            return RedirectToAction("List");
+            return RedirectToAction("GetList");
         }
 
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult EditService(int id)
         {
 
@@ -128,7 +126,7 @@ namespace _001JIMCV.Controllers
             {
                 return View("Error");
             }
-        }
+        }*/
     }
 }
 

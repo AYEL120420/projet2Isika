@@ -13,10 +13,12 @@
     @foreach (_001JIMCV.Models.Classes.Service service in ViewData["Services"] as List<_001JIMCV.Models.Classes.Service>)
     {
     <tr>
-
+        <td>@service.Pays</td>
+        <td>@service.Ville</td>
+        <td>@service.Date</td>
         <td>@service.Type</td>
         <td>@service.Description</td>
-        <td>@service.Price</td>
+        <td>@service.Prix</td>
         <td style="width: 70px;">
             <form action="@Url.Action("EditService", "Service", new { id = service.Id })" method="get">
                 <button type="submit">Modifier</button>

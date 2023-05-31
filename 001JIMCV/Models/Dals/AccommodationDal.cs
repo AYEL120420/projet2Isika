@@ -1,63 +1,77 @@
 ﻿using _001JIMCV.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using DateAndTime = Microsoft.VisualBasic.DateAndTime;
 
 namespace _001JIMCV.Models.Dals
 {
-    public class ServiceDal : IDisposable
+    public class AccommodationDal : IDisposable
     {
         private BDDContext _bddcontext;
         //Constructeur
-        public ServiceDal()
+        public AccommodationDal()
         {
             _bddcontext = new BDDContext();
         }
 
         //Obtenir la liste des services
-        public List<Service> GetAllServices()
+        public List<Accommodation> GetAllAccommodations()
         {
-            return _bddcontext.Services.ToList();
+            return _bddcontext.Accommodations.ToList();
         }
 
         //Ajouter un service
-        public int AddService(string Type, string Description, float Price)
+        public int AddAccommodation(string country, string city, string type, string address, string from, string to, float price, string description, byte[] image)
         {
-            Service service = new Service()
+            Accommodation accommodation = new Accommodation()
             {
-                Type = Type,
-                Description = Description,
-                Price = Price,
-
+                Pays = country,
+                Ville = city,
+                Type = type,
+                Adresse = address,
+                De = from,
+                A = to,
+                Prix = price,
+                Description = description,
+                Image = image
             };
-            _bddcontext.Services.Add(service);
+
+            _bddcontext.Accommodations.Add(accommodation);
             _bddcontext.SaveChanges();
-            return service.Id;
+
+            return accommodation.Id;
         }
+
         //Ajouter service 
-        public void AddService(Service service)
+        public void AddAccommodation(Accommodation accommodation)
         {
-            _bddcontext.Services.Add(service);
+            _bddcontext.Accommodations.Add(accommodation);
             _bddcontext.SaveChanges();
         }
 
         //Obtenir service par Id
-       public Service GetServiceById(int id)
+      /* public Service GetServiceById(int id)
         {
             return _bddcontext.Services.FirstOrDefault(s => s.Id == id);
         }
 
         //modifier un service
-        public void EditService(int id, string type, string description, float price)
+        public void EditService(int id, string Country, string City, DateAndTime Date, string Type, string Description, float Price)
         {
             Service service = _bddcontext.Services.Find(id);
             if (service != null)
             {
-                service.Type = type;
-                service.Description = description;
-                service.Price = price;
+                Country = Country;
+                City = City;
+                Date = Date;
+                service.Type = Type;
+                service.Description = Description;
+                service.Prix= Price;
                 _bddcontext.SaveChanges();
             }
         }
@@ -85,12 +99,12 @@ namespace _001JIMCV.Models.Dals
             _bddcontext.Services.Remove(service);
             _bddcontext.SaveChanges();
         }
-    
+    */
         public void Dispose()
         {
             _bddcontext.Dispose();
         }
-
+      
 
     }
 }
