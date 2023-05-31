@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>India</title>
+    <link href="~/css/Site.css" rel="stylesheet" />
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+            background-image: url("/images/indeMap01.jpg");
+            background-size: cover;
+        }
+
+        #date-picker {
+            width: 100%; 
+            height: 30px; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <form id="login-form">
+            <input type="text" placeholder="Login">
+            <input type="password" placeholder="Mot de passe">
+            <button type="submit">Valider</button>
+        </form>
+    </header>
+
+    <div id="logo">
+        <img src="/images/bandelogo.jpg" alt="Logo">
+    </div>
+
+    <div id="map"></div>
+
+    <input type="date" id="date-picker">
+
+    <button onclick="window.location.href='/Home';">Retour à la page principale</button>
+
+</body>
+</html>

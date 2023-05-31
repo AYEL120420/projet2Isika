@@ -24,7 +24,27 @@ namespace _001JIMCV.Controllers
 
         public IActionResult IndeFullPackage01()
         {
-            return View();
+            return View("Inde/IndeFullPackage01");
+        }
+
+        public IActionResult ItalieFullPackage01()
+        {
+            return View("Italie/ItalieFullPackage01");
+        }
+
+        public IActionResult JaponFullPackage01()
+        {
+            return View("Japon/JaponFullPackage01");
+        }
+
+        public IActionResult MexiqueFullPackage01()
+        {
+            return View("Mexique/MexiqueFullPackage01");
+        }
+
+        public IActionResult VietnamFullPackage01()
+        {
+            return View("Vietnam/VietnamFullPackage01");
         }
     }
 }
