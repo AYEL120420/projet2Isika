@@ -175,7 +175,6 @@ header {
         background-color: #fff;
     }
 
-
 #Logo {
     justify-content: center;
     height: 50px;
@@ -200,6 +199,15 @@ facebook {
     display: flex;
     align-items: center;
 }
+#NosMenus {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#NosMenus p {
+       width: 100%;
+}
 
 #photo-gallery {
     display: flex;
@@ -210,8 +218,11 @@ facebook {
 }
 
 .image-container {
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     flex-basis: 20%;
-    height: auto;
+    min-height: 630px;
     width: auto;
     padding: 10px;
     box-sizing: border-box;

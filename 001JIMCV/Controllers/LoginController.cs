@@ -51,7 +51,7 @@ namespace _001JIMCV.Controllers
                     if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
 
-                    return Redirect("Login/Index");
+                    return Redirect("/");
                 }
 
                 ModelState.AddModelError("User.Email", "Email et/ou mot de passe incorrect(s)");
