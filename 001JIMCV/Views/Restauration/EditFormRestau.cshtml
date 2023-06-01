@@ -1,0 +1,100 @@
+﻿@model _001JIMCV.Models.Classes.Restauration
+@{
+    var countries = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.CountryEnum))
+    .Cast<_001JIMCV.Models.Classes.Enum.CountryEnum>()
+    .Select(e => new SelectListItem
+            {
+                Value = e.ToString(),
+                Text = e.ToString()
+            })
+    .ToList();
+}
+@{
+    string formAction = ViewData["FormAction"] as string;
+    string formMethod = ViewData["FormMethod"] as string ?? "post";
+    string submitText = ViewData["SubmitText"] as string ?? "Enregistrer";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Mon formulaire</title>
+    <link href="/css/Forms.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm("CreateRestauration", "Restaurarion", FormMethod.Post))
+    {
+        <fieldset>
+            <div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Pays)<br>
+                    @Html.DropDownListFor(m => m.Pays, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(m => m.Pays)
+                </div><br>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Ville)<br>
+                    @Html.TextBoxFor(m => m.Ville, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(m => m.Ville)
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Type)
+                    <select class="form-control" name="Type">
+                        <option value="Restaurant">Restaurant</option>
+                        <option value="Habitant">Habitant</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                    @Html.ValidationMessageFor(m => m.Type)
+                </div>
+                <br>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                </div>
+                <br>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Localisation)
+                    @Html.TextBoxFor(m => m.Localisation, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Localisation)
+                </div>
+                <br>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Menu)<br>
+                    @Html.TextAreaFor(m => m.Menu, new { @class = "form-control" })
+                </div>
+                <br>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Tarif)
+                    @Html.TextBoxFor(m => m.Tarif, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Tarif)
+                </div>
+                <br>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EmailContact)
+                    @Html.TextBoxFor(m => m.EmailContact, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.EmailContact)
+                </div>
+                <br>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Images)
+                    <input type="file" name="Images" multiple class="form-control-file" />
+                    @Html.ValidationMessageFor(m => m.Images)
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                </div>
+        </fieldset>
+    }
+</body>
+</html>

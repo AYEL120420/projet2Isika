@@ -25,6 +25,8 @@ namespace _001JIMCV
                 });
 
             services.AddControllersWithViews();
+
+            services.AddHttpContextAccessor(); // possiblement à supprimer = voir comment récupérer l'id de la personne connecté
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
