@@ -184,6 +184,16 @@ header {
    
 }
 
+#logo {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    #logo img {
+        width: 100%;
+    }
+
 #instagram {
     justify-items: right;
     height: 5px;
