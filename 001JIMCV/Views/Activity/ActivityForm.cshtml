@@ -1,4 +1,14 @@
 ﻿@model _001JIMCV.Models.Classes.Activity
+@{
+    var countries = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.CountryEnum))
+    .Cast<_001JIMCV.Models.Classes.Enum.CountryEnum>()
+    .Select(e => new SelectListItem
+            {
+                Value = e.ToString(),
+                Text = e.ToString()
+            })
+    .ToList();
+}
 
 <!DOCTYPE html>
 <html>
@@ -8,15 +18,15 @@
     <link href="/css/Forms.css" rel="stylesheet" />
 </head>
 <body>
-    @using (Html.BeginForm("SubmitServiceProposal", "Proposition", FormMethod.Post))
+    @using (Html.BeginForm("CreateActivity", "Activity", FormMethod.Post))
     {
         <fieldset>
             <div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Pays)<br>
-                    @Html.TextBoxFor(m => m.Pays, new { @class = "form-control", required = "required" })
+                    @Html.DropDownListFor(m => m.Pays, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { @class = "form-control", required = "required" })
                     @Html.ValidationMessageFor(m => m.Pays)
-                </div>
+                </div><br>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Ville)<br>
                     @Html.TextBoxFor(m => m.Ville, new { @class = "form-control", required = "required" })

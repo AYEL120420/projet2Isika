@@ -14,9 +14,9 @@ namespace _001JIMCV.Models.Classes
         public DateAndTime Date { get; set; }
         public string Localisation { get; set; }
         public float Prix {get; set; }
+        public string Status { get; set; }
         public byte [] Image { get; set; }  //doit être modifiée en liste
         
-        public int ServiceId { get; set; }
 
         public virtual Service Service { get; set; }
     }

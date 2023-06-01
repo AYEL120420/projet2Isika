@@ -26,7 +26,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         //Ajouter un service
-        public int AddAccommodation(string country, string city, string type, string address, string from, string to, float price, string description, byte[] image)
+        public int AddAccommodation(string country, string city, string type, string address, string from, string to, float price, string description)
         {
             Accommodation accommodation = new Accommodation()
             {
@@ -38,7 +38,7 @@ namespace _001JIMCV.Models.Dals
                 A = to,
                 Prix = price,
                 Description = description,
-                Image = image
+             
             };
 
             _bddcontext.Accommodations.Add(accommodation);
@@ -55,51 +55,50 @@ namespace _001JIMCV.Models.Dals
         }
 
         //Obtenir service par Id
-      /* public Service GetServiceById(int id)
-        {
-            return _bddcontext.Services.FirstOrDefault(s => s.Id == id);
-        }
+        public Accommodation GetAccommodationById(int id)
+          {
+              return _bddcontext.Accommodations.FirstOrDefault(s => s.Id == id);
+          }
 
         //modifier un service
-        public void EditService(int id, string Country, string City, DateAndTime Date, string Type, string Description, float Price)
+        public void EditAccommodation(int id, string country, string city, string type, string address, string from, string to, float price, string description, string status)
         {
-            Service service = _bddcontext.Services.Find(id);
-            if (service != null)
+            Accommodation accommodation = _bddcontext.Accommodations.Find(id);
+            if (accommodation != null)
             {
-                Country = Country;
-                City = City;
-                Date = Date;
-                service.Type = Type;
-                service.Description = Description;
-                service.Prix= Price;
+                accommodation.Pays = country;
+                accommodation.Ville = city;
+                accommodation.Type = type;
+                accommodation.Adresse = address;
+                accommodation.De = from;
+                accommodation.A = to;
+                accommodation.Prix = price;
+                accommodation.Description = description;
+                accommodation.Status = status;
                 _bddcontext.SaveChanges();
             }
+           
         }
 
-        public void EditService(Service service)
-        {
-            _bddcontext.Services.Update(service);
-            _bddcontext.SaveChanges();
-        }
 
-        //Supprimer un service
-        public void DeleteService(int id)
-        {
-            Service service = _bddcontext.Services.Find(id);
-            if (service != null)
-            {
-                service.Type = null;
-                service.Description = null;
-                _bddcontext.SaveChanges();
+        public void EditAccommodation(Accommodation accommodation)
+          {
+              _bddcontext.Accommodations.Update(accommodation);
+              _bddcontext.SaveChanges();
+          }
 
-            }
-        }
-        public void DeleteService(Service service)
-        {
-            _bddcontext.Services.Remove(service);
-            _bddcontext.SaveChanges();
-        }
-    */
+          //Supprimer un service
+          public void DeleteAccommodation(int id)
+          {
+              Accommodation accommodation = _bddcontext.Accommodations.Find(id);
+             
+          }
+          public void DeleteAccommodation(Accommodation accommodation)
+          {
+              _bddcontext.Accommodations.Remove(accommodation);
+              _bddcontext.SaveChanges();
+          }
+      
         public void Dispose()
         {
             _bddcontext.Dispose();

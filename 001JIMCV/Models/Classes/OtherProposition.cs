@@ -2,7 +2,7 @@
 
 namespace _001JIMCV.Models.Classes
 {
-    public class Tour
+    public class OtherProposition
     {
         public int Id { get; set; }
         public string Pays { get; set; }
@@ -22,5 +22,6 @@ namespace _001JIMCV.Models.Classes
         public string Restauration { get; set; }
 
         public decimal Prix { get; set; }
+        public string Status { get; set; }
     }
 }

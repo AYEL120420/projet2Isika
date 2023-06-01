@@ -30,56 +30,55 @@ namespace _001JIMCV.Controllers
         {
            
                 var accommodations = accommodationDal.GetAllAccommodations();
-                ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
-                return View();
+            foreach (var accommodation in accommodations)
+            {
+                accommodation.Status = "En cours de traitement";
+            }
+            ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
+                return View("List");
           
         }
 
         [HttpPost]
         public IActionResult CreateAccommodation(Accommodation accommodation)
         {
-            if (!ModelState.IsValid)
-            {
-                return View("List", accommodation);
-            }
+      
             accommodationDal.AddAccommodation(accommodation);
 
             return RedirectToAction("GetList");
         }
 
 
-        /*[HttpGet]
-        public IActionResult EditService(int id)
+        [HttpGet]
+        public IActionResult EditAccommodation(int id)
         {
-
             if (id == 0)
             {
                 return NotFound();
             }
-            Service service = serviceDal.GetServiceById(id);
+
+            Accommodation accommodation = accommodationDal.GetAccommodationById(id);
+
+            if (accommodation == null)
             {
-                if (service == null)
-                {
-                    return View("Error");
-                }
-                return View(service);
+                return View("Error");
             }
-            return View("Error");
+
+            return View("EditFormAccom", accommodation);
         }
 
         [HttpPost]
-        public IActionResult EditService(Service service)
+        public IActionResult EditAccommodation(Accommodation accommodation)
         {
 
             if (!ModelState.IsValid)
-                return View(service);
-            ModelState.Clear();
+                return View(accommodation);
 
-            if (service.Id != 0)
+            if (accommodation.Id != 0)
             {
                 {
-                    serviceDal.EditService(service);
-                    return RedirectToAction("List", new { @id = service.Id });
+                    accommodationDal.EditAccommodation(accommodation);
+                    return RedirectToAction("GetList", new { @id = accommodation.Id });
                 }
             }
             else
@@ -90,43 +89,43 @@ namespace _001JIMCV.Controllers
 
 
         [HttpGet]
-        public IActionResult DeleteService(int id)
+        public IActionResult DeleteAccommodation(int id)
         {
-
             if (id == 0)
             {
                 return NotFound();
             }
-            Service service = serviceDal.GetServiceById(id);
+
+            Accommodation accommodation = accommodationDal.GetAccommodationById(id);
+
+            if (accommodation == null)
             {
-                if (service == null)
-                {
-                    return View("Error");
-                }
-                return View(service);
+                return View("Error");
             }
-            return View("Error");
+
+            return View(accommodation);
         }
 
         [HttpPost]
-        public IActionResult DeleteService(Service service)
+        public IActionResult DeleteAccommodation(Accommodation accommodation)
         {
-
             if (!ModelState.IsValid)
-                return View(service);
-
-            if (service.Id != 0)
             {
-                {
-                    serviceDal.DeleteService(service);
-                    return RedirectToAction("List", new { @id = service.Id });
-                }
+                return View(accommodation);
+            }
+
+            if (accommodation.Id != 0)
+            {
+                accommodationDal.DeleteAccommodation(accommodation);
+                return RedirectToAction("GetList", new { id = accommodation.Id });
             }
             else
             {
                 return View("Error");
             }
-        }*/
+        }
+
+
     }
 }
 

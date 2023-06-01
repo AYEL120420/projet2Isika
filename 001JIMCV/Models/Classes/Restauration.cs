@@ -16,7 +16,9 @@ namespace _001JIMCV.Models.Classes
             public string Localisation { get; set; }
             public string Menu { get; set; }
             public decimal Tarif { get; set; }
+
             public string EmailContact { get; set; }
-            public List<IFormFile> Images { get; set; }
+            public string Status { get; set; }
+            public byte[] Images { get; set; }
         }
     }

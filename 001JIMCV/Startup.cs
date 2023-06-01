@@ -25,7 +25,8 @@ namespace _001JIMCV
                 });
 
             services.AddControllersWithViews();
-          
+            services.AddHttpContextAccessor();
+
 
         }
 

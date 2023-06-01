@@ -15,7 +15,10 @@ namespace _001JIMCV.Models
 
         public DbSet<Accommodation> Accommodations { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<OtherProposition> OtherPropositions { get; set; }
+
         public DbSet<CulinaryTheme> CulinaryThemes { get; set; }
+        public DbSet<Restauration> Restaurations { get; set; }
         public DbSet<Flight> Flights { get; set; }
         public DbSet<Journey> Journeys { get; set; }
         public DbSet<PackServices> PackService { get; set; }

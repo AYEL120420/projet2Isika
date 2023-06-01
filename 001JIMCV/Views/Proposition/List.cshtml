@@ -1,0 +1,62 @@
+﻿@model List<_001JIMCV.Models.Classes.OtherProposition>
+@{
+    var StatusList = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.StatusEnum))
+        .Cast<_001JIMCV.Models.Classes.Enum.StatusEnum>()
+        .Select(e => new SelectListItem
+                {
+                    Value = e.ToString(),
+                    Text = e.ToString()
+                })
+        .ToList();
+}
+
+<table border="1" style="width:60%">
+    <tr>
+        <th>Pays</th>
+        <th>Ville</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Disponibilité</th>
+        <th>Programme</th>
+        <th>Hébergement</th>
+        <th>Activités</th>
+        <th>Restauration</th>
+        <th>Prix</th>
+        <th>Statut</th>
+    </tr>
+
+
+    @foreach (_001JIMCV.Models.Classes.OtherProposition otherProposition in ViewData["OtherPropositions"] as List<_001JIMCV.Models.Classes.OtherProposition>)
+    {
+        <tr>
+            <td>@otherProposition.Pays</td>
+            <td>@otherProposition.Ville</td>
+            <td>@otherProposition.Titre</td>
+            <td>@otherProposition.Description</td>
+            <td>@otherProposition.Disponibilite</td>
+            <td>@otherProposition.Programme</td>
+            <td>@otherProposition.Hebergement</td>
+            <td>@otherProposition.Activites</td>
+            <td>@otherProposition.Restauration</td>
+            <td>@otherProposition.Prix</td>
+            <td>
+                <select name="status" id="status">
+                    @foreach (var status in StatusList)
+                    {
+                        <option value="@status.Value" @(status.Value == otherProposition.Status ? "selected" : "")>@status.Text</option>
+                    }
+                </select>
+            </td>
+            <td style="width: 60px;">
+                <form action="@Url.Action("EditOtherProposition", "OtherProposition", new { id = otherProposition.Id })" method="get">
+                    <button type="submit">Modifier</button>
+                </form>
+            </td>
+            <td style="width: 70px;">
+                <form action="@Url.Action("DeleteOtherProposition", "OtherProposition", new { id = otherProposition.Id })" method="post">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
