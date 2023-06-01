@@ -46,6 +46,10 @@ namespace _001JIMCV.Controllers
         {
             return View("Vietnam/VietnamFullPackage01");
         }
+        public IActionResult MonProfil()
+        {
+            return View("MonProfil");
+        }
     }
 }
 
