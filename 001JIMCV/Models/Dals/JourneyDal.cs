@@ -13,16 +13,6 @@ namespace _001JIMCV.Models.Dals
         {
             _bddContext = new BDDContext();
         }
-
-        public int AddJourney(string depDate, string returnDate, string country)
-        {
-            
-            Journey journey = new Journey() { DepartureDate = depDate, ReturnDate = returnDate, CountryDestination = country };
-            this._bddContext.Journeys.Add(journey);
-            this._bddContext.SaveChanges();
-            return journey.Id;
-        }
-
         public List<Journey> GetAllJourneys()
         {
             return _bddContext.Journeys.ToList();
@@ -39,6 +29,35 @@ namespace _001JIMCV.Models.Dals
         {
             return _bddContext.Activities.ToList();
         }
+        public int AddJourney(string depDate, string returnDate, string country)
+        {
+            
+            Journey journey = new Journey() { DepartureDate = depDate, ReturnDate = returnDate, CountryDestination = country };
+            this._bddContext.Journeys.Add(journey);
+            this._bddContext.SaveChanges();
+            return journey.Id;
+        }
 
+        public int AddPackServices(int depFlightId, int returnFlightId)
+        {
+            PackServices pack = new PackServices() { DepartureFlightId = depFlightId, ReturnFlightId = returnFlightId };
+            this._bddContext.PackService.Add(pack);
+            this._bddContext.SaveChanges();
+            return pack.Id;
+        }
+        
+        public void AddAccommodationPackServices(int accommodationId, int packServiceId)
+        {
+            AccommodationPackServices AccommodationPackServices = new AccommodationPackServices() { AccommodationId = accommodationId, PackServicesId = packServiceId };
+            this._bddContext.AccommodationPackServices.Add(AccommodationPackServices);
+            this._bddContext.SaveChanges();
+        }
+
+        public void AddActivityPackServices(int activityId, int packServiceId)
+        {
+            ActivityPackServices ActivityPackServices = new ActivityPackServices() { ActivityId = activityId, PackServicesId = packServiceId };
+            this._bddContext.ActivityPackServices.Add(ActivityPackServices);
+            this._bddContext.SaveChanges();
+        }
     }
 }

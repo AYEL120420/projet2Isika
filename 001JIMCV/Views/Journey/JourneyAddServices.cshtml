@@ -25,7 +25,7 @@
             @foreach (_001JIMCV.Models.Classes.Flight flightDep in ViewBag.listFLightsDep)
             {
                 <tr>
-                            <td>@Html.RadioButtonFor(m => m.Flights, flightDep)</td>
+                            <td>@Html.RadioButtonFor(m => m.DepartureFlightId, flightDep.Id)</td>
                             <td>@flightDep.DepartureDate</td>
                     <td>@flightDep.DepartureCity</td>
                     <td>@flightDep.DestinationCity</td>
@@ -51,7 +51,7 @@
                     @foreach (_001JIMCV.Models.Classes.Flight flightReturn in ViewBag.listFLightsReturn)
                     {
                         <tr>
-                            <td>@Html.RadioButtonFor(m => m.Flights, flightReturn)</td>
+                            <td>@Html.RadioButtonFor(m => m.ReturnFlightId, flightReturn.Id)</td>
                             <td>@flightReturn.DepartureDate</td>
                             <td>@flightReturn.DepartureCity</td>
                             <td>@flightReturn.DestinationCity</td>
@@ -78,8 +78,6 @@
                     {
                         <tr>
                         <td><input type="checkbox" name="AccommodationsCocheIds" value="@accommodation.Id" /></td>
-                       
-                          
                             <td>@accommodation.Type</td>
                             <td>@accommodation.Ville</td>
                             <td>@accommodation.Description</td>

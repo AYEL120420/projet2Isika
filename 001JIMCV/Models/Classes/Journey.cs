@@ -11,8 +11,7 @@ namespace _001JIMCV.Models.Classes
         public string CountryDestination { get; set; }
         public int Persons { get; set; }
 
-        public JourneyEnum JourneyState { get; set; }
-        public PackServices PackService { get; set; }
+        public StatusEnum Status { get; set; }
 
     }
 }

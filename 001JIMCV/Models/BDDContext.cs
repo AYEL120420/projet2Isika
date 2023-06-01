@@ -1,7 +1,6 @@
 ﻿using _001JIMCV.Models.Classes;
 using _001JIMCV.Models.Classes.Enum;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Runtime.CompilerServices;
 using _001JIMCV.Models.Dals;
 using System.Security.Cryptography;
@@ -21,11 +20,13 @@ namespace _001JIMCV.Models
         public DbSet<PackServices> PackService { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<ServicePackServices> ServicePackServices { get; set; }
+        public DbSet<AccommodationPackServices> AccommodationPackServices { get; set; }
+        public DbSet<ActivityPackServices> ActivityPackServices { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ServicePackServices>().HasKey(sps => new { sps.ServiceId, sps.PackServicesId });
+            modelBuilder.Entity<AccommodationPackServices>().HasKey(sps => new { sps.AccommodationId, sps.PackServicesId });
+            modelBuilder.Entity<ActivityPackServices>().HasKey(sps => new { sps.ActivityId, sps.PackServicesId });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

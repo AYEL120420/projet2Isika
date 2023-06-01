@@ -33,9 +33,10 @@ namespace _001JIMCV.Controllers
             {
                 int id = JourneyDal.AddJourney(journey.DepartureDate, journey.ReturnDate, journey.CountryDestination);
 
-                return RedirectToAction("JourneyAddServices", new {@id=id});
+                return RedirectToAction("JourneyAddServices", new { @id = id });
             }
-            return View();
+
+            return View("Error");
         }
         public IActionResult JourneyAddServices(int id)
         {
@@ -64,5 +65,39 @@ namespace _001JIMCV.Controllers
             return View("Error");
         }
 
+        [HttpPost]
+        public IActionResult JourneyAddServices(JourneyViewModel jvm)
+        {
+            if (ModelState.IsValid)
+            {
+                int idPackServices = JourneyDal.AddPackServices(jvm.DepartureFlightId, jvm.ReturnFlightId);
+
+                foreach(string accomodationId in jvm.AccommodationsCocheIds)
+                {
+                    if (accomodationId != null)
+                    {
+                        int idAccomodation;
+                        if (int.TryParse(accomodationId, out idAccomodation))
+                        {
+                            JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
+                        }
+                    }
+                }
+                foreach (string activityId in jvm.ActivitiesCocheIds)
+                {
+                    if (activityId != null)
+                    {
+                        int idActivity;
+                        if (int.TryParse(activityId, out idActivity))
+                        {
+                            JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                        }
+                    }
+                }
+
+                return RedirectToAction("DashboardJourney");
+            }
+            return View(jvm);
+        }
     }
 }
