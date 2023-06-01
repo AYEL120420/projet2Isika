@@ -1,28 +1,64 @@
 ﻿using _001JIMCV.Models.Classes;
+using _001JIMCV.Models.Classes.Enum;
 using _001JIMCV.Models.Dals;
-using Microsoft.AspNet.Identity;
+using _001JIMCV.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
+using XAct.Users;
 
 public class DashboardProviderController : Controller
 {
     private DashboardDal dashboardDal;
+    private LoginDal loginDal;
 
     public DashboardProviderController()
     {
         dashboardDal = new DashboardDal();
+        loginDal = new LoginDal();
     }
 
     public ActionResult Index()
     {
-        string provider = User.Identity.GetUserId(); // Obtenir l'ID du partenaire connecté
-        int providerId = int.Parse(provider); // Convertir la chaîne en int
+        LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+        if (viewModel.Authentified)
+        {
+            viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+            UserEnum role = viewModel.User.Role; // Accéder au rôle de l'utilisateur
+
+            switch (role)
+            {
+                case UserEnum.Admin:
+                    // administrateur
+                    return View("AdminDashboard", viewModel);
+                case UserEnum.Customer:
+                    //  client
+                    return View("ClientDashboard", viewModel);
+                case UserEnum.Provider:
+                    //  partenaire
+                   List<Accommodation> providerPropositions = dashboardDal.GetPropositionAccommodation(viewModel.User.Id);
+                return View("ProviderDashboard", providerPropositions);
+                default:
+                    // Rôle non reconnu
+                    return View("Error");
+            }
+        }
+
+        return View(viewModel);
+    }
+
+
+
+
+
+
+  /*  string provider = User.Identity.GetUserId(); // Obtenir l'ID du partenaire connecté
+        int providerId = int.Parse(id); // Convertir la chaîne en int
 
         List<Accommodation> propositionHebergement = dashboardDal.PropositionAccommodation(providerId)
             .Where(p => p.Id == providerId)
             .ToList();
 
         return View(propositionHebergement);
-    }
+    } */
 }
