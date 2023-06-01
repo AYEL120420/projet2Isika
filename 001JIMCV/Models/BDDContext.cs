@@ -86,12 +86,12 @@ namespace _001JIMCV.Models
             Service serv3 = new Service() { Type = "Activité", Description = "Rando", Price = 10 };
             this.Services.AddRange(serv1, serv2, serv3);
 
-            Accommodation accommodation1 = new Accommodation() { Type="Chez l'habitant", Country="Inde", Location="Dehli", Description="good food and good vibes"};
-            Accommodation accommodation2 = new Accommodation() { Type = "Hôtel", Country = "Inde", Location = "Dehli", Description = "classy hotel room for visitors" };
+            Accommodation accommodation1 = new Accommodation() { Type="Chez l'habitant", Pays="Inde", Ville = "Dehli", Description="good food and good vibes"};
+            Accommodation accommodation2 = new Accommodation() { Type = "Hôtel", Pays = "Inde", Ville = "Dehli", Description = "classy hotel room for visitors" };
             this.Accommodations.AddRange(accommodation1, accommodation2);
 
-            Activity activity1 = new Activity() { Type = "Cricket", Description = "N°1 sport in the country, come test", Location = "Dehli", Country = "Inde" };
-            Activity activity2 = new Activity() { Type = "Cooking classe", Description = "Venez apprendre à faire le meilleur curry de votre vie", Location = "Dehli", Country = "Inde" };
+            Activity activity1 = new Activity() { Nom = "Cricket", Description = "N°1 sport in the country, come test", Ville = "Dehli", Pays = "Inde" };
+            Activity activity2 = new Activity() { Nom = "Cooking classe", Description = "Venez apprendre à faire le meilleur curry de votre vie", Ville = "Dehli", Pays = "Inde" };
             this.Activities.AddRange(activity1, activity2); 
 
             this.SaveChanges();

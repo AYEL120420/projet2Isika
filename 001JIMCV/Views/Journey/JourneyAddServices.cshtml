@@ -15,26 +15,22 @@
             <div>Vol de départ : </div>
             <table border="1" style="width:100%">
                 <tr>
-                    <th></th>
-                    <th>Airline</th>
-                    <th>FlightNumber</th>
-                    <th>DepartureCountry</th>
-                    <th>DepartureCity</th>
-                    <th>DestinationCountry</th>
-                    <th>DestinationCity</th>
-                    <th>DepartureDate</th>
+                        <th></th>
+                        <th>Date de départ</th>
+                        <th>Ville de départ</th>
+                        <th>Ville d'arrivée'</th>
+                        <th>Compagnie Aérienne</th>
+                        <th>Numéro de vol</th>
                 </tr>
             @foreach (_001JIMCV.Models.Classes.Flight flightDep in ViewBag.listFLightsDep)
             {
                 <tr>
-                    <td>@Html.RadioButtonFor(m => m.Flights, flightDep)</td>
-                    <td>@flightDep.Airline</td>
-                    <td>@flightDep.FlightNumber</td>
-                    <td>@flightDep.DepartureCountry</td>
+                            <td>@Html.RadioButtonFor(m => m.Flights, flightDep)</td>
+                            <td>@flightDep.DepartureDate</td>
                     <td>@flightDep.DepartureCity</td>
-                    <td>@flightDep.DestinationCountry</td>
                     <td>@flightDep.DestinationCity</td>
-                    <td>@flightDep.DepartureDate</td>
+                            <td>@flightDep.Airline</td>
+                            <td>@flightDep.FlightNumber</td>
                 </tr>
             }
 
@@ -46,25 +42,21 @@
                 <table border="1" style="width:100%">
                     <tr>
                         <th></th>
-                        <th>Airline</th>
-                        <th>FlightNumber</th>
-                        <th>DepartureCountry</th>
-                        <th>DepartureCity</th>
-                        <th>DestinationCountry</th>
-                        <th>DestinationCity</th>
-                        <th>DepartureDate</th>
+                        <th>Date de départ</th>
+                        <th>Ville de départ</th>
+                        <th>Ville d'arrivée'</th>
+                        <th>Compagnie Aérienne</th>
+                        <th>Numéro de vol</th>
                     </tr>
                     @foreach (_001JIMCV.Models.Classes.Flight flightReturn in ViewBag.listFLightsReturn)
                     {
                         <tr>
                             <td>@Html.RadioButtonFor(m => m.Flights, flightReturn)</td>
+                            <td>@flightReturn.DepartureDate</td>
+                            <td>@flightReturn.DepartureCity</td>
+                            <td>@flightReturn.DestinationCity</td>
                             <td>@flightReturn.Airline</td>
                             <td>@flightReturn.FlightNumber</td>
-                            <td>@flightReturn.DepartureCountry</td>
-                            <td>@flightReturn.DepartureCity</td>
-                            <td>@flightReturn.DestinationCountry</td>
-                            <td>@flightReturn.DestinationCity</td>
-                            <td>@flightReturn.DepartureDate</td>
                         </tr>
                     }
 
@@ -79,7 +71,7 @@
                     <tr>
                         <th></th>
                         <th>Type</th>
-                        <th>Location</th>
+                        <th>Ville</th>
                         <th>Description</th>
                     </tr>
                     @foreach (_001JIMCV.Models.Classes.Accommodation accommodation in ViewBag.listAccommodations)
@@ -89,7 +81,7 @@
                        
                           
                             <td>@accommodation.Type</td>
-                            <td>@accommodation.Location</td>
+                            <td>@accommodation.Ville</td>
                             <td>@accommodation.Description</td>
                         </tr>
                     }
@@ -103,16 +95,16 @@
                 <table border="1" style="width:100%">
                     <tr>
                         <th></th>
-                        <th>Type</th>
-                        <th>Location</th>
+                        <th>Nom</th>
+                        <th>Ville</th>
                         <th>Description</th>
                     </tr>
                     @foreach (_001JIMCV.Models.Classes.Activity activity in ViewBag.listActivities)
                     {
                     <tr>
                         <td><input type="checkbox" name="ActivitiesCocheIds" value="@activity.Id" /></td>
-                            <td>@activity.Type</td>
-                            <td>@activity.Location</td>
+                            <td>@activity.Nom</td>
+                            <td>@activity.Ville</td>
                             <td>@activity.Description</td>
                         </tr>
                     }

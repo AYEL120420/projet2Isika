@@ -10,15 +10,15 @@
 {
     <fieldset>
         <legend>Créer un voyage : </legend>
-            @Html.LabelFor(m => m.Journey.CountryDestination)
+            @Html.LabelFor(m => m.Journey.CountryDestination, "Pays : ")
             @Html.TextBoxFor(m => m.Journey.CountryDestination)
             @Html.ValidationMessageFor(m => m.Journey.CountryDestination)
         <br/>
-            @Html.LabelFor(m => m.Journey.DepartureDate)
+            @Html.LabelFor(m => m.Journey.DepartureDate, "Date de départ : ")
             @Html.TextBoxFor(m => m.Journey.DepartureDate, new { @type="date"} )
             @Html.ValidationMessageFor(m => m.Journey.DepartureDate)
         <br />
-            @Html.LabelFor(m => m.Journey.ReturnDate)
+            @Html.LabelFor(m => m.Journey.ReturnDate, "Date de Retour : ")
             @Html.TextBoxFor(m => m.Journey.ReturnDate, new { @type="date" } )
             @Html.ValidationMessageFor(m => m.Journey.ReturnDate)
         <br/>
