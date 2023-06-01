@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using XAct.Users;
 
-public class DashboardProviderController : Controller
+public class DashboardController : Controller
 {
     private DashboardDal dashboardDal;
     private LoginDal loginDal;
 
-    public DashboardProviderController()
+    public DashboardController()
     {
         dashboardDal = new DashboardDal();
         loginDal = new LoginDal();
@@ -33,7 +33,7 @@ public class DashboardProviderController : Controller
                     return View("AdminDashboard", viewModel);
                 case UserEnum.Customer:
                     //  client
-                    return View("ClientDashboard", viewModel);
+                    return View("CustomerDashboard", viewModel);
                 case UserEnum.Provider:
                     //  partenaire
                    List<Accommodation> providerPropositions = dashboardDal.GetPropositionAccommodation(viewModel.User.Id);
