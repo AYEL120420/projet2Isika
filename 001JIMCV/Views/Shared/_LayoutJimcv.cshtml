@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>JIMCV</title>
     <link href="~/css/Site.css" rel="stylesheet" />
-
+    @RenderSection("ExtraCss", required:false)
 </head>
 <body>
     <header>
@@ -22,12 +22,11 @@
     <span></span>
 
     <ul id="menu">
-      <a href="/home';"><li>Bienvenue</li></a>
-      <a href="#"><li>Login/Inscription</li></a>
+      <a href="/home/Index.cshtml"><li>Bienvenue</li></a>
+      <a href="/Dashboard/ProviderDashboard.cshtml"><li>Login/Inscription</li></a>
       <a href="#"><li>Manger avant tout !</li></a>
       <a href=""><li>Découvrir les pays</li></a>
       <a href="#"><li>Contact</li></a>
-      <a href="https://youtube.com" target="_blank"><li>Show me more</li></a>
     </ul>
   </div>
 </nav>
@@ -42,14 +41,13 @@
        <div>
             <span id="">
                     <a href="https://www.instagram.com/jimcv3095/">
-                     <img src="Images/instagram.png" alt="Logo Instagram"
-                     style="width:"200px; height:120px;>
+                     <img src="/Images/instagram.png" alt="Logo Instagram" />
                 </a>
             </span>
 
           <span id="">
                     <a href="https://www.facebook.com/profile.php?id=100092733086173">
-                    <img src="Images/facebook.png" alt="Logo Facebook">
+                    <img src="/Images/facebook.png" alt="Logo Facebook">
                 </a>
             </span>
        </div>

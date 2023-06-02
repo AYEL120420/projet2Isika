@@ -250,6 +250,8 @@ facebook {
 }
 
 footer {
+
+    justify-content:center;
     background-color: #562f2f;
     padding: 10px;
     height: 80px;
