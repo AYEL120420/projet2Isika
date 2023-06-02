@@ -196,8 +196,8 @@ header {
 
 #instagram {
     justify-items: right;
-    height: 5px;
-    width: 100px;
+    height: auto;
+    width: auto;
     display: flex;
     align-items: center;
 }
