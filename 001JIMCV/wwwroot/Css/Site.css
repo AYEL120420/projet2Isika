@@ -28,7 +28,7 @@ header {
 #Accueillogo {
     flex-basis: 20%;
     height: auto;
-    width: auto;
+    width: 100%;
     padding: 10px;
     box-sizing: border-box;
 }
@@ -48,7 +48,7 @@ header {
 .Accueilimage-container {
     flex-basis: 20%;
     height: auto;
-    width: auto;
+    width: 100%;
     padding: 10px;
     box-sizing: border-box;
 }
