@@ -38,14 +38,20 @@ namespace _001JIMCV.Models.Dals
             return journey.Id;
         }
 
-        public int AddPackServices(int depFlightId, int returnFlightId)
+        public int AddPackServices()
         {
-            PackServices pack = new PackServices() { DepartureFlightId = depFlightId, ReturnFlightId = returnFlightId };
+            PackServices pack = new PackServices();
             this._bddContext.PackService.Add(pack);
             this._bddContext.SaveChanges();
             return pack.Id;
         }
-        
+        public void AddFlightPackServices(int depFlightId, int returnFlightId, int packServiceId)
+        {
+            FlightPackServices pack = new FlightPackServices() { DepartureFlightId = depFlightId, ReturnFlightId = returnFlightId, PackServicesId= packServiceId };
+            this._bddContext.FlightPackServices.Add(pack);
+            this._bddContext.SaveChanges();
+        }
+
         public void AddAccommodationPackServices(int accommodationId, int packServiceId)
         {
             AccommodationPackServices AccommodationPackServices = new AccommodationPackServices() { AccommodationId = accommodationId, PackServicesId = packServiceId };

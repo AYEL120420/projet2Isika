@@ -70,9 +70,11 @@ namespace _001JIMCV.Controllers
         {
             if (ModelState.IsValid)
             {
-                int idPackServices = JourneyDal.AddPackServices(jvm.DepartureFlightId, jvm.ReturnFlightId);
+                int idPackServices = JourneyDal.AddPackServices();
 
-                foreach(string accomodationId in jvm.AccommodationsCocheIds)
+                JourneyDal.AddFlightPackServices(jvm.DepartureFlightId, jvm.ReturnFlightId, idPackServices);
+
+                foreach (string accomodationId in jvm.AccommodationsCocheIds)
                 {
                     if (accomodationId != null)
                     {

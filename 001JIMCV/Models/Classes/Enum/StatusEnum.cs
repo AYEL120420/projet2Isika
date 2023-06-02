@@ -2,11 +2,8 @@
 {
     public enum StatusEnum
     {
-        Proposer,
-        Publier,
-        Personnaliser,
-        Reserver,
-        Terminer
+
+        
 
     }
 }

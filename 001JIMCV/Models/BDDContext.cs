@@ -20,11 +20,13 @@ namespace _001JIMCV.Models
         public DbSet<PackServices> PackService { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<FlightPackServices> FlightPackServices { get; set; }
         public DbSet<AccommodationPackServices> AccommodationPackServices { get; set; }
         public DbSet<ActivityPackServices> ActivityPackServices { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<FlightPackServices>().HasKey(sps => new { sps.DepartureFlightId, sps.ReturnFlightId, sps.PackServicesId });
             modelBuilder.Entity<AccommodationPackServices>().HasKey(sps => new { sps.AccommodationId, sps.PackServicesId });
             modelBuilder.Entity<ActivityPackServices>().HasKey(sps => new { sps.ActivityId, sps.PackServicesId });
         }
