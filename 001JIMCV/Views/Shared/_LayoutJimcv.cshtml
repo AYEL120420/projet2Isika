@@ -22,11 +22,16 @@
     <span></span>
 
     <ul id="menu">
-      <a href="@Url.Action("Index", "Home")"><li>Bienvenue</li></a>
-      <a href="@Url.Action("Index", "Login")"><li>Login/Inscription</li></a>
-      <a href="#"><li>Manger avant tout !</li></a>
-      <a href=""><li>Découvrir les pays</li></a>
-      <a href="#"><li>Contact</li></a>
+      @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="@Url.Action("Index", "Dashboard")"><li>Mon Profil</li></a>
+                            }
+                            <a href="@Url.Action("Index", "Home")"><li>Bienvenue</li></a>
+                            <a href="@Url.Action("Index", "Login")"><li>Login/Inscription</li></a>
+                            <a href="#"><li>Manger avant tout !</li></a>
+                            <a href=""><li>Découvrir les pays</li></a>
+                            <a href="#"><li>Contact</li></a>
+
     </ul>
   </div>
 </nav>

@@ -22,10 +22,11 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une autre proposition
-        public int AddProposition(string pays, string ville, string titre, string description, string disponibilite, string programme, string hebergement, string activites, string restauration, decimal prix, string status)
+        public int AddProposition(int ProviderId,string pays, string ville, string titre, string description, string disponibilite, string programme, string hebergement, string activites, string restauration, decimal prix)
         {
             OtherProposition proposition = new OtherProposition()
             {
+                ProviderId=ProviderId,
                 Pays = pays,
                 Ville = ville,
                 Titre = titre,
@@ -36,7 +37,7 @@ namespace _001JIMCV.Models.Dals
                 Activites = activites,
                 Restauration = restauration,
                 Prix = prix,
-                Status = status
+                Status = "En Cours de traitement"
             };
 
             _bddcontext.OtherPropositions.Add(proposition);
@@ -45,12 +46,6 @@ namespace _001JIMCV.Models.Dals
             return proposition.Id;
         }
 
-        // Ajouter une autre proposition
-        public void AddProposition(OtherProposition proposition)
-        {
-            _bddcontext.OtherPropositions.Add(proposition);
-            _bddcontext.SaveChanges();
-        }
 
         // Obtenir une autre proposition par son ID
         public OtherProposition GetPropositionById(int id)
@@ -64,6 +59,7 @@ namespace _001JIMCV.Models.Dals
             OtherProposition proposition = _bddcontext.OtherPropositions.Find(id);
             if (proposition != null)
             {
+                proposition.Id = id;
                 proposition.Pays = pays;
                 proposition.Ville = ville;
                 proposition.Titre = titre;
@@ -75,16 +71,12 @@ namespace _001JIMCV.Models.Dals
                 proposition.Restauration = restauration;
                 proposition.Prix = prix;
                 proposition.Status = status;
+
+                _bddcontext.OtherPropositions.Update(proposition);
                 _bddcontext.SaveChanges();
             }
         }
 
-        // Modifier une autre proposition
-        public void EditProposition(OtherProposition proposition)
-        {
-            _bddcontext.OtherPropositions.Update(proposition);
-            _bddcontext.SaveChanges();
-        }
 
         // Supprimer une autre proposition
         public void DeleteProposition(int id)

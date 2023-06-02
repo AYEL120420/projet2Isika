@@ -23,21 +23,14 @@ namespace _001JIMCV.Models.Dals
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string GetUserId()
+        public List<Accommodation> GetPropositionAccommodation(int providerId)
         {
-            // Récupérer l'ID de l'utilisateur connecté
-            string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            return userId;
-        }
-
-        public List<Accommodation> PropositionAccommodation(int providerId)
-        {
-            List<Accommodation> propositionsProvider = _bddcontext.Accommodations
-                .Where(p => p.Id == providerId)
+            List<Accommodation> providerAccommodations = _bddcontext.Accommodations
+                .Where(p => p.ProviderId == providerId)  // Comparaison de l'ID 
                 .ToList();
-            return propositionsProvider;
+            return providerAccommodations;
         }
+
 
         public void Dispose()
         {

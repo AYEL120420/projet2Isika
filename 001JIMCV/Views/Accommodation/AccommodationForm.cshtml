@@ -1,6 +1,10 @@
 ﻿
 @model _001JIMCV.Models.Classes.Accommodation
 @{
+    Layout = "_LayoutJimcv";
+}
+
+@{
     var countries = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.CountryEnum))
     .Cast<_001JIMCV.Models.Classes.Enum.CountryEnum>()
     .Select(e => new SelectListItem
@@ -11,14 +15,7 @@
     .ToList();
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Mon formulaire</title>
-    <link href="/css/Forms.css" rel="stylesheet" />
-</head>
-<body>
+
     @using (Html.BeginForm("CreateAccommodation", "Accommodation", FormMethod.Post))
     {
         <fieldset>
@@ -81,11 +78,11 @@
         @Html.TextAreaFor(m => m.Description)
         @Html.ValidationMessageFor(m => m.Description)<br>
     </div>
-        <div>
-            @Html.LabelFor(m => m.Prix)<br>
-            @Html.TextBoxFor(m => m.Prix)
-            @Html.ValidationMessageFor(m => m.Prix)<br>
-        </div>
+    <div>
+        @Html.LabelFor(m => m.Prix)<br>
+        @Html.TextBoxFor(m => m.Prix)
+        @Html.ValidationMessageFor(m => m.Prix)<br>
+    </div>
         <br>
         <div>
         @Html.LabelFor(m => m.Image)<br>
@@ -98,5 +95,3 @@
         </div>
         </fieldset>
     }
-</body>
-</html>

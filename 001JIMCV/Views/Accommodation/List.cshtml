@@ -1,14 +1,8 @@
 ﻿@model _001JIMCV.Models.Classes.Accommodation
 @{
-    var StatusList = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.StatusEnum))
-    .Cast<_001JIMCV.Models.Classes.Enum.StatusEnum>()
-    .Select(e => new SelectListItem
-            {
-                Value = e.ToString(),
-                Text = e.ToString()
-            })
-    .ToList();
+    Layout = "_LayoutJimcv";
 }
+
 
 
 <table border="1" style="width:60%">
@@ -21,11 +15,11 @@
         <th>A</th>
         <th>Prix</th>
         <th>Description</th>
-        <th>Statut</th>
+        <th>Status</th>
         
     </tr>
-
-    @foreach (_001JIMCV.Models.Classes.Accommodation accommodation in ViewData["Accommodations"] as List<_001JIMCV.Models.Classes.Accommodation>)
+   
+        @foreach (_001JIMCV.Models.Classes.Accommodation accommodation in ViewData["Accommodations"] as List<_001JIMCV.Models.Classes.Accommodation>)
     {
         <tr>
             <td>@accommodation.Pays</td>
@@ -36,17 +30,8 @@
             <td>@accommodation.A</td>
             <td>@accommodation.Prix</td>
             <td>@accommodation.Description</td>
-            <td>
-                <select name="status" id="status">
-                    @foreach (var status in StatusList)
-                    {
-                        <option value="@status.Value" @(status.Value == accommodation.Status ? "selected" : "")>@status.Text</option>
-                    }
-                </select>
-            </td>
-
-
-         
+            <td>@accommodation.Status</td>
+    
             <td style="width: 60px;">
                 <form action="@Url.Action("EditAccommodation", "Accommodation", new { id = accommodation.Id })" method="get">
                     <button type="submit">Modifier</button>
