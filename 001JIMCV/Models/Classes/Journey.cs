@@ -1,4 +1,7 @@
-﻿namespace _001JIMCV.Models.Classes
+﻿using _001JIMCV.Models.Classes.Enum;
+using Microsoft.VisualBasic;
+
+namespace _001JIMCV.Models.Classes
 {
     public class Journey
     {
@@ -7,7 +10,8 @@
         public string ReturnDate { get; set; }
         public string CountryDestination { get; set; }
         public int Persons { get; set; }
-        public PackServices PackService { get; set; }
+
+        public StatusEnum Status { get; set; }
 
     }
 }

@@ -9,9 +9,9 @@ namespace _001JIMCV.Models.Classes
         public string Pays { get; set; }
         public string Ville { get; set; }
         public string Type { get; set; }
-       
+
         public string Adresse { get; set; }
-       // public DateAndTime ArrivalDate { get; set; }
+        // public DateAndTime ArrivalDate { get; set; }
         //public DateAndTime DepartureDate { get; set; }
         public string De { get; set; } //disponible de 
         public string A { get; set; }//disponible à
@@ -20,7 +20,6 @@ namespace _001JIMCV.Models.Classes
         public string Status { get; set; }
         public byte[] Image { get; set; }
 
-        public virtual Service service { get; set; }
 
 
     }

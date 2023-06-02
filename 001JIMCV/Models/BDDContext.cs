@@ -1,7 +1,6 @@
 ﻿using _001JIMCV.Models.Classes;
 using _001JIMCV.Models.Classes.Enum;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Runtime.CompilerServices;
 using _001JIMCV.Models.Dals;
 using System.Security.Cryptography;
@@ -24,11 +23,15 @@ namespace _001JIMCV.Models
         public DbSet<PackServices> PackService { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<ServicePackServices> ServicePackServices { get; set; }
+        public DbSet<FlightPackServices> FlightPackServices { get; set; }
+        public DbSet<AccommodationPackServices> AccommodationPackServices { get; set; }
+        public DbSet<ActivityPackServices> ActivityPackServices { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ServicePackServices>().HasKey(sps => new { sps.ServiceId, sps.PackServicesId });
+            modelBuilder.Entity<FlightPackServices>().HasKey(sps => new { sps.DepartureFlightId, sps.ReturnFlightId, sps.PackServicesId });
+            modelBuilder.Entity<AccommodationPackServices>().HasKey(sps => new { sps.AccommodationId, sps.PackServicesId });
+            modelBuilder.Entity<ActivityPackServices>().HasKey(sps => new { sps.ActivityId, sps.PackServicesId });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -69,26 +72,34 @@ namespace _001JIMCV.Models
             Journey mexique = new Journey() { CountryDestination = "Mexique", DepartureDate = "15/06/2024", ReturnDate = "30/06/2024", Persons = 2 };
             Journey ethiopie = new Journey() { CountryDestination = "Ethiopie", DepartureDate = "2/12/2024", ReturnDate = "20/12/2024", Persons = 2 };
             Journey france = new Journey() { CountryDestination = "France", DepartureDate = "10/09/2023", ReturnDate = "24/09/2023", Persons = 4 };
-            Journey japon = new Journey() { CountryDestination = "Japon", DepartureDate = "20/05/2024", ReturnDate = "03/06/2024", Persons = 6 };
+            Journey japon = new Journey() { CountryDestination = "Japon", DepartureDate = "20 /05/2024", ReturnDate = "03/06/2024", Persons = 6 };
             Journey maroc = new Journey() { CountryDestination = "Maroc", DepartureDate = "20/10/2023", ReturnDate = "02/11/2024", Persons = 2 };
             Journey italie = new Journey() { CountryDestination = "Italie", DepartureDate = "15/08/2024", ReturnDate = "26/08/2024", Persons = 2 };
             this.Journeys.AddRange(inde, thailande, mexique, ethiopie, france, japon, maroc, italie);
 
-            Flight FlightInde = new Flight() { Airline = "Air India", DepartureCity = "CDG", DepartureDate = "10/02/2024", DestinationCity = "Dehli", FlightNumber = 547896 };
-            Flight FlightThailande = new Flight() { Airline = "Air thai", DepartureCity = "Paris Orly", DepartureDate = "18/07/2024", DestinationCity = "Pukhet", FlightNumber = 165866 };
-            Flight FlightMexique = new Flight() { Airline = "Mexico airline", DepartureCity = "Aéroport de Nice", DepartureDate = "10/02/2024", DestinationCity = "Mexico", FlightNumber = 465732 };
-            Flight FlightEthiopie = new Flight() { Airline = "Ethiop'fly", DepartureCity = "Aéroport Lyon Saint Exupéry", DepartureDate = "10/02/2024", DestinationCity = "Mekele", FlightNumber = 688486 };
-            Flight FlightFrance = new Flight() { Airline = "Air france", DepartureCity = "Marseille Provence", DepartureDate = "10/02/2024", DestinationCity = "Paris", FlightNumber = 864566 };
-            Flight FlightJapon = new Flight() { Airline = "Fly Japan", DepartureCity = "Toulouse blagnac", DepartureDate = "10/02/2024", DestinationCity = "Osaka", FlightNumber = 386618 };
-            Flight FlightMaroc = new Flight() { Airline = "Boeing Maroc", DepartureCity = "Bordeaux-Mérignac", DepartureDate = "10/02/2024", DestinationCity = "Marrakech", FlightNumber = 548675 };
-            Flight FlightItalie = new Flight() { Airline = "Itaflyairway", DepartureCity = "Nantes Atlantique", DepartureDate = "10/02/2024", DestinationCity = "Naples", FlightNumber = 397668 };
-            this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie);  
+            Flight FlightInde = new Flight() { Airline = "Air India", DepartureCountry ="France", DepartureCity = "CDG", DepartureDate = "2024-02-10", DestinationCountry="Inde", DestinationCity = "Dehli", FlightNumber = 547896 };
+            Flight FlightThailande = new Flight() { Airline = "Air thai", DepartureCountry = "France", DepartureCity = "Paris Orly", DepartureDate = "2024-07-18", DestinationCountry = "Thailande", DestinationCity = "Pukhet", FlightNumber = 165866 };
+            Flight FlightMexique = new Flight() { Airline = "Mexico airline", DepartureCountry = "France", DepartureCity = "Aéroport de Nice", DepartureDate = "2024-02-10", DestinationCountry = "Mexique", DestinationCity = "Mexico", FlightNumber = 465732 };
+            Flight FlightEthiopie = new Flight() { Airline = "Ethiop'fly", DepartureCountry = "France", DepartureCity = "Aéroport Lyon Saint Exupéry", DepartureDate = "2024-02-10", DestinationCountry = "Ethiopie", DestinationCity = "Mekele", FlightNumber = 688486 };
+            Flight FlightFrance = new Flight() { Airline = "Air france", DepartureCountry = "France", DepartureCity = "Marseille Provence", DepartureDate = "2024-02-10", DestinationCountry = "France", DestinationCity = "Paris", FlightNumber = 864566 };
+            Flight FlightJapon = new Flight() { Airline = "Fly Japan", DepartureCountry = "France", DepartureCity = "Toulouse blagnac", DepartureDate = "2024-02-10", DestinationCountry = "Japon", DestinationCity = "Osaka", FlightNumber = 386618 };
+            Flight FlightMaroc = new Flight() { Airline = "Boeing Maroc", DepartureCountry = "France", DepartureCity = "Bordeaux-Mérignac", DepartureDate = "2024-02-10", DestinationCountry = "Maroc", DestinationCity = "Marrakech", FlightNumber = 548675 };
+            Flight FlightItalie = new Flight() { Airline = "Itaflyairway", DepartureCountry = "France", DepartureCity = "Nantes Atlantique", DepartureDate = "2024-02-10", DestinationCountry = "Italie", DestinationCity = "Naples", FlightNumber = 397668 };
+            Flight FlightIndeRetour = new Flight() { Airline = "Air India", DepartureCountry = "Inde", DepartureCity = "Dehli", DepartureDate = "2024-02-24", DestinationCountry = "France", DestinationCity = "CDG", FlightNumber = 987654 };
+            this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie, FlightIndeRetour);  
             
-            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Prix=40 };
-            Service serv2 = new Service() { Type = "Vol", Description = "", Prix = 200 };
-            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Prix = 10 };
-
+            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Price=40 };
+            Service serv2 = new Service() { Type = "Vol", Description = "", Price = 200 };
+            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Price = 10 };
             this.Services.AddRange(serv1, serv2, serv3);
+
+            Accommodation accommodation1 = new Accommodation() { Type="Chez l'habitant", Pays="Inde", Ville = "Dehli", Description="good food and good vibes"};
+            Accommodation accommodation2 = new Accommodation() { Type = "Hôtel", Pays = "Inde", Ville = "Dehli", Description = "classy hotel room for visitors" };
+            this.Accommodations.AddRange(accommodation1, accommodation2);
+
+            Activity activity1 = new Activity() { Nom = "Cricket", Description = "N°1 sport in the country, come test", Ville = "Dehli", Pays = "Inde" };
+            Activity activity2 = new Activity() { Nom = "Cooking classe", Description = "Venez apprendre à faire le meilleur curry de votre vie", Ville = "Dehli", Pays = "Inde" };
+            this.Activities.AddRange(activity1, activity2); 
 
             this.SaveChanges();
         }
