@@ -1,6 +1,10 @@
 ﻿
 @model _001JIMCV.Models.Classes.Accommodation
 @{
+    Layout = "_LayoutJimcv";
+}
+
+@{
     var countries = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.CountryEnum))
     .Cast<_001JIMCV.Models.Classes.Enum.CountryEnum>()
     .Select(e => new SelectListItem

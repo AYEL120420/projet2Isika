@@ -204,7 +204,7 @@ header {
 
 facebook {
     justify-content: right;
-    height: 50px;
+    height: auto;
     width: auto;
     display: flex;
     align-items: center;
