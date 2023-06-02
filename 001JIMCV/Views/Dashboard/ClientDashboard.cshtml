@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "_LayoutJimcv";
+}
+
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/StyleProviderDashboard.css" link />
+
+}
+<div class="container">
+
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-item">
+            <h2><a href="@Url.Action("Index", "Home")">Accueil</a></h2>
+        </div>
+
+        <div class="dashboard-item">
+            <h2><a href="OtherPropForm.html"> Reservations</a></h2>
+        </div>
+
+        <div class="dashboard-item">
+            <h2><a href="liste.html">Paiement</a></h2>
+        </div>
+
+        <div class="dashboard-item">
+            <h2><a href="AccommodationForm"> Avis</a></h2>
+        </div>
+
+    </div>
+
+    <div id="description" class="container">
+        Texte a implémenter
+    </div>
+
+    <div id="image" class="image-container">
+        <img src="/images/ClientDashboard.jpg" alt="ClientFood">
+    </div>
+
+</div>
