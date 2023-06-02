@@ -88,9 +88,9 @@ namespace _001JIMCV.Models
             Flight FlightIndeRetour = new Flight() { Airline = "Air India", DepartureCountry = "Inde", DepartureCity = "Dehli", DepartureDate = "2024-02-24", DestinationCountry = "France", DestinationCity = "CDG", FlightNumber = 987654 };
             this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie, FlightIndeRetour);  
             
-            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Price=40 };
-            Service serv2 = new Service() { Type = "Vol", Description = "", Price = 200 };
-            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Price = 10 };
+            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Prix=40 };
+            Service serv2 = new Service() { Type = "Vol", Description = "", Prix = 200 };
+            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Prix = 10 };
             this.Services.AddRange(serv1, serv2, serv3);
 
             Accommodation accommodation1 = new Accommodation() { Type="Chez l'habitant", Pays="Inde", Ville = "Dehli", Description="good food and good vibes"};
