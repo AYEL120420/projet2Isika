@@ -4,15 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 using _001JIMCV.Models.Dals;
 using System.Collections.Generic;
 using _001JIMCV.ViewModels;
+using _001JIMCV.Models.Classes.Enum;
+using System.Linq;
+using XAct;
+using XAct.UI.Views;
 
 namespace _001JIMCV.Controllers
 {
     public class AccommodationController : Controller
     {
         private AccommodationDal accommodationDal;
+        private LoginDal loginDal;
+        private DashboardDal dashboardDal;
         public AccommodationController()
         {
             accommodationDal = new AccommodationDal();
+            loginDal = new LoginDal();
+            dashboardDal = new DashboardDal();
         }
         public IActionResult Index()
         {
@@ -29,23 +37,52 @@ namespace _001JIMCV.Controllers
         public IActionResult GetList()
         {
            
-                var accommodations = accommodationDal.GetAllAccommodations();
-            foreach (var accommodation in accommodations)
-            {
-                accommodation.Status = "En cours de traitement";
-            }
+            var accommodations = accommodationDal.GetAllAccommodations();
             ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
                 return View("List");
           
         }
+        public ActionResult GetAccommodation()
+
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentified)
+            {
+                viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+                UserEnum role = viewModel.User.Role;
+                switch (role)
+                {
+                    case UserEnum.Admin:
+                       return RedirectToAction("GetList");
+                    case UserEnum.Provider:
+                        //  partenaire
+                        var accommodations = accommodationDal.GetAllAccommodations()
+                            .Where(p => p.ProviderId == viewModel.User.Id).ToList();
+                        ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
+              
+                        return View("List");
+                    default:
+                        
+                        return View("Error");
+                }
+            }
+
+            return View();
+        }
+
 
         [HttpPost]
         public IActionResult CreateAccommodation(Accommodation accommodation)
         {
-      
-            accommodationDal.AddAccommodation(accommodation);
+            LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+          
+            
+                viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+                UserEnum role = viewModel.User.Role;
 
-            return RedirectToAction("GetList");
+                accommodationDal.AddAccommodation(viewModel.User.Id, accommodation.Pays, accommodation.Ville, accommodation.Type, accommodation.Adresse, accommodation.De, accommodation.A, accommodation.Prix, accommodation.Description);
+
+            return RedirectToAction("GetAccommodation");
         }
 
 
@@ -67,19 +104,17 @@ namespace _001JIMCV.Controllers
             return View("EditFormAccom", accommodation);
         }
 
+       
         [HttpPost]
         public IActionResult EditAccommodation(Accommodation accommodation)
         {
-
             if (!ModelState.IsValid)
                 return View(accommodation);
 
             if (accommodation.Id != 0)
             {
-                {
-                    accommodationDal.EditAccommodation(accommodation);
-                    return RedirectToAction("GetList", new { @id = accommodation.Id });
-                }
+                accommodationDal.EditAccommodation(accommodation.Id, accommodation.Pays, accommodation.Ville, accommodation.Type, accommodation.Adresse, accommodation.De, accommodation.A, accommodation.Prix, accommodation.Description, accommodation.Status);
+                return RedirectToAction("GetList", new { id = accommodation.Id });
             }
             else
             {
@@ -124,6 +159,7 @@ namespace _001JIMCV.Controllers
                 return View("Error");
             }
         }
+       
 
 
     }

@@ -19,15 +19,15 @@ else
     using (Html.BeginForm())
     {
         <div>
-            @Html.LabelFor(m => m.User.Email)
+            @Html.LabelFor(m => m.User.Email)<br>
             @Html.TextBoxFor(m => m.User.Email)
             @Html.ValidationMessageFor(m => m.User.Email)
         </div>
         <div>
-            @Html.LabelFor(m => m.User.Password)
+            @Html.LabelFor(m => m.User.Password)<br>
             @Html.PasswordFor(m => m.User.Password)
             @Html.ValidationMessageFor(m => m.User.Password)
-        </div>
+        </div><br />
         <input type="submit" value="Se connecter" />
         <br />
         @Html.ActionLink("Créer un compte", "CreateAccount")

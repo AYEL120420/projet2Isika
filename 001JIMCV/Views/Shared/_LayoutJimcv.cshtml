@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>JIMCV</title>
     <link href="~/css/Site.css" rel="stylesheet" />
+    <link href="/css/Forms.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -22,13 +23,16 @@
     <span></span>
 
     <ul id="menu">
-      <a href="/home';"><li>Bienvenue</li></a>
-      <a href="@Url.Action("Index", "Login")"><li>Login/Inscription</li></a>
-      <a href="@Url.Action("Index", "Dashboard")"><li>Mon Profil</li></a>
-      <a href="#"><li>Manger avant tout !</li></a>
-      <a href=""><li>Découvrir les pays</li></a>
-      <a href="#"><li>Contact</li></a>
-      <a href="https://youtube.com" target="_blank"><li>Show me more</li></a>
+      @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="@Url.Action("Index", "Dashboard")"><li>Mon Profil</li></a>
+                            }
+                            <a href="@Url.Action("Index", "Home")"><li>Bienvenue</li></a>
+                            <a href="@Url.Action("Index", "Login")"><li>Login/Inscription</li></a>
+                            <a href="#"><li>Manger avant tout !</li></a>
+                            <a href=""><li>Découvrir les pays</li></a>
+                            <a href="#"><li>Contact</li></a>
+                            <a href="https://youtube.com" target="_blank"><li>Show me more</li></a>
     </ul>
   </div>
 </nav>

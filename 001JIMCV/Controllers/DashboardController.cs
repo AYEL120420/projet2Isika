@@ -11,11 +11,12 @@ public class DashboardController : Controller
 {
     private DashboardDal dashboardDal;
     private LoginDal loginDal;
-
+    private AccommodationDal accommodationDal;
     public DashboardController()
     {
         dashboardDal = new DashboardDal();
         loginDal = new LoginDal();
+        accommodationDal = new AccommodationDal();
     }
 
     public ActionResult Index()
@@ -36,8 +37,7 @@ public class DashboardController : Controller
                     return View("CustomerDashboard", viewModel);
                 case UserEnum.Provider:
                     //  partenaire
-                   List<Accommodation> providerPropositions = dashboardDal.GetPropositionAccommodation(viewModel.User.Id);
-                return View("ProviderDashboard", providerPropositions);
+                    return View("ProviderDashboard", viewModel);
                 default:
                     // Rôle non reconnu
                     return View("Error");
@@ -47,18 +47,9 @@ public class DashboardController : Controller
         return View(viewModel);
     }
 
+    ////-------------------------------------------------Accommodation------------------------------------------------------------
 
+    //L'admin a accés à toutes les propositions 
+    //les partenaires ne peuvent visualiser que leurs propositions 
 
-
-
-
-  /*  string provider = User.Identity.GetUserId(); // Obtenir l'ID du partenaire connecté
-        int providerId = int.Parse(id); // Convertir la chaîne en int
-
-        List<Accommodation> propositionHebergement = dashboardDal.PropositionAccommodation(providerId)
-            .Where(p => p.Id == providerId)
-            .ToList();
-
-        return View(propositionHebergement);
-    } */
 }

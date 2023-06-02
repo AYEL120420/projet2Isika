@@ -27,10 +27,11 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une restauration
-        public int AddRestauration(string country, string city, string type, string description, string location, string menu, decimal price, string contactEmail)
+        public int AddRestauration(int providerId,string country, string city, string type, string description, string location, string menu, decimal price, string Email)
         {
             Restauration restauration = new Restauration()
             {
+                ProviderId=providerId,
                 Pays = country,
                 Ville = city,
                 Type = type,
@@ -38,20 +39,14 @@ namespace _001JIMCV.Models.Dals
                 Localisation = location,
                 Menu = menu,
                 Tarif = price,
-                EmailContact = contactEmail
+                Email = Email,
+                Status ="En cours de traitement"
             };
 
             _bddcontext.Restaurations.Add(restauration);
             _bddcontext.SaveChanges();
 
             return restauration.Id;
-        }
-
-        // Ajouter une restauration
-        public void AddRestauration(Restauration restauration)
-        {
-            _bddcontext.Restaurations.Add(restauration);
-            _bddcontext.SaveChanges();
         }
 
         // Obtenir une restauration par son ID
@@ -61,11 +56,12 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une restauration
-        public void EditRestauration(int id, string country, string city, string type, string description, string location, string menu, decimal price, string contactEmail, string status)
+        public void EditRestauration(int id, string country, string city, string type, string description, string location, string menu, decimal price, string Email, string status)
         {
             Restauration restauration = _bddcontext.Restaurations.Find(id);
             if (restauration != null)
             {
+                restauration.Id = id;
                 restauration.Pays = country;
                 restauration.Ville = city;
                 restauration.Type = type;
@@ -73,18 +69,13 @@ namespace _001JIMCV.Models.Dals
                 restauration.Localisation = location;
                 restauration.Menu = menu;
                 restauration.Tarif = price;
-                restauration.EmailContact = contactEmail;
+                restauration.Email = Email;
                 restauration.Status = status;
                 _bddcontext.SaveChanges();
             }
         }
 
-        // Modifier une restauration
-        public void EditRestauration(Restauration restauration)
-        {
-            _bddcontext.Restaurations.Update(restauration);
-            _bddcontext.SaveChanges();
-        }
+      
 
         // Supprimer une restauration
         public void DeleteRestauration(int id)

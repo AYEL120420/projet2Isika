@@ -4,16 +4,22 @@ using Microsoft.AspNetCore.Mvc;
 using _001JIMCV.Models.Dals;
 using System.Collections.Generic;
 using _001JIMCV.ViewModels;
+using _001JIMCV.Models.Classes.Enum;
+using System.Linq;
 
 namespace _001JIMCV.Controllers
 {
     public class RestaurationController : Controller
     {
         private RestaurationDal restaurationDal;
+        private LoginDal loginDal;
+        private DashboardDal dashboard;
 
         public RestaurationController()
         {
             restaurationDal = new RestaurationDal();
+            loginDal = new LoginDal();
+            dashboard = new DashboardDal();
         }
 
         public IActionResult Index()
@@ -41,13 +47,46 @@ namespace _001JIMCV.Controllers
             return View("List");
         }
 
+        public ActionResult GetRestauration()
+
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentified)
+            {
+                viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+                UserEnum role = viewModel.User.Role;
+                switch (role)
+                {
+                    case UserEnum.Admin:
+                        return RedirectToAction("GetList");
+                    case UserEnum.Provider:
+                        //  partenaire
+                        var restaurations = restaurationDal.GetAllRestaurations()
+                            .Where(p => p.ProviderId == viewModel.User.Id).ToList();
+                        ViewData["Restaurations"] = restaurations ?? new List<_001JIMCV.Models.Classes.Restauration>();
+
+                        return View("List");
+                    default:
+
+                        return View("Error");
+                }
+            }
+
+            return View();
+        }
         [HttpPost]
         public IActionResult CreateRestauration(Restauration restauration)
         {
-            restaurationDal.AddRestauration(restauration);
+            LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
 
-            return RedirectToAction("GetList");
+            viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+            UserEnum role = viewModel.User.Role;
+
+            restaurationDal.AddRestauration(viewModel.User.Id, restauration.Pays, restauration.Ville, restauration.Type, restauration.Description, restauration.Localisation, restauration.Menu, restauration.Tarif, restauration.Email);
+
+            return RedirectToAction("GetRestauration");
         }
+    
 
         [HttpGet]
         public IActionResult EditRestauration(int id)
@@ -75,7 +114,7 @@ namespace _001JIMCV.Controllers
 
             if (restauration.Id != 0)
             {
-                restaurationDal.EditRestauration(restauration);
+                restaurationDal.EditRestauration(restauration.Id, restauration.Pays, restauration.Ville, restauration.Type, restauration.Description, restauration.Localisation, restauration.Menu, restauration.Tarif, restauration.Email, restauration.Status);
                 return RedirectToAction("GetList", new { @id = restauration.Id });
             }
             else

@@ -2,4 +2,28 @@
     Layout = "_LayoutJimcv";
 }
 
-<h1>Je suis le dashboard admin</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>ListeServices</title>
+</head>
+<body>
+    <ul>
+
+        <li>@Html.ActionLink("Hébergement", "GetList", "Accommodation")</li>
+        <li>@Html.ActionLink("Activité", "GetList", "Activity")</li>
+        <li>@Html.ActionLink("Restauration", "GetList", "Restauration")</li>
+        <li>@Html.ActionLink("Autres propositions", "GetList", "Proposition")</li>
+
+
+    </ul>
+
+
+
+</body>
+
+
+</html>

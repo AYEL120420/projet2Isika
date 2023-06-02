@@ -1,13 +1,6 @@
 ﻿@model List<_001JIMCV.Models.Classes.Activity>
 @{
-    var StatusList = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.StatusEnum))
-        .Cast<_001JIMCV.Models.Classes.Enum.StatusEnum>()
-        .Select(e => new SelectListItem
-                {
-                    Value = e.ToString(),
-                    Text = e.ToString()
-                })
-        .ToList();
+    Layout = "_LayoutJimcv";
 }
 
 <table border="1" style="width:60%">
@@ -33,14 +26,7 @@
             <td>@activity.Localisation</td>
             <td>@activity.Prix</td>
             <td>@activity.Description</td>
-            <td>
-                <select name="status" id="status">
-                    @foreach (var status in StatusList)
-                    {
-                        <option value="@status.Value" @(status.Value == activity.Status ? "selected" : "")>@status.Text</option>
-                    }
-                </select>
-            </td>
+            <td>@activity.Status </td>
             <td style="width: 60px;">
                 <form action="@Url.Action("EditActivity", "Activity", new { id = activity.Id })" method="get">
                     <button type="submit">Modifier</button>
