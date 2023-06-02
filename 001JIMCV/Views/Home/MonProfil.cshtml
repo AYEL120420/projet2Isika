@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "_LayoutJimcv";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Gestion du profil</title>
+    <link href="~/Css/Forms.css" rel="stylesheet" />
+</head>
+    <form>
+        <label for="firstname">Prénom:</label><br>
+        <input type="text" id="firstname" name="firstname"><br>
+
+        <label for="lastname">Nom:</label><br>
+        <input type="text" id="lastname" name="lastname"><br>
+
+        <label for="gender">Sexe:</label><br>
+        <select id="gender" name="gender">
+            <option value="male">Homme</option>
+            <option value="female">Femme</option>
+        </select><br>
+        <br>
+        <label for="phone">Numéro de téléphone fixe:</label><br>
+        <input type="tel" id="phone" name="phone"><br>
+        <br>
+        <label for="mobile">Numéro de téléphone mobile:</label><br>
+        <input type="tel" id="mobile" name="mobile"><br>
+        <br>
+        <label for="email">Adresse email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <br>
+        <label for="country">Pays:</label><br>
+        <input type="text" id="country" name="country"><br>
+
+        <label for="city">Ville:</label><br>
+        <input type="text" id="city" name="city"><br>
+
+        <label for="travels">Voyages réalisés:</label><br>
+        <textarea id="travels" name="travels"></textarea><br>
+
+        <input type="submit" value="Soumettre">
+    </form>
+    <br>
+    <div>
+    <button onclick="window.location.href='/Home';">Retour à la page principale</button>
+    </div>
