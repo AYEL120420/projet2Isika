@@ -22,11 +22,16 @@
     <span></span>
 
     <ul id="menu">
-      <a href="/home';"><li>Bienvenue</li></a>
-      <a href="@Url.Action("Index", "Dashboard")"><li>Mon Profil</li></a>
-      <a href="#"><li>Manger avant tout !</li></a>
-      <a href=""><li>Découvrir les pays</li></a>
-      <a href="#"><li>Contact</li></a>
+      @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="@Url.Action("Index", "Dashboard")"><li>Mon Profil</li></a>
+                            }
+                            <a href="@Url.Action("Index", "Home")"><li>Bienvenue</li></a>
+                            <a href="@Url.Action("Index", "Login")"><li>Login/Inscription</li></a>
+                            <a href="#"><li>Manger avant tout !</li></a>
+                            <a href=""><li>Découvrir les pays</li></a>
+                            <a href="#"><li>Contact</li></a>
+
     </ul>
   </div>
 </nav>
@@ -46,10 +51,10 @@
             </span>
 
           <span id="">
-                    <a href="https://www.facebook.com/profile.php?id=100092733086173">
+                  <a href="https://www.facebook.com/profile.php?id=100092733086173">
                     <img src="/Images/facebook.png" alt="Logo Facebook">
                 </a>
-            </span>
+           </span>
        </div>
    </div>
  </header>
@@ -58,9 +63,9 @@
     <div id="contenu">
             @RenderBody()
         </div>
-    </div>
 
-    <div id="footer">
+
+    <div id="footer" style="display:flex; justify-content:center; align-items:center">
         &copy; @DateTime.Now.Year - Partagez votre aventure ou vos expériences sur notre mail : Jimcv@gmail.com !
     </div>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _001JIMCV.Models.Classes.Enum;
+using System;
 using System.Collections.Generic;
 
 namespace _001JIMCV.Models.Classes

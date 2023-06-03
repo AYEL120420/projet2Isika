@@ -1,11 +1,12 @@
 ﻿@model _001JIMCV.Models.Classes.Accommodation
 @{
+    Layout = "_LayoutJimcv";
+
     string formAction = ViewData["FormAction"] as string;
     string formMethod = ViewData["FormMethod"] as string ?? "post";
     string submitText = ViewData["SubmitText"] as string ?? "Enregistrer";
-}
 
-@{
+
     var countries = Enum.GetValues(typeof(_001JIMCV.Models.Classes.Enum.CountryEnum))
     .Cast<_001JIMCV.Models.Classes.Enum.CountryEnum>()
     .Select(e => new SelectListItem
@@ -16,14 +17,6 @@
     .ToList();
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Mon formulaire</title>
-    <link href="/css/Forms.css" rel="stylesheet" />
-</head>
-<body>
     @using (Html.BeginForm(formAction, "Accommodation", FormMethod.Post))
     {
         <fieldset>
@@ -92,6 +85,10 @@
                     @Html.ValidationMessageFor(m => m.Prix)<br>
                 </div>
                 <br>
+                <div class="form-group">
+                    <label for="Status">Status</label>
+                    <input type="text" id="Status" name="Status" class="form-control" value="@Model.Status" @((User.IsInRole("Provider")) ? "readonly" : "") />
+                </div>
                 <div>
                     @Html.LabelFor(m => m.Image)<br>
                     <input type="file" name="Image" id="Image" />
@@ -103,5 +100,3 @@
                 </div>
         </fieldset>
     }
-</body>
-</html>

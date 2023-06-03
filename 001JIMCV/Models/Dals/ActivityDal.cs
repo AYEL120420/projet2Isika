@@ -22,10 +22,11 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une activité
-        public int AddActivity(string country, string city, string name, string description, DateAndTime date, string location, float price, byte[]image)
+        public int AddActivity(int ProviderId, string country, string city, string name, string description, DateAndTime date, string location, float price, byte[]image)
         {
             Activity activity = new Activity()
             {
+                ProviderId = ProviderId,
                 Pays = country,
                 Ville = city,
                 Nom = name,
@@ -33,6 +34,7 @@ namespace _001JIMCV.Models.Dals
                 Date = date,
                 Localisation = location,
                 Prix = price,
+                Status= "En cours de traitement",
                 Image=image
               
             };
@@ -44,11 +46,11 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une activité
-        public void AddActivity(Activity activity)
+      /*  public void AddActivity(Activity activity)
         {
             _bddcontext.Activities.Add(activity);
             _bddcontext.SaveChanges();
-        }
+        }*/
 
         // Obtenir une activité par son ID
         public Activity GetActivityById(int id)
@@ -57,7 +59,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une activité
-        public void EditActivity(int id, string country, string city, string name, string description, DateAndTime date, string location, float price, byte[]image)
+        public void EditActivity (int id, string country, string city, string name, string description, DateAndTime date, string location, float price, byte[] image, string status)
         {
             Activity activity = _bddcontext.Activities.Find(id);
             if (activity != null)
@@ -69,6 +71,7 @@ namespace _001JIMCV.Models.Dals
                 activity.Date = date;
                 activity.Localisation = location;
                 activity.Prix = price;
+                activity.Status = status;
                 activity.Image = image;              
                 _bddcontext.SaveChanges();
             }

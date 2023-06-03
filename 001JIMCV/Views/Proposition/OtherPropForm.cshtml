@@ -8,17 +8,9 @@
                 Text = e.ToString()
             })
     .ToList();
+    Layout = "_LayoutJimcv";
 }
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Mon formulaire</title>
-    <link href="/css/Forms.css" rel="stylesheet" />
-</head>
-<body>
-    @using (Html.BeginForm("CreateOtherProposition", "Proposition", FormMethod.Post))
+@using (Html.BeginForm("CreateOtherProposition", "Proposition", FormMethod.Post))
     {
         <fieldset>
             <div>
@@ -65,5 +57,4 @@
         </div>
     </fieldset>
 }
-</body>
-</html>
+

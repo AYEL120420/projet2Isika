@@ -1,7 +1,4 @@
-﻿@{
-    Layout = null;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -9,35 +6,100 @@
     <link href="~/css/Site.css" rel="stylesheet" />
     <style>
         #map {
-    height: 350px;
-    width: 100%;
-    background-image: url("/images/IndeMap01.jpg");
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position: center;
+            height: 350px;
+            width: 100%;
+            background-image: url("/images/IndeMap01.jpg");
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         #date-picker {
-            width: 100%; 
-            height: 30px; 
+            width: 100%;
+            height: 30px;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            border: 1px solid red;
+            padding: 0px;
+        }
+
+        .photo {
+            width: calc(1/3 * 100%);
+            background-image: url("/Images/PageInde01.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 300px;
+            border: 1px solid red;
+        }
+
+        .container-content {
+            display: flex;
+            flex-direction: column;
+            width: calc(3/5 * 100%);
+        }
+
+        .container2,
+        .container3 {
+            width: 100%;
+            border: 1px solid red;
+            padding: 10px;
+            margin-bottom: 10px;
+            flex-grow: 1; /* Ajouter cette ligne */
         }
     </style>
 </head>
 <body>
-    <header>
-        <form id="login-form">
-            <input type="text" placeholder="Login">
-            <input type="password" placeholder="Mot de passe">
-            <button type="submit">Valider</button>
-        </form>
-    </header>
-
-    <div id="logo">
-        <img src="/images/bandelogo.jpg" alt="Logo">
-    </div>
 
     <div id="map"></div>
-
+    <br>
+    <div class="container">
+        <div class="photo"></div>
+        <div class="container-content">
+            <div class="container2">
+                <div id="description2" class="Texte1">
+                    <span class="bloc">
+                        Ville
+                    </span>
+                    <span class="bloc">
+                        Date de départ
+                    </span>
+                    <span class="bloc">
+                        prix
+                    </span>
+                </div>
+            </div>
+            <div class="container3">
+                "Description de l'offre"
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="photo"></div>
+        <div class="container-content">
+            <div class="container2">
+                <div id="description2" class="Texte1">
+                    <span class="bloc">
+                        Ville
+                    </span>
+                    <span class="bloc">
+                        Date de départ
+                    </span>
+                    <span class="bloc">
+                        prix
+                    </span>
+                </div>
+            </div>
+            <div class="container3">
+                "Description de l'offre"
+            </div>
+        </div>
+    </div>
     <input type="date" id="date-picker">
 
     <button onclick="window.location.href='/Home';">Retour à la page principale</button>

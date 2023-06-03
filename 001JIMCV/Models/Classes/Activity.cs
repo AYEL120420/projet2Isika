@@ -7,6 +7,7 @@ namespace _001JIMCV.Models.Classes
     public class Activity
     {
         public int Id { get; set; }
+        public int ProviderId { get; set; }
         public string Pays { get; set; }
         public string Ville { get; set; }
         public string Nom { get; set; }

@@ -12,28 +12,59 @@
     <div class="dashboard-container">
 
         <div class="dashboard-item">
-            <h2><a href="@Url.Action("Index", "Home")">Accueil</a></h2>
+            <h2><button onclick="window.location.href='@Url.Action("Index", "Home")'">Accueil</button></h2>
         </div>
 
         <div class="dashboard-item">
-            <h2><a href="OtherPropForm.html"> Reservations</a></h2>
+            <h2><button onclick="window.location.href='@Url.Action("Index", "Home")'">Accueil</button></h2>
         </div>
 
         <div class="dashboard-item">
-            <h2><a href="liste.html">Paiement</a></h2>
+            <h2><button onclick="window.location.href='@Url.Action("Index", "Home")'">Accueil</button></h2>
         </div>
 
         <div class="dashboard-item">
-            <h2><a href="AccommodationForm"> Avis</a></h2>
+            <h2><button onclick="window.location.href='@Url.Action("Index", "Home")'">Accueil</button></h2>
         </div>
 
     </div>
 
     <div id="description" class="container">
-        Texte a implémenter
+        <form>
+            <label for="firstname">Prénom:</label><br>
+            <input type="text" id="firstname" name="firstname"><br>
+            <br />
+            <label for="lastname">Nom:</label><br>
+            <input type="text" id="lastname" name="lastname"><br>
+            <br />
+            <label for="gender">Sexe:</label><br>
+            <select id="gender" name="gender">
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+            </select><br>
+            <br>
+            <label for="mobile">Numéro de téléphone mobile:</label><br>
+            <input type="tel" id="mobile" name="mobile"><br>
+            <br>
+            <label for="email">Adresse email:</label><br>
+            <input type="email" id="email" name="email"><br>
+            <br>
+            <label for="country">Pays:</label><br>
+            <input type="text" id="country" name="country"><br>
+            <br />
+            <label for="city">Ville:</label><br>
+            <input type="text" id="city" name="city"><br>
+            <br />
+            <label for="travels">Voyages réalisés:</label><br>
+            <textarea id="travels" name="travels"></textarea><br>
+            <br />
+            <input type="submit" value="Soumettre"><br>
+            <br />
+
+        </form>
     </div>
 
-    <div id="image" class="image-container">
+    <div id="ImageDashboard" class="image">
         <img src="/images/ClientDashboard.jpg" alt="ClientFood">
     </div>
 

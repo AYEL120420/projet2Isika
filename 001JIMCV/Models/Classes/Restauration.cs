@@ -9,6 +9,7 @@ namespace _001JIMCV.Models.Classes
        
 
             public int Id { get; set; }
+            public int ProviderId { get; set; }
             public string Pays { get; set; }
             public string Ville { get; set; }
             public string Type { get; set; }
@@ -17,7 +18,7 @@ namespace _001JIMCV.Models.Classes
             public string Menu { get; set; }
             public decimal Tarif { get; set; }
 
-            public string EmailContact { get; set; }
+            public string Email { get; set; }
             public string Status { get; set; }
             public byte[] Images { get; set; }
         }

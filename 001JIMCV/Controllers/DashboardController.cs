@@ -1,27 +1,3 @@
-//<<<<<<< HEAD
-//﻿using Microsoft.AspNetCore.Mvc;
-
-//namespace _001JIMCV.Controllers
-//{
-//    public class DashboardController : Controller
-//    {
-//        public IActionResult Admin()
-//        {
-//            return View("AdminDashboard");
-//        }
-
-//        public IActionResult Provider()
-//        {
-//            return View("ProviderDashboard");
-//        }
-
-//        public IActionResult Client()
-//        {
-//            return View("ClientDashboard");
-//        }
-//    }
-//}
-
 ﻿using _001JIMCV.Models.Classes;
 using _001JIMCV.Models.Classes.Enum;
 using _001JIMCV.Models.Dals;
@@ -35,11 +11,12 @@ public class DashboardController : Controller
 {
     private DashboardDal dashboardDal;
     private LoginDal loginDal;
-
+    private AccommodationDal accommodationDal;
     public DashboardController()
     {
         dashboardDal = new DashboardDal();
         loginDal = new LoginDal();
+        accommodationDal = new AccommodationDal();
     }
 
     public ActionResult Index()
@@ -60,8 +37,7 @@ public class DashboardController : Controller
                     return View("ClientDashboard", viewModel);
                 case UserEnum.Provider:
                     //  partenaire
-                   List<Accommodation> providerPropositions = dashboardDal.GetPropositionAccommodation(viewModel.User.Id);
-                return View("ProviderDashboard", providerPropositions);
+                    return View("ProviderDashboard", viewModel);
                 default:
                     // Rôle non reconnu
                     return View("Error");
@@ -71,5 +47,9 @@ public class DashboardController : Controller
         return View(viewModel);
     }
 
-}
+    ////-------------------------------------------------Accommodation------------------------------------------------------------
 
+    //L'admin a accés à toutes les propositions 
+    //les partenaires ne peuvent visualiser que leurs propositions 
+
+}

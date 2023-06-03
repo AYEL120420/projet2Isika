@@ -1,126 +1,157 @@
 ﻿using _001JIMCV.Models.Classes;
+using _001JIMCV.Models.Classes.Enum;
 using _001JIMCV.Models.Dals;
+using _001JIMCV.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
+using XAct.UI.Views;
 
 namespace _001JIMCV.Controllers
 {
     public class PropositionController : Controller
     {
         private PropositionDal propositionDal;
-        private object propositionDAL;
+        private LoginDal loginDal;
+        private DashboardDal dashboardDal;
 
         public PropositionController()
         {
             propositionDal = new PropositionDal();
+            loginDal = new LoginDal();
+            dashboardDal = new DashboardDal();
         }
+
         public IActionResult Index()
         {
             return View("ProviderDashboard");
         }
 
+        public IActionResult OtherPropForm()
+        {
+            return View("OtherPropForm"); // Renvoie la vue du formulaire de proposition
+        }
 
-            public IActionResult OtherPropForm()
+        // Afficher la liste des autres propositions
+        public IActionResult GetList()
+        {
+            var otherPropositions = propositionDal.GetAllPropositions();
+
+            ViewData["OtherPropositions"] = otherPropositions ?? new List<OtherProposition>();
+            return View("List");
+        }
+
+     
+        public ActionResult GetOtherPropositions()
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentified)
             {
-                return View("OtherPropForm"); // Renvoie la vue du formulaire de proposition
-            }
-
-            // Afficher la liste des autres propositions
-            public IActionResult GetList()
-            {
-                var otherPropositions = propositionDal.GetAllPropositions();
-
-                foreach (var proposition in otherPropositions)
+                viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+                UserEnum role = viewModel.User.Role;
+                switch (role)
                 {
-                    proposition.Status = "En cours de traitement";
-                }
+                    case UserEnum.Admin:
+                        return RedirectToAction("GetList");
+                    case UserEnum.Provider:
+                        // partenaire
+                        var otherPropositions = propositionDal.GetAllPropositions()
+                            .Where(p => p.ProviderId == viewModel.User.Id).ToList();
+                        ViewData["OtherPropositions"] = otherPropositions ?? new List<OtherProposition>();
 
-                ViewData["OtherPropositions"] = otherPropositions ?? new List<OtherProposition>();
-                return View("List");
-            }
-
-            [HttpPost]
-            public IActionResult CreateOtherProposition(OtherProposition proposition)
-            {
-                propositionDal.AddProposition(proposition);
-
-                return RedirectToAction("GetList");
-            }
-
-            [HttpGet]
-            public IActionResult EditOtherProposition(int id)
-            {
-                if (id == 0)
-                {
-                    return NotFound();
-                }
-
-                OtherProposition proposition = propositionDal.GetPropositionById(id);
-
-                if (proposition == null)
-                {
-                    return View("Error");
-                }
-
-                return View("EditFormProposition", proposition);
-            }
-
-            [HttpPost]
-            public IActionResult EditOtherProposition(OtherProposition proposition)
-            {
-                if (!ModelState.IsValid)
-                    return View(proposition);
-
-                if (proposition.Id != 0)
-                {
-                    propositionDal.EditProposition(proposition);
-                    return RedirectToAction("GetList", new { @id = proposition.Id });
-                }
-                else
-                {
-                    return View("Error");
+                        return View("List");
+                    default:
+                        return View("Error");
                 }
             }
 
-            [HttpGet]
-            public IActionResult DeleteOtherProposition(int id)
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateOtherProposition(OtherProposition proposition)
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+
+            viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+            UserEnum role = viewModel.User.Role;
+
+            propositionDal.AddProposition(viewModel.User.Id, proposition.Pays, proposition.Ville, proposition.Titre, proposition.Description, proposition.Disponibilite, proposition.Programme, proposition.Hebergement, proposition.Activites, proposition.Restauration, proposition.Prix);
+
+            return RedirectToAction("GetOtherPropositions");
+        }
+
+        [HttpGet]
+        public IActionResult EditOtherProposition(int id)
+        {
+            if (id == 0)
             {
-                if (id == 0)
-                {
-                    return NotFound();
-                }
+                return NotFound();
+            }
 
-                OtherProposition proposition = propositionDal.GetPropositionById(id);
+            OtherProposition proposition = propositionDal.GetPropositionById(id);
 
-                if (proposition == null)
-                {
-                    return View("Error");
-                }
+            if (proposition == null)
+            {
+                return View("Error");
+            }
 
+            return View("EditFormProposition", proposition);
+        }
+
+        [HttpPost]
+        public IActionResult EditOtherProposition(OtherProposition proposition)
+        {
+            if (!ModelState.IsValid)
+                return View(proposition);
+
+            if (proposition.Id != 0)
+            {
+                propositionDal.EditProposition(proposition.Id, proposition.Pays, proposition.Ville, proposition.Titre, proposition.Description, proposition.Disponibilite, proposition.Programme, proposition.Hebergement, proposition.Activites, proposition.Restauration, proposition.Prix, proposition.Status);
+                return RedirectToAction("GetList", new { id = proposition.Id });
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult DeleteOtherProposition(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            OtherProposition proposition = propositionDal.GetPropositionById(id);
+
+            if (proposition == null)
+            {
+                return View("Error");
+            }
+
+            return View(proposition);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteOtherProposition(OtherProposition proposition)
+        {
+            if (!ModelState.IsValid)
+            {
                 return View(proposition);
             }
 
-            [HttpPost]
-            public IActionResult DeleteOtherProposition(OtherProposition proposition)
+            if (proposition.Id != 0)
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(proposition);
-                }
-
-                if (proposition.Id != 0)
-                {
-                    propositionDal.DeleteProposition(proposition);
-                    return RedirectToAction("GetList", new { id = proposition.Id });
-                }
-                else
-                {
-                    return View("Error");
-                }
+                propositionDal.DeleteProposition(proposition);
+                return RedirectToAction("GetList", new { id = proposition.Id });
+            }
+            else
+            {
+                return View("Error");
             }
         }
     }
-
-
-
+}
 
