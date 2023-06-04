@@ -1,0 +1,86 @@
+﻿@using _001JIMCV.Models.Classes;
+@model _001JIMCV.Models.Classes.Reservation
+@{
+    Layout = "_LayoutJimcv";
+}
+
+
+@using (Html.BeginForm("AddReservation", "Reservation", FormMethod.Post ,new { id = "FormReservation" }))
+{
+    <fieldset>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TravelStartDate, "Date de début du voyage :")
+        @Html.TextBoxFor(m => m.TravelStartDate, new {@type = "date", required = "required" })
+        @Html.ValidationMessageFor(m => m.TravelStartDate)
+    </div>
+    <br>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TravelEndDate, "Date de fin du voyage :")
+        @Html.TextBoxFor(m => m.TravelEndDate, new {@type = "date", required = "required" })
+        @Html.ValidationMessageFor(m => m.TravelEndDate)
+    </div>
+    <br>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NumberOfPassengers, "Nombre de passagers :")
+        @Html.TextBoxFor(m => m.NumberOfPassengers, new {@type = "number", required = "required" })
+        @Html.ValidationMessageFor(m => m.NumberOfPassengers)
+    </div>
+    <br>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactName, "Nom :")
+        @Html.TextBoxFor(m => m.ContactName, new {required = "required" })
+        @Html.ValidationMessageFor(m => m.ContactName)
+    </div>
+    <br>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactEmail, "Email :")
+        @Html.TextBoxFor(m => m.ContactEmail, new { type = "email", required = "required" })
+        @Html.ValidationMessageFor(m => m.ContactEmail)
+    </div>
+    <br>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactPhone, "Téléphone :")
+        @Html.TextBoxFor(m => m.ContactPhone, new {type = "tel", required = "required" })
+        @Html.ValidationMessageFor(m => m.ContactPhone)
+    </div>
+    <br>
+    </fieldset>
+    <fieldset>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NameCard, "Nom sur la carte")
+            @Html.TextBoxFor(m => m.NameCard, new {required = "required" })
+            @Html.ValidationMessageFor(m => m.NameCard)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NumCard, "Numero de carte")
+            @Html.TextBoxFor(m => m.NumCard, new {required = "required" })
+            @Html.ValidationMessageFor(m => m.NumCard)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ExpirationDate, "Date d'expiration")
+            @Html.TextBoxFor(m => m.ExpirationDate, new{required = "required" })
+            @Html.ValidationMessageFor(m => m.ExpirationDate)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.SecurityCode, "Code de sécurité")
+            @Html.TextBoxFor(m => m.SecurityCode, new { required = "required" })
+            @Html.ValidationMessageFor(m => m.SecurityCode)
+        </div>
+    </fieldset>
+    
+        <form action="@Url.Action("EditReservation", "Reservation") method="get">
+            <button type="submit">Modifier</button>
+        </form>
+    
+    <input type="submit" value="Réserver" class="btn btn-primary" />
+}

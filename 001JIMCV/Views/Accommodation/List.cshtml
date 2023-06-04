@@ -7,6 +7,8 @@
 
 <table border="1" style="width:60%">
     <tr>
+        <th>Nom du partenaire</th>
+        <th>Adresse Email</th>
         <th>Pays</th>
         <th>Ville</th>
         <th>Type</th>
@@ -22,6 +24,8 @@
         @foreach (_001JIMCV.Models.Classes.Accommodation accommodation in ViewData["Accommodations"] as List<_001JIMCV.Models.Classes.Accommodation>)
     {
         <tr>
+            <td>@accommodation.ProviderName </td>
+            <td>@accommodation.ProviderEmail</td>
             <td>@accommodation.Pays</td>
             <td>@accommodation.Ville</td>
             <td>@accommodation.Type</td>

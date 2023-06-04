@@ -22,7 +22,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une autre proposition
-        public int AddProposition(int ProviderId,string pays, string ville, string titre, string description, string disponibilite, string programme, string hebergement, string activites, string restauration, decimal prix)
+        public int AddProposition(int ProviderId, string pays, string ville, string titre, string disponibilite, string description, string programme, string hebergement, string activites, string restauration, float prix)
         {
             OtherProposition proposition = new OtherProposition()
             {
@@ -54,7 +54,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une autre proposition
-        public void EditProposition(int id, string pays, string ville, string titre, string description, string disponibilite, string programme, string hebergement, string activites, string restauration, decimal prix, string status)
+        public void EditProposition(int id, string pays, string ville, string titre, string disponibilite, string description, string programme, string hebergement, string activites, string restauration, float prix,  string status)
         {
             OtherProposition proposition = _bddcontext.OtherPropositions.Find(id);
             if (proposition != null)

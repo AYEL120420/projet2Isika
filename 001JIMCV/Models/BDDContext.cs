@@ -15,7 +15,6 @@ namespace _001JIMCV.Models
         public DbSet<Accommodation> Accommodations { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<OtherProposition> OtherPropositions { get; set; }
-
         public DbSet<CulinaryTheme> CulinaryThemes { get; set; }
         public DbSet<Restauration> Restaurations { get; set; }
         public DbSet<Flight> Flights { get; set; }
@@ -26,7 +25,7 @@ namespace _001JIMCV.Models
         public DbSet<FlightPackServices> FlightPackServices { get; set; }
         public DbSet<AccommodationPackServices> AccommodationPackServices { get; set; }
         public DbSet<ActivityPackServices> ActivityPackServices { get; set; }
-
+        public DbSet<Reservation>Reservations { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FlightPackServices>().HasKey(sps => new { sps.DepartureFlightId, sps.ReturnFlightId, sps.PackServicesId });
@@ -88,17 +87,13 @@ namespace _001JIMCV.Models
             Flight FlightIndeRetour = new Flight() { Airline = "Air India", DepartureCountry = "Inde", DepartureCity = "Dehli", DepartureDate = "2024-02-24", DestinationCountry = "France", DestinationCity = "CDG", FlightNumber = 987654 };
             this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie, FlightIndeRetour);  
             
-            Service serv1 = new Service() { Type = "Hebergement", Description = "Chez l habitant", Prix=40 };
-            Service serv2 = new Service() { Type = "Vol", Description = "", Prix = 200 };
-            Service serv3 = new Service() { Type = "Activité", Description = "Rando", Prix = 10 };
-            this.Services.AddRange(serv1, serv2, serv3);
 
             Accommodation accommodation1 = new Accommodation() { Type="Chez l'habitant", Pays="Inde", Ville = "Dehli", Description="good food and good vibes"};
             Accommodation accommodation2 = new Accommodation() { Type = "Hôtel", Pays = "Inde", Ville = "Dehli", Description = "classy hotel room for visitors" };
             this.Accommodations.AddRange(accommodation1, accommodation2);
 
-            Activity activity1 = new Activity() { Nom = "Cricket", Description = "N°1 sport in the country, come test", Ville = "Dehli", Pays = "Inde" };
-            Activity activity2 = new Activity() { Nom = "Cooking classe", Description = "Venez apprendre à faire le meilleur curry de votre vie", Ville = "Dehli", Pays = "Inde" };
+            Activity activity1 = new Activity() { Nom = "Cricket",Prix=50, Description = "N°1 sport in the country, come test", Ville = "Dehli", Pays = "Inde" };
+            Activity activity2 = new Activity() { Nom = "Cooking classe",Prix=60, Description = "Venez apprendre à faire le meilleur curry de votre vie", Ville = "Dehli", Pays = "Inde" };
             this.Activities.AddRange(activity1, activity2); 
 
             this.SaveChanges();

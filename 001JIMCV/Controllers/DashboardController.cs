@@ -34,7 +34,7 @@ public class DashboardController : Controller
                     return View("AdminDashboard", viewModel);
                 case UserEnum.Customer:
                     //  client
-                    return View("CustomerDashboard", viewModel);
+                    return View("ClientDashboard", viewModel);
                 case UserEnum.Provider:
                     //  partenaire
                     return View("ProviderDashboard", viewModel);
@@ -46,10 +46,4 @@ public class DashboardController : Controller
 
         return View(viewModel);
     }
-
-    ////-------------------------------------------------Accommodation------------------------------------------------------------
-
-    //L'admin a accés à toutes les propositions 
-    //les partenaires ne peuvent visualiser que leurs propositions 
-
 }

@@ -56,10 +56,16 @@ namespace _001JIMCV.Controllers
                        return RedirectToAction("GetList");
                     case UserEnum.Provider:
                         //  partenaire
+                        string providerId = HttpContext.Request.Cookies["ProviderId"];
+                        string providerName = HttpContext.Request.Cookies["ProviderName"];
+                        string providerEmail = HttpContext.Request.Cookies["ProviderEmail"];
+                        
                         var accommodations = accommodationDal.GetAllAccommodations()
                             .Where(p => p.ProviderId == viewModel.User.Id).ToList();
                         ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
-              
+                        ViewData["ProviderName"] = providerName;
+                        ViewData["ProviderEmail"] = providerEmail;
+
                         return View("List");
                     default:
                         

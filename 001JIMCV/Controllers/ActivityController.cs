@@ -80,7 +80,7 @@ namespace _001JIMCV.Controllers
             viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
             UserEnum role = viewModel.User.Role;
 
-            activityDal.AddActivity(viewModel.User.Id, activity.Pays, activity.Ville, activity.Nom, activity.Description, activity.Date, activity.Localisation, activity.Prix, activity.Image);
+            activityDal.AddActivity(viewModel.User.Id, activity.Pays, activity.Ville, activity.Nom, activity.Date, activity.Description, activity.Localisation, activity.Prix, activity.Image);
 
             return RedirectToAction("GetActivity");
         }
@@ -111,7 +111,7 @@ namespace _001JIMCV.Controllers
 
             if (activity.Id != 0)
             {
-                activityDal.EditActivity(activity.Id,activity.Pays, activity.Ville, activity.Nom, activity.Description, activity.Date, activity.Localisation, activity.Prix, activity.Image, activity.Status);
+                activityDal.EditActivity(activity.Id,activity.Pays, activity.Ville, activity.Nom,  activity.Date, activity.Localisation, activity.Description, activity.Prix,  activity.Image, activity.Status);
                 return RedirectToAction("GetList", new { id = activity.Id });
             }
             else
