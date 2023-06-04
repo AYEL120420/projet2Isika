@@ -11,58 +11,70 @@
     <header>
 
 
-   <div style="display:flex; justify-content:space-between; align-items:center">
-        <div>
-            <nav role="navigation">
-  <div id="menuToggle">
+        <div style="display:flex; justify-content:space-between; align-items:center">
+            <div>
+                <nav role="navigation">
+                    <div id="menuToggle">
 
-    <input type="checkbox" />
-    <span></span>
-    <span></span>
-    <span></span>
+                        <input type="checkbox" />
+                        <span></span>
+                        <span></span>
+                        <span></span>
 
-    <ul id="menu">
-      @if (User.Identity.IsAuthenticated)
+                        <ul id="menu">
+                            <a href="@Url.Action("Index", "Home")">
+                            <li>Bienvenue</li></a>
+                            @if (User.Identity.IsAuthenticated)
                             {
-                                <a href="@Url.Action("Index", "Dashboard")"><li>Mon Profil</li></a>
+                                <a href="@Url.Action("Index", "Dashboard")">
+                                <li>Mon Profil</li></a>
+                                <a href="@Url.Action("Deconnection", "Login")">
+                                <li>Se déconnecter</li></a>
                             }
-                            <a href="@Url.Action("Index", "Home")"><li>Bienvenue</li></a>
-                            <a href="@Url.Action("Index", "Login")"><li>Login/Inscription</li></a>
-                            <a href="#"><li>Manger avant tout !</li></a>
-                            <a href=""><li>Découvrir les pays</li></a>
-                            <a href="#"><li>Contact</li></a>
+                            else
+                            {
+                                <a href="@Url.Action("Index", "Login")">
+                                <li>Login/Inscription</li></a>
+                            }
 
-    </ul>
-  </div>
-</nav>
-     </div>
-       <div>
-           <span id="">
-            <img src="/Images/logosimplifie.png" alt="Logo"
-                 style="width:200px;height:120px">
-            </span>
-       </div>
+                            <a href="#">
+                            <li>Manger avant tout !</li></a>
+                            <a href="">
+                            <li>Découvrir les pays</li></a>
+                            <a href="#">
+                            <li>Contact</li></a>
 
-       <div>
-            <span id="">
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div>
+                <span id="">
+                    <img src="/Images/logosimplifie.png" alt="Logo"
+                         style="width:200px;height:120px">
+                </span>
+            </div>
+
+            <div>
+                <span id="">
                     <a href="https://www.instagram.com/jimcv3095/">
-                     <img src="/Images/instagram.png" alt="Logo Instagram" />
-                </a>
-            </span>
+                        <img src="/Images/instagram.png" alt="Logo Instagram" />
+                    </a>
+                </span>
 
-          <span id="">
-                  <a href="https://www.facebook.com/profile.php?id=100092733086173">
-                    <img src="/Images/facebook.png" alt="Logo Facebook">
-                </a>
-           </span>
-       </div>
-   </div>
- </header>
+                <span id="">
+                    <a href="https://www.facebook.com/profile.php?id=100092733086173">
+                        <img src="/Images/facebook.png" alt="Logo Facebook">
+                    </a>
+                </span>
+            </div>
+        </div>
+    </header>
 
 
     <div id="contenu">
-            @RenderBody()
-        </div>
+        @RenderBody()
+    </div>
 
 
     <div id="footer" style="display:flex; justify-content:center; align-items:center">
