@@ -1,11 +1,4 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    background-color: #ededed;
-    margin: 0;
-    padding: 0;
-}
-
-
+﻿
 .container {
     display: flex;
 }
@@ -31,7 +24,7 @@ h2 {
     color: #ededed;
 }
 
-a {
+button {
     background-color: #ededed;
     color: black;
     border-radius: 10em;
@@ -45,13 +38,13 @@ a {
     box-shadow: 0 0 0 0 black;
 }
 
-    a:hover {
+    button:hover {
         text-decoration: none;
         transform: translateY(-4px) translateX(-2px);
         box-shadow: 2px 5px 0 0 black;
     }
 
-    a:active {
+    button:active {
         text-decoration: none;
         transform: translateY(2px) translateX(1px);
         box-shadow: 0 0 0 0 black;
@@ -63,9 +56,16 @@ a {
     }
 }
 
-.image-container img {
-    margin-top: 0px;
-    border-radius: 0px;
-    width: 150%;
-    height: 150%;
+#ImageDashboard {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: 20%;
+    width: 25%;
+    height: 25%;
+    padding: 0px;
+    box-sizing: border-box;
 }
+
+

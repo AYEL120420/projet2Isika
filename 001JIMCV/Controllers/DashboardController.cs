@@ -34,7 +34,7 @@ public class DashboardController : Controller
                     return View("AdminDashboard", viewModel);
                 case UserEnum.Customer:
                     //  client
-                    return View("CustomerDashboard", viewModel);
+                    return View("ClientDashboard", viewModel);
                 case UserEnum.Provider:
                     //  partenaire
                     return View("ProviderDashboard", viewModel);

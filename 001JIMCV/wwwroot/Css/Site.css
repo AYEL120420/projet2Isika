@@ -11,20 +11,6 @@ header {
     height: 120px;
 }
 
-#Accueillogin-form {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    display: flex;
-    align-items: center;
-}
-
-    #Accueillogin-form input[type="text"],
-    #Accueillogin-form input[type="password"] {
-        margin-bottom: 0;
-        margin-right: 5px;
-    }
-
 #Accueillogo {
     flex-basis: 20%;
     height: auto;
@@ -209,7 +195,7 @@ header {
 
 facebook {
     justify-content: right;
-    height: 50px;
+    height: auto;
     width: auto;
     display: flex;
     align-items: center;
@@ -256,9 +242,24 @@ facebook {
 }
 
 footer {
-
-    justify-content:center;
-    background-color: #562f2f;
-    padding: 10px;
-    height: 80px;
+    padding: 20px;
+    justify-items: center;
+    justify-content: center;
+    background-color: tomato;
 }
+
+input {
+    background-color: #f8f7f7;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    width: 13em;
+    border-radius: 1rem;
+    color: #100f0f;
+    box-shadow: 0 0.4rem #dfd9d9;
+    cursor: pointer;
+}
+
+    input:focus {
+        outline-color: #df3012;
+    }
