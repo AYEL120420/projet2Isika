@@ -31,7 +31,7 @@ namespace _001JIMCV.Controllers
         {
             return View("OtherPropForm"); // Renvoie la vue du formulaire de proposition
         }
-
+        
         // Afficher la liste des autres propositions
         public IActionResult GetList()
         {

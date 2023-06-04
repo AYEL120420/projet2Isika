@@ -1,0 +1,20 @@
+﻿@model _001JIMCV.ViewModels.LoginViewModel
+
+@{
+    Layout = "_LayoutJimcv";
+}
+
+<div>
+    @Html.LabelFor(m => m.User.Name)<br>
+    @Html.TextBoxFor(m => m.User.Name)
+    @Html.ValidationMessageFor(m => m.User.Name)
+</div>
+<div>
+    @Html.LabelFor(m => m.User.Email)<br>
+    @Html.TextBoxFor(m => m.User.Email)
+    @Html.ValidationMessageFor(m => m.User.Email)
+</div>
+<br />
+<input type="submit" value="Valider" />
+<br />
+    

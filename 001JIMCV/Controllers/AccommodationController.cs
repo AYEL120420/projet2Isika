@@ -29,7 +29,7 @@ namespace _001JIMCV.Controllers
 
         public IActionResult AccommodationForm()
         {
-            return View("AccommodationForm"); // Renvoie la vue du formulaire d'hébergement
+            return View("AccommodationForm"); // Renvoie la liste des propositions
         }
 
         //Afficher la liste des accommodations

@@ -11,7 +11,6 @@ namespace _001JIMCV.Models.Classes
         public string CountryDestination { get; set; }
         public int Persons { get; set; }
 
-        public StatusEnum Status { get; set; }
 
     }
 }
