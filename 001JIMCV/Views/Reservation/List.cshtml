@@ -29,12 +29,14 @@
             <td>@reservation.NumberOfPassengers</td>
             <td>@reservation.TotalAmount</td>
             <td>@reservation.Status</td>
-
-            <td style="width: 60px;">
-                <form action="@Url.Action("EditReservation", "Reservation", new { id =reservation.Id })" method="get">
+            @if (User.IsInRole("Admin"))
+            {
+                <td style="width: 60px;">
+                    <form action="@Url.Action("EditReservation", "Reservation", new { id =reservation.Id })" method="get">
                     <button type="submit">Modifier</button>
                 </form>
             </td>
+            }
         </tr>
     }
 </table>

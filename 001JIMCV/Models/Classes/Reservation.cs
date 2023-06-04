@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace _001JIMCV.Models.Classes
@@ -23,7 +24,8 @@ namespace _001JIMCV.Models.Classes
         public string SecurityCode { get; set; }
          public int JourneyId { get; set; }
         public int UserId { get; set; }
-       // public virtual Journey Journey { get; set; }
-       // public virtual User User { get; set; }
+        
+        // public virtual Journey Journey { get; set; }
+        // public virtual User User { get; set; }
     }
 }

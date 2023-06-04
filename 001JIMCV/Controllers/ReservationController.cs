@@ -28,10 +28,7 @@ namespace _001JIMCV.Controllers
             decimal amount = numberOfPassengers ; 
             return amount;
         }
-        public IActionResult PayementForm()
-        { 
-            return View("FormPayement");
-        }
+     
         public IActionResult GetReservationsList()
         {
 
@@ -54,13 +51,12 @@ namespace _001JIMCV.Controllers
                     case UserEnum.Admin:
                         return RedirectToAction("GetReservationsList");
                     case UserEnum.Customer:
-                        //  partenaire
+                       
                         var reservations = reservationDal.GetAllReservations()
                             .Where(p => p.ClientId == viewModel.User.Id).ToList();
                         ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
-                        
-
-                        return View("List");
+  
+                        return View("ConfirmationPayement");
                     default:
 
                         return View("Error");
@@ -69,6 +65,26 @@ namespace _001JIMCV.Controllers
 
             return View();
 
+        }
+        public ActionResult GetClientReservation()
+        {
+            LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentified)
+            {
+                viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+                UserEnum role = viewModel.User.Role;
+
+                if (role == UserEnum.Customer)
+                {
+                    var reservations = reservationDal.GetAllReservations()
+                        .Where(p => p.ClientId == viewModel.User.Id)
+                        .ToList();
+
+                    ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
+                }
+            }
+
+            return View("List");
         }
 
 
