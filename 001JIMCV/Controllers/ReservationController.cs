@@ -11,12 +11,12 @@ namespace _001JIMCV.Controllers
     public class ReservationController : Controller
     {
         ReservationDal reservationDal;
-        LoginDal loginDal ;
+        LoginDal loginDal;
 
         public ReservationController()
         {
             reservationDal = new ReservationDal();
-            loginDal = new LoginDal();  
+            loginDal = new LoginDal();
         }
         public IActionResult Index()
         {
@@ -25,10 +25,10 @@ namespace _001JIMCV.Controllers
         private decimal CalculateTotalAmount(int numberOfPassengers)
         {
             // Effectuez les calculs appropriés pour déterminer le montant en fonction du nombre de passagers
-            decimal amount = numberOfPassengers ; 
+            decimal amount = numberOfPassengers;
             return amount;
         }
-     
+
         public IActionResult GetReservationsList()
         {
 
@@ -51,11 +51,11 @@ namespace _001JIMCV.Controllers
                     case UserEnum.Admin:
                         return RedirectToAction("GetReservationsList");
                     case UserEnum.Customer:
-                       
+
                         var reservations = reservationDal.GetAllReservations()
                             .Where(p => p.ClientId == viewModel.User.Id).ToList();
                         ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
-  
+
                         return View("ConfirmationPayement");
                     default:
 
@@ -89,7 +89,7 @@ namespace _001JIMCV.Controllers
 
 
         [HttpPost]
-        public IActionResult AddReservation (Reservation reservation)
+        public IActionResult AddReservation(Reservation reservation)
         {
             LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
             viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
@@ -99,6 +99,44 @@ namespace _001JIMCV.Controllers
                 reservation.NumberOfPassengers, reservation.TotalAmount);
 
             return RedirectToAction("GetReservations");
+        }
+
+        [HttpGet]
+        public IActionResult EditReservation(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            Reservation reservation = reservationDal.GetReservationById(id);
+
+            if (reservation == null)
+            {
+                return View("Error");
+            }
+
+            return View("EditReservationForm", reservation);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditReservation(Reservation reservation)
+        {
+            if (!ModelState.IsValid)
+                return View(reservation);
+
+            if (reservation.Id != 0)
+            {
+                reservationDal.EditReservation(reservation.Id, reservation.TravelStartDate, reservation.TravelEndDate, reservation.ContactName, reservation.ContactEmail, reservation.ContactPhone,
+                    reservation.NumberOfPassengers, reservation.TotalAmount, reservation.Status);
+
+                return RedirectToAction("GetReservationsList", new { id = reservation.Id });
+            }
+            else
+            {
+                return View("Error");
+            }
         }
     }
 }
