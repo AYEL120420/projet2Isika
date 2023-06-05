@@ -10,11 +10,13 @@ namespace _001JIMCV.ViewModels
     public class JourneyViewModel
     {
         public Journey Journey { get; set; }
-        public PackServices PackServices { get; set; }
+        public PackServices PackService { get; set; }
 
-        public Flight Flights { get; set; }
-        public Accommodation  Accommodations { get; set; }
-        public Activity Activities { get; set; }
+        public Flight DepartureFlight { get; set; }
+        public Flight ReturnFlight { get; set; }
+        public List<Accommodation>  Accommodations { get; set; }
+        public List<Activity> Activities { get; set; }
+        public List<Restauration> Restaurations { get; set; }
 
         [Required]
         public int DepartureFlightId { get; set; }
@@ -22,7 +24,8 @@ namespace _001JIMCV.ViewModels
         public int ReturnFlightId { get; set; }
         public List<string> AccommodationsCocheIds { get; set; }
         public List<string> ActivitiesCocheIds { get; set; }
-                     
+        public List<string> RestaurationsCocheIds { get; set; }
+
     }
 
 

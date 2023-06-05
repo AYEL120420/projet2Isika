@@ -29,6 +29,30 @@ namespace _001JIMCV.Models.Dals
         {
             return _bddContext.Activities.ToList();
         }
+        public List<Restauration> GetAllRestaurations()
+        {
+            return _bddContext.Restaurations.ToList();
+        }
+        public List<PackServices> GetAllPacks()
+        {
+            return _bddContext.PackService.ToList();
+        }
+        public FlightPackServices GetFLightPackServices(int id)
+        {
+            return _bddContext.FlightPackServices.FirstOrDefault(r => r.PackServicesId == id);
+        }
+        public List<AccommodationPackServices> GetAllAccommodationsPackServices()
+        {
+            return _bddContext.AccommodationPackServices.ToList();
+        }
+        public List<ActivityPackServices> GetAllActivityPackServices()
+        {
+            return _bddContext.ActivityPackServices.ToList();
+        }
+        public List<RestaurationPackServices> GetAllRestaurationPackServices()
+        {
+            return _bddContext.RestaurationPackServices.ToList();
+        }
         public int AddJourney(string depDate, string returnDate, string country)
         {
             
@@ -63,6 +87,12 @@ namespace _001JIMCV.Models.Dals
         {
             ActivityPackServices ActivityPackServices = new ActivityPackServices() { ActivityId = activityId, PackServicesId = packServiceId };
             this._bddContext.ActivityPackServices.Add(ActivityPackServices);
+            this._bddContext.SaveChanges();
+        }
+        public void AddRestaurationPackServices(int activityId, int packServiceId)
+        {
+            RestaurationPackServices RestaurationPackServices = new RestaurationPackServices() { RestaurationId = activityId, PackServicesId = packServiceId };
+            this._bddContext.RestaurationPackServices.Add(RestaurationPackServices);
             this._bddContext.SaveChanges();
         }
     }

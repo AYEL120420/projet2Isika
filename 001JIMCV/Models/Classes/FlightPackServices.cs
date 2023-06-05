@@ -2,6 +2,7 @@
 {
     public class FlightPackServices
     {
+        public int Id { get; set; }
         public int DepartureFlightId { get; set; }
         public Flight DepartureFlight { get; set; }
         public int ReturnFlightId { get; set; }
