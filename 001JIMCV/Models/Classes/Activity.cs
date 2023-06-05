@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.VisualBasic;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace _001JIMCV.Models.Classes
 {
@@ -9,17 +10,17 @@ namespace _001JIMCV.Models.Classes
     {
         public int Id { get; set; }
         public int ProviderId { get; set; }
-        public string Pays { get; set; }
-        public string Ville { get; set; }
-        public string Nom { get; set; }
-        public string Localisation { get; set; }
+        public string ProviderName { get; set; }
+        public string ProviderEmail { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Type { get; set; }
+        public string Name{ get; set; }
+        public string Adress { get; set; }
         public DateAndTime Date { get; set; }
-        public string Description { get; set; }
-        public float Prix {get; set; }
+        public string Description { get; set; }     
+        public float Price {get; set; }
         public string Status { get; set; }
         public byte [] Image { get; set; }  //doit être modifiée en liste
-        
-
-        public virtual Service Service { get; set; }
     }
 }

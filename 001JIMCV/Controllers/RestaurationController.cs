@@ -82,7 +82,8 @@ namespace _001JIMCV.Controllers
             viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
             UserEnum role = viewModel.User.Role;
 
-            restaurationDal.AddRestauration(viewModel.User.Id, restauration.Pays, restauration.Ville, restauration.Type, restauration.Description, restauration.Localisation, restauration.Menu, restauration.Tarif, restauration.Email);
+            restaurationDal.AddRestauration(viewModel.User.Id, restauration.ProviderName, restauration.ProviderEmail, restauration.Country, restauration.City, restauration.Type, restauration.Description,
+                    restauration.Adress, restauration.Menu, restauration.Price, restauration.Images);
 
             return RedirectToAction("GetRestauration");
         }
@@ -114,7 +115,8 @@ namespace _001JIMCV.Controllers
 
             if (restauration.Id != 0)
             {
-                restaurationDal.EditRestauration(restauration.Id, restauration.Pays, restauration.Ville, restauration.Type, restauration.Description, restauration.Localisation, restauration.Menu, restauration.Tarif, restauration.Email, restauration.Status);
+                restaurationDal.EditRestauration(restauration.Id, restauration.ProviderName, restauration.ProviderEmail, restauration.Country, restauration.City, restauration.Type, restauration.Description, 
+                    restauration.Adress, restauration.Menu, restauration.Price,restauration.Images, restauration.Status);
                 return RedirectToAction("GetList", new { @id = restauration.Id });
             }
             else

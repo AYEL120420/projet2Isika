@@ -27,20 +27,22 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une restauration
-        public int AddRestauration(int providerId,string country, string city, string type, string description, string location, string menu, decimal price, string Email)
+        public int AddRestauration(int providerId, string providerName, string Email, string country, string city, string type, string description, string adress, string menu, float price, byte[] image)
         {
             Restauration restauration = new Restauration()
             {
-                ProviderId=providerId,
-                Pays = country,
-                Ville = city,
+                ProviderId = providerId,
+                ProviderName = providerName,
+                ProviderEmail = Email,
+                Country = country,
+                City = city,
                 Type = type,
                 Description = description,
-                Localisation = location,
+                Adress = adress,
                 Menu = menu,
-                Tarif = price,
-                Email = Email,
-                Status ="En cours de traitement"
+                Price = price,
+                Images=image,
+                Status = "En cours de traitement"
             };
 
             _bddcontext.Restaurations.Add(restauration);
@@ -56,26 +58,24 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une restauration
-        public void EditRestauration(int id, string country, string city, string type, string description, string location, string menu, decimal price, string Email, string status)
+        public void EditRestauration(int id, string providerName, string Email, string country, string city, string type, string description, string adress, string menu, float price, byte[] image, string status)
         {
             Restauration restauration = _bddcontext.Restaurations.Find(id);
             if (restauration != null)
             {
                 restauration.Id = id;
-                restauration.Pays = country;
-                restauration.Ville = city;
+                restauration.ProviderName = providerName;
+                restauration.ProviderEmail = Email;
+                restauration.Country = country;
+                restauration.City = city;
                 restauration.Type = type;
                 restauration.Description = description;
-                restauration.Localisation = location;
+                restauration.Adress = adress;
                 restauration.Menu = menu;
-                restauration.Tarif = price;
-                restauration.Email = Email;
+                restauration.Price = price;
                 restauration.Status = status;
-                _bddcontext.SaveChanges();
             }
         }
-
-      
 
         // Supprimer une restauration
         public void DeleteRestauration(int id)

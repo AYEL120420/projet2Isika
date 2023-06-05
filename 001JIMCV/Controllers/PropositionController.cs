@@ -76,7 +76,8 @@ namespace _001JIMCV.Controllers
             viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
             UserEnum role = viewModel.User.Role;
 
-            propositionDal.AddProposition(viewModel.User.Id, proposition.Pays, proposition.Ville, proposition.Titre, proposition.Description, proposition.Disponibilite, proposition.Programme, proposition.Hebergement, proposition.Activites, proposition.Restauration, proposition.Prix);
+            propositionDal.AddProposition(viewModel.User.Id,proposition.ProviderName,proposition.ProviderEmail, proposition.Country, proposition.City, proposition.Name,
+                proposition.Description, proposition.Disponibility, proposition.Program, proposition.Accommodation, proposition.Activities, proposition.Restauration, proposition.Price);
 
             return RedirectToAction("GetOtherPropositions");
         }
@@ -107,7 +108,8 @@ namespace _001JIMCV.Controllers
 
             if (proposition.Id != 0)
             {
-                propositionDal.EditProposition(proposition.Id, proposition.Pays, proposition.Ville, proposition.Titre,proposition.Disponibilite, proposition.Description, proposition.Programme, proposition.Hebergement, proposition.Activites, proposition.Restauration, proposition.Prix, proposition.Status);
+                propositionDal.EditProposition(proposition.Id, proposition.ProviderName, proposition.ProviderEmail, proposition.Country, proposition.City, proposition.Name,
+                proposition.Description, proposition.Disponibility, proposition.Program, proposition.Accommodation, proposition.Activities, proposition.Restauration, proposition.Price, proposition.Status);
                 return RedirectToAction("GetList", new { id = proposition.Id });
             }
             else

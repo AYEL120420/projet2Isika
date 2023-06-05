@@ -29,7 +29,7 @@ namespace _001JIMCV.Controllers
 
         public IActionResult AccommodationForm()
         {
-            return View("AccommodationForm"); // Renvoie la liste des propositions
+            return View("AccommodationForm");
         }
 
         //Afficher la liste des accommodations
@@ -56,15 +56,8 @@ namespace _001JIMCV.Controllers
                        return RedirectToAction("GetList");
                     case UserEnum.Provider:
                         //  partenaire
-                        string providerId = HttpContext.Request.Cookies["ProviderId"];
-                        string providerName = HttpContext.Request.Cookies["ProviderName"];
-                        string providerEmail = HttpContext.Request.Cookies["ProviderEmail"];
-                        
                         var accommodations = accommodationDal.GetAllAccommodations()
-                            .Where(p => p.ProviderId == viewModel.User.Id).ToList();
-                        ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
-                        ViewData["ProviderName"] = providerName;
-                        ViewData["ProviderEmail"] = providerEmail;
+                            .Where(p => p.ProviderId == viewModel.User.Id).ToList();                     
 
                         return View("List");
                     default:
@@ -86,7 +79,7 @@ namespace _001JIMCV.Controllers
                 viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
                 UserEnum role = viewModel.User.Role;
 
-                accommodationDal.AddAccommodation(viewModel.User.Id, accommodation.Pays, accommodation.Ville, accommodation.Type, accommodation.Adresse, accommodation.De, accommodation.A, accommodation.Prix, accommodation.Description);
+                accommodationDal.AddAccommodation(viewModel.User.Id, accommodation.Country, accommodation.City, accommodation.Type, accommodation.Name, accommodation.Adress, accommodation.StartDate, accommodation.EndDate, accommodation.Price, accommodation.Description);
 
             return RedirectToAction("GetAccommodation");
         }
@@ -119,7 +112,7 @@ namespace _001JIMCV.Controllers
 
             if (accommodation.Id != 0)
             {
-                accommodationDal.EditAccommodation(accommodation.Id, accommodation.Pays, accommodation.Ville, accommodation.Type, accommodation.Adresse, accommodation.De, accommodation.A, accommodation.Prix, accommodation.Description, accommodation.Status);
+                accommodationDal.EditAccommodation(accommodation.Id, accommodation.Country, accommodation.City, accommodation.Type, accommodation.Name, accommodation.Adress, accommodation.StartDate, accommodation.EndDate, accommodation.Price, accommodation.Description, accommodation.Status);
                 return RedirectToAction("GetList", new { id = accommodation.Id });
             }
             else

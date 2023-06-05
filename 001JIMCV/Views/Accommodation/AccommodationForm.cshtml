@@ -1,5 +1,4 @@
-﻿
-@model _001JIMCV.Models.Classes.Accommodation
+﻿@model _001JIMCV.Models.Classes.Accommodation
 @{
     Layout = "_LayoutJimcv";
 }
@@ -15,91 +14,104 @@
     .ToList();
 }
 
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
-        <h2>
+<div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+    <h2>
         Vous avez un hébergement à proposer pour nos clients ? Remplissez ce formulaire et recevez une validation de notre service sous 48h !
-        </h2>
+    </h2>
 
-    </div>
-       
-    <br />
+</div>
 
-    @using (Html.BeginForm("CreateAccommodation", "Accommodation", FormMethod.Post))
-    {
-        <fieldset>
-           
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Pays)<br>
-                    @Html.DropDownListFor(m => m.Pays, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { @class = "form-control", required = "required" })
-                    @Html.ValidationMessageFor(m => m.Pays)
-                </div><br>
+<br />
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Ville)<br>
-                    @Html.TextBoxFor(m => m.Ville, new { @class = "form-control", required = "required" })
-                    @Html.ValidationMessageFor(m => m.Ville)
-                </div>
-   <div>
-        @Html.LabelFor(m => m.Type)
-        <span>
-            <label class="form-control">
-                @Html.RadioButtonFor(m => m.Type, "Chez l'habitant")
-                Chez l'habitant
-            </label>
-        </span>
-        <span>
-            <label class="form-control">
-                @Html.RadioButtonFor(m => m.Type, "Hôtel")
-                Hôtel
-            </label>
-        </span>
-        <span class="form-control">
-            <label class="form-check-label">
-                @Html.RadioButtonFor(m => m.Type, "Chambre d'hôte")
-                Chambre d'hôte
-            </label>
-        </span>
-        @Html.ValidationMessageFor(m => m.Type)
-        </div><br /><br />
+@using (Html.BeginForm("CreateAccommodation", "Accommodation", FormMethod.Post))
+{
+    <fieldset>
         <div>
-    Disponibilté 
-    <span class="form-control">
-        @Html.LabelFor(m => m.De)
-        @Html.TextBoxFor(m => m.De, new { @type = "date" })
-        @Html.ValidationMessageFor(m => m.De)
-    </span>
+            @Html.LabelFor(m => m.ProviderName, "Nom paretenaire")
+            @Html.TextBoxFor(m => m.ProviderName)
+            @Html.ValidationMessageFor(m => m.ProviderName)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
+            @Html.TextBoxFor(m => m.ProviderEmail)
+            @Html.ValidationMessageFor(m => m.ProviderEmail)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Country, "Pays")<br>
+            @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
+            @Html.ValidationMessageFor(m => m.Country)
+        </div>
+        <br>
 
-    <span class="form-control">
-        @Html.LabelFor(m => m.A)
-        @Html.TextBoxFor(m => m.A, new { @type = "date" })
-        @Html.ValidationMessageFor(m => m.A)
-    </span> 
-    </div>
+        <div>
+            @Html.LabelFor(m => m.City, "Ville")<br>
+            @Html.TextBoxFor(m => m.City, new {required = "required" })
+            @Html.ValidationMessageFor(m => m.City)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Type)
+            <span>
+                <label>
+                    @Html.RadioButtonFor(m => m.Type, "Chez l'habitant")
+                    Chez l'habitant
+                </label>
+            </span>
+            <span>
+                <label>
+                    @Html.RadioButtonFor(m => m.Type, "Hôtel")
+                    Hôtel
+                </label>
+            </span>
+            <span class="form-control">
+                <label class="form-check-label">
+                    @Html.RadioButtonFor(m => m.Type, "Chambre d'hôte")
+                    Chambre d'hôte
+                </label>
+            </span>
+            @Html.ValidationMessageFor(m => m.Type)
+        </div>
         <br />
-    <div>
-        @Html.LabelFor(m => m.Adresse )<br>
-        @Html.TextBoxFor(m => m.Adresse)
-        @Html.ValidationMessageFor(m => m.Adresse)<br>
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Description)<br>
-        @Html.TextAreaFor(m => m.Description)
-        @Html.ValidationMessageFor(m => m.Description)<br>
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Prix)<br>
-        @Html.TextBoxFor(m => m.Prix)
-        @Html.ValidationMessageFor(m => m.Prix)<br>
-    </div>
+        <br />
+        <div>
+            Disponibilté
+            <span>
+                @Html.LabelFor(m => m.StartDate, "Disponible de")
+                @Html.TextBoxFor(m => m.StartDate, new { @type = "date" })
+                @Html.ValidationMessageFor(m => m.StartDate)
+            </span>
+
+            <span>
+                @Html.LabelFor(m => m.EndDate, "A")
+                @Html.TextBoxFor(m => m.EndDate, new { @type = "date" })
+                @Html.ValidationMessageFor(m => m.EndDate)
+            </span>
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(m => m.Adress, "Adresse" )<br>
+            @Html.TextBoxFor(m => m.Adress)
+            @Html.ValidationMessageFor(m => m.Adress)<br>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Description)<br>
+            @Html.TextAreaFor(m => m.Description)
+            @Html.ValidationMessageFor(m => m.Description)<br>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Price,"Prix")<br>
+            @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
+            @Html.ValidationMessageFor(m => m.Price)<br>
+        </div>
         <br>
         <div>
-        @Html.LabelFor(m => m.Image)<br>
+            @Html.LabelFor(m => m.Image)<br>
             <input type="file" name="Image" id="Image" />
-        @Html.ValidationMessageFor(m => m.Image)<br>
-        </div><br />
+            @Html.ValidationMessageFor(m => m.Image)<br>
+        </div>
+        <br />
         <div class="form-control">
             <input type="submit" value="Envoyer" class="btn btn-primary" />
 
         </div>
-        </fieldset>
-    }
+    </fieldset>
+}

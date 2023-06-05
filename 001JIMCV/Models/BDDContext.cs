@@ -90,16 +90,16 @@ namespace _001JIMCV.Models
             this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie, FlightIndeRetour);  
             
 
-            Accommodation accommodation1 = new Accommodation() {Id=1, Type="Chez l'habitant", Pays="Inde", Ville = "Chennai", Description="good food and good vibes"};
-            Accommodation accommodation2 = new Accommodation() {Id=2, Type = "Hôtel", Pays = "Inde", Ville = "Chennai", Description = "classy hotel room for visitors" };
+            Accommodation accommodation1 = new Accommodation() {Id=1, Type="Chez l'habitant", Country ="Inde", City = "Chennai", Description="good food and good vibes"};
+            Accommodation accommodation2 = new Accommodation() {Id=2, Type = "Hôtel", Country = "Inde", City = "Chennai", Description = "classy hotel room for visitors" };
             this.Accommodations.AddRange(accommodation1, accommodation2);
 
-            Activity activity1 = new Activity() { Id = 1, Pays = "Inde", Ville = "Chennai", Nom = "Cricket",Prix=50, Description = "N°1 sport in the country, come test" };
-            Activity activity2 = new Activity() { Id = 2, Pays = "Inde", Ville = "Chennai", Nom = "Cooking classe",Prix=60, Description = "Venez apprendre à faire le meilleur curry de votre vie"};
+            Activity activity1 = new Activity() { Id = 1, Country = "Inde", City = "Chennai", Name = "Cricket",Price=50, Description = "N°1 sport in the country, come test" };
+            Activity activity2 = new Activity() { Id = 2, Country = "Inde", City = "Chennai", Name = "Cooking classe",Price =60, Description = "Venez apprendre à faire le meilleur curry de votre vie"};
             this.Activities.AddRange(activity1, activity2);
 
-            Restauration restauration1 = new Restauration() { Id = 1, Pays = "Inde", Ville = "Chennai", Type = "Chez l'habitant", Tarif = 20, Description ="Apprenez à cuisiner et déguster dans la foulée"};
-            Restauration restauration2 = new Restauration() { Id = 2, Pays = "Inde", Ville = "Chennai", Type = "Restaurant typique", Tarif = 10, Description = "Cusiine typique de Chennai" };
+            Restauration restauration1 = new Restauration() { Id = 1,   Country = "Inde", City = "Chennai", Type = "Chez l'habitant", Price = 20, Description ="Apprenez à cuisiner et déguster dans la foulée"};
+            Restauration restauration2 = new Restauration() { Id = 2, Country = "Inde", City = "Chennai", Type = "Restaurant typique", Price = 10, Description = "Cusiine typique de Chennai" };
             this.Restaurations.AddRange(restauration1, restauration2);
 
             PackServices PS1 = new PackServices() { Id=1,AllInclusive=true, JourneyId=inde.Id, Journey=inde, UserId=1 };

@@ -123,8 +123,8 @@ namespace _001JIMCV.Controllers
 
                     ViewBag.listFlightsDep = JourneyDal.GetAllFLights().Where(f => f.DestinationCountry == journey.CountryDestination & f.DepartureDate == journey.DepartureDate);
                     ViewBag.listFlightsReturn = JourneyDal.GetAllFLights().Where(f => f.DestinationCountry == DEPARTURECOUNTRYOFALLJOURNEYS & f.DepartureDate == journey.ReturnDate);
-                    ViewBag.listAccommodations = JourneyDal.GetAllAccommodations().Where(a => a.Pays == journey.CountryDestination);
-                    ViewBag.listActivities = JourneyDal.GetAllActivities().Where(a => a.Pays == journey.CountryDestination);
+                    ViewBag.listAccommodations = JourneyDal.GetAllAccommodations().Where(a => a.Country == journey.CountryDestination);
+                    ViewBag.listActivities = JourneyDal.GetAllActivities().Where(a => a.Country == journey.CountryDestination);
 
                     return View(jvm);
                 }

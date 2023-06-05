@@ -22,18 +22,20 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une activité
-        public int AddActivity(int ProviderId, string country, string city, string name, DateAndTime date, string description, string location, float price, byte[]image)
+        public int AddActivity(int ProviderId,string providerName, string providerEmail, string country, string city, string name, DateAndTime date, string description, string location, float price, byte[]image)
         {
             Activity activity = new Activity()
             {
                 ProviderId = ProviderId,
-                Pays = country,
-                Ville = city,
-                Nom = name,
+                ProviderName = providerName,
+                ProviderEmail = providerEmail,
+                Country = country,
+                City = city,
+                Name = name,
                 Description = description,
                 Date = date,
-                Localisation = location,
-                Prix = price,
+                Adress = location,
+                Price = price,
                 Status= "En cours de traitement",
                 Image=image
               
@@ -59,21 +61,22 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une activité
-        public void EditActivity (int id, string country, string city, string name,  DateAndTime date,  string location, string description, float price,byte[] image, string status)
+        public void EditActivity (int id, string providerName, string providerEmail, string country, string city, string name,  DateAndTime date,  string location, string description, float price,byte[] image, string status)
         {
             Activity activity = _bddcontext.Activities.Find(id);
             if (activity != null)
             {
-                activity.Pays = country;
-                activity.Ville = city;
-                activity.Nom = name;
+                activity.ProviderName = providerName;
+                activity.ProviderEmail = providerEmail;
+                activity.Country = country;
+                activity.City = city;
+                activity.Name = name;
                 activity.Description = description;
                 activity.Date = date;
-                activity.Localisation = location;
-                activity.Prix = price;
+                activity.Adress = location;
+                activity.Price = price;
                 activity.Status = status;
-                activity.Image = image;              
-                _bddcontext.SaveChanges();
+                activity.Image = image;             
             }
         }
 

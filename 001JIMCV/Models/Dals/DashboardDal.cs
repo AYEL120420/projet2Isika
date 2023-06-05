@@ -11,28 +11,35 @@ namespace _001JIMCV.Models.Dals
     public class DashboardDal : IDisposable
     {
         private BDDContext _bddcontext;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+       
 
         public DashboardDal()
         {
             _bddcontext = new BDDContext();
         }
 
-        public DashboardDal(IHttpContextAccessor httpContextAccessor)
+        public void EditProfil(int id, string name, string email, string phone, string gender, string country, string city)
         {
-            _httpContextAccessor = httpContextAccessor;
+            User user = _bddcontext.Users.Find(id);
+            if (user != null)
+            {
+                user.Id = id;
+                user.Name = name;
+                user.Email = email;
+                user.Phone = phone;
+                user.Gender = gender;
+                user.Country = country;
+                user.City = city;
+            }
+            _bddcontext.Users.Update(user);
+            _bddcontext.SaveChanges();
         }
-
-        public List<Accommodation> GetPropositionAccommodation(int providerId)
+       public void EditProfil(User user)
         {
-            List<Accommodation> providerAccommodations = _bddcontext.Accommodations
-                .Where(p => p.ProviderId == providerId)  // Comparaison de l'ID 
-                .ToList();
-            return providerAccommodations;
+            _bddcontext.Users.Update(user);
+            _bddcontext.SaveChanges();
         }
-
-
-        public void Dispose()
+            public void Dispose()
         {
             _bddcontext.Dispose();
         }

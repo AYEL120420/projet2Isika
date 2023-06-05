@@ -26,18 +26,19 @@ namespace _001JIMCV.Models.Dals
         }
 
         //Ajouter un service
-        public int AddAccommodation(int ProviderId, string country, string city, string type, string address, string from, string to, float price, string description)
+        public int AddAccommodation(int ProviderId, string country, string city, string type, string name, string address, string from, string to, float price, string description)
         {
             Accommodation accommodation = new Accommodation()
             {   
                 ProviderId = ProviderId,
-                Pays = country,
-                Ville = city,
+                Country = country,
+                City = city,
                 Type = type,
-                Adresse = address,
-                De = from,
-                A = to,
-                Prix = price,
+                Name= name,
+                Adress = address,
+                StartDate = from,
+                EndDate = to,
+                Price = price,
                 Description = description,
                 Status = "En Cours de traitement"
             };
@@ -55,19 +56,20 @@ namespace _001JIMCV.Models.Dals
           }
 
         //modifier un service
-        public void EditAccommodation(int id,string country, string city, string type, string address, string from, string to, float price, string description, string status)
+        public void EditAccommodation(int id,string country, string city, string type,string name, string address, string from, string to, float price, string description, string status)
         {
             Accommodation accommodation = _bddcontext.Accommodations.Find(id);
             if (accommodation != null)
             {
                 accommodation.Id = id;
-                accommodation.Pays = country;
-                accommodation.Ville = city;
+                accommodation.Country = country;
+                accommodation.City = city;
                 accommodation.Type = type;
-                accommodation.Adresse = address;
-                accommodation.De = from;
-                accommodation.A = to;
-                accommodation.Prix = price;
+                accommodation.Name = name;
+                accommodation.Adress = address;
+                accommodation.StartDate = from;
+                accommodation.EndDate = to;
+                accommodation.Price = price;
                 accommodation.Description = description;
                 accommodation.Status = status;
                 _bddcontext.SaveChanges();

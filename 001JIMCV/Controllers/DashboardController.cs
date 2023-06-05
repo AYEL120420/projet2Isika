@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using XAct.Users;
+using User = _001JIMCV.Models.Classes.User;
 
 public class DashboardController : Controller
 {
@@ -16,7 +17,6 @@ public class DashboardController : Controller
     {
         dashboardDal = new DashboardDal();
         loginDal = new LoginDal();
-        accommodationDal = new AccommodationDal();
     }
 
     public ActionResult Index()
@@ -26,6 +26,20 @@ public class DashboardController : Controller
         {
             viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
             UserEnum role = viewModel.User.Role; // Accéder au rôle de l'utilisateur
+
+            string name = viewModel.User.Name;
+            string email = viewModel.User.Email;
+            string phone = viewModel.User.Phone;
+            string gender = viewModel.User.Gender;
+            string country = viewModel.User.Country;
+            string city = viewModel.User.City;
+
+            ViewData["UserName"] = name;
+            ViewData["UserEmail"] = email;
+            ViewData["UserPhone"] = phone;
+            ViewData["UserGender"] = gender;
+            ViewData["UserCountry"] = country;
+            ViewData["UserCity"] = city;
 
             switch (role)
             {
@@ -46,4 +60,6 @@ public class DashboardController : Controller
 
         return View(viewModel);
     }
+   
+
 }

@@ -5,6 +5,8 @@
 
 <table border="1" style="width:60%">
     <tr>
+        <th>Nom partenaire</th>
+        <th>Adresse Email</th>
         <th>Pays</th>
         <th>Ville</th>
         <th>Titre</th>
@@ -22,16 +24,18 @@
     @foreach (_001JIMCV.Models.Classes.OtherProposition otherProposition in ViewData["OtherPropositions"] as List<_001JIMCV.Models.Classes.OtherProposition>)
     {
         <tr>
-            <td>@otherProposition.Pays</td>
-            <td>@otherProposition.Ville</td>
-            <td>@otherProposition.Titre</td>
+            <td>@otherProposition.ProviderName</td>
+            <td>@otherProposition.ProviderEmail</td>
+            <td>@otherProposition.Country</td>
+            <td>@otherProposition.City</td>
+            <td>@otherProposition.Name</td>
             <td>@otherProposition.Description</td>
-            <td>@otherProposition.Disponibilite</td>
-            <td>@otherProposition.Programme</td>
-            <td>@otherProposition.Hebergement</td>
-            <td>@otherProposition.Activites</td>
+            <td>@otherProposition.Disponibility</td>
+            <td>@otherProposition.Program</td>
+            <td>@otherProposition.Accommodation</td>
+            <td>@otherProposition.Activities</td>
             <td>@otherProposition.Restauration</td>
-            <td>@otherProposition.Prix</td>
+            <td>@otherProposition.Price</td>
             <td>@otherProposition.Status</td>
             <td style="width: 60px;">
                 <form action="@Url.Action("EditOtherProposition", "Proposition", new { id = otherProposition.Id })" method="get">

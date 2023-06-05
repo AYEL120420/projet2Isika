@@ -1,7 +1,9 @@
 ﻿using _001JIMCV.Models.Classes;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace _001JIMCV.Models.Dals
 {
@@ -22,21 +24,24 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une autre proposition
-        public int AddProposition(int ProviderId, string pays, string ville, string titre, string disponibilite, string description, string programme, string hebergement, string activites, string restauration, float prix)
+        public int AddProposition(int ProviderId,string providerName,string providerEmail,  string country, string city, string name, string disponibility,
+            string description, string program, string accommodation, string activities, string restauration, float price)
         {
             OtherProposition proposition = new OtherProposition()
             {
                 ProviderId=ProviderId,
-                Pays = pays,
-                Ville = ville,
-                Titre = titre,
-                Description = description,
-                Disponibilite = disponibilite,
-                Programme = programme,
-                Hebergement = hebergement,
-                Activites = activites,
-                Restauration = restauration,
-                Prix = prix,
+                ProviderName=providerName,
+                ProviderEmail=providerEmail,
+                Country=country,
+                City=city,
+                Name=name,
+                Disponibility=disponibility,
+                Description=description,
+                Program=program,
+                Accommodation=accommodation,
+                Activities=activities,
+                Restauration=restauration,
+                Price=price,
                 Status = "En Cours de traitement"
             };
 
@@ -54,22 +59,24 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une autre proposition
-        public void EditProposition(int id, string pays, string ville, string titre, string disponibilite, string description, string programme, string hebergement, string activites, string restauration, float prix,  string status)
+        public void EditProposition(int id, string providerName, string providerEmail, string country, string city, string name, string disponibility, string description, string program, string accommodation, string activities, string restauration, float price, string status)
         {
             OtherProposition proposition = _bddcontext.OtherPropositions.Find(id);
             if (proposition != null)
             {
                 proposition.Id = id;
-                proposition.Pays = pays;
-                proposition.Ville = ville;
-                proposition.Titre = titre;
+                proposition.ProviderName = providerName;
+                proposition.ProviderEmail = providerEmail;
+                proposition.Country = country;
+                proposition.City = city;
+                proposition.Name = name;
+                proposition.Disponibility = disponibility;
                 proposition.Description = description;
-                proposition.Disponibilite = disponibilite;
-                proposition.Programme = programme;
-                proposition.Hebergement = hebergement;
-                proposition.Activites = activites;
+                proposition.Program = program;
+                proposition.Accommodation = accommodation;
+                proposition.Activities = activities;
                 proposition.Restauration = restauration;
-                proposition.Prix = prix;
+                proposition.Price = price;
                 proposition.Status = status;
 
                 _bddcontext.OtherPropositions.Update(proposition);

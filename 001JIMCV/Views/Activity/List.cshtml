@@ -5,28 +5,30 @@
 
 <table border="1" style="width:60%">
     <tr>
+        <th>Nom partenaire</th>
+        <th>Adresse Email</th>
         <th>Pays</th>
         <th>Ville</th>
         <th>Type</th>
         <th>Date</th>
         <th>Localisation</th>
         <th>Description</th>
-        <th>Prix</th>
-       
+        <th>Prix</th>    
         <th>Statut</th>
     </tr>
 
     @foreach (_001JIMCV.Models.Classes.Activity activity in ViewData["Activities"] as List<_001JIMCV.Models.Classes.Activity>)
     {
         <tr>
-            <td>@activity.Pays</td>
-            <td>@activity.Ville</td>
-            <td>@activity.Nom</td>
+            <td>@activity.ProviderName</td>
+            <td>@activity.ProviderEmail</td>
+            <td>@activity.Country</td>
+            <td>@activity.City</td>
+            <td>@activity.Name</td>
             <td>@activity.Date</td>
-            <td>@activity.Localisation</td>
+            <td>@activity.Adress</td>
             <td>@activity.Description</td>
-            <td>@activity.Prix</td>
-             
+            <td>@activity.Price</td>        
             <td>@activity.Status </td>
             <td style="width: 60px;">
                 <form action="@Url.Action("EditActivity", "Activity", new { id = activity.Id })" method="get">

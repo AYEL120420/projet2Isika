@@ -5,6 +5,8 @@
 
 <table border="1" style="width:60%">
     <tr>
+        <th>Nom partenaire</th>
+        <th>Adresse Email</th>
         <th>Pays</th>
         <th>Ville</th>
         <th>Type</th>
@@ -20,14 +22,15 @@
     @foreach (_001JIMCV.Models.Classes.Restauration restauration in ViewData["Restaurations"] as List<_001JIMCV.Models.Classes.Restauration>)
     {
         <tr>
-            <td>@restauration.Pays</td>
-            <td>@restauration.Ville</td>
+            <td>@restauration.ProviderName</td>
+            <td>@restauration.ProviderEmail</td>
+            <td>@restauration.Country</td>
+            <td>@restauration.City</td>
             <td>@restauration.Type</td>
             <td>@restauration.Description</td>
-            <td>@restauration.Localisation</td>
+            <td>@restauration.Adress</td>
             <td>@restauration.Menu</td>
-            <td>@restauration.Tarif</td>
-            <td>@restauration.Email</td>
+            <td>@restauration.Price</td>
             <td>@restauration.Status</td>
             <td style="width: 60px;">
                 <form action="@Url.Action("EditRestauration", "Restauration", new { id = restauration.Id })" method="get">

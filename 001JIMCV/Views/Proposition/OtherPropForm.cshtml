@@ -13,42 +13,53 @@
 @using (Html.BeginForm("CreateOtherProposition", "Proposition", FormMethod.Post))
     {
         <fieldset>
-            <div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Pays)<br>
-                    @Html.DropDownListFor(m => m.Pays, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { @class = "form-control", required = "required" })
-                    @Html.ValidationMessageFor(m => m.Pays)
-                </div><br>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Ville)<br>
-                    @Html.TextBoxFor(m => m.Ville, new { @class = "form-control", required = "required" })
-                    @Html.ValidationMessageFor(m => m.Ville)
-                </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Titre)
-            @Html.TextBoxFor(m => m.Titre, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Titre)
+        <div>
+            @Html.LabelFor(m => m.ProviderName, "Nom paretenaire")
+            @Html.TextBoxFor(m => m.ProviderName)
+            @Html.ValidationMessageFor(m => m.ProviderName)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
+            @Html.TextBoxFor(m => m.ProviderEmail)
+            @Html.ValidationMessageFor(m => m.ProviderEmail)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Country, "Pays")<br>
+            @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
+            @Html.ValidationMessageFor(m => m.Country)
         </div>
         <br>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Disponibilite)
-            @Html.TextBoxFor(m => m.Disponibilite, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Titre)
+
+        <div>
+            @Html.LabelFor(m => m.City, "Ville")<br>
+            @Html.TextBoxFor(m => m.City, new {required = "required" })
+            @Html.ValidationMessageFor(m => m.City)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <br>
+        <div>
+            @Html.LabelFor(m => m.Disponibility, "Disponibilité")
+            @Html.TextBoxFor(m => m.Disponibility)
+            @Html.ValidationMessageFor(m => m.Disponibility)
         </div>
         <br>
 
 
         <div class="form-group">
             @Html.LabelFor(m => m.Description)
-            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+            @Html.TextAreaFor(m => m.Description)
         </div>
         <br>
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Prix)
-            @Html.TextBoxFor(m => m.Prix, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Prix)
+        <div>
+            @Html.LabelFor(m => m.Price,"Prix")
+            @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
+            @Html.ValidationMessageFor(m => m.Price)
         </div>
         <br>
 
