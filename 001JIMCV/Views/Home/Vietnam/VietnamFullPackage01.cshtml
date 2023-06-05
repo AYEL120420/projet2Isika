@@ -16,7 +16,7 @@
     @foreach (_001JIMCV.Models.Classes.Journey journey in ViewData["VietnamJourneys"] as List<_001JIMCV.Models.Classes.Journey>)
     {
         <div class="journey-container">
-            <div class="journey-photo" style="background-image: url('/images/Vietnam/VoyageVietnam01.jpg');"></div>
+            <div class="journey-photo" style="background-image: url('/images/Vietnam/@journey.ImagePath');"></div>
             <div class="journey-content">
                 <div class="journey-details">
                     <table>
