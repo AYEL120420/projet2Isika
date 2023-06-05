@@ -46,10 +46,4 @@ public class DashboardController : Controller
 
         return View(viewModel);
     }
-
-    ////-------------------------------------------------Accommodation------------------------------------------------------------
-
-    //L'admin a accés à toutes les propositions 
-    //les partenaires ne peuvent visualiser que leurs propositions 
-
 }

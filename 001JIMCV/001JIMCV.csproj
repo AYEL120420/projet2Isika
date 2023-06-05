@@ -6,8 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Provider\**" />
+    <Content Remove="Views\Provider\**" />
+    <EmbeddedResource Remove="Views\Provider\**" />
+    <None Remove="Views\Provider\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\Provider\" />
   </ItemGroup>
 
   <ItemGroup>

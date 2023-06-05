@@ -31,7 +31,7 @@ namespace _001JIMCV.Controllers
         {
             return View("OtherPropForm"); // Renvoie la vue du formulaire de proposition
         }
-
+        
         // Afficher la liste des autres propositions
         public IActionResult GetList()
         {
@@ -107,7 +107,7 @@ namespace _001JIMCV.Controllers
 
             if (proposition.Id != 0)
             {
-                propositionDal.EditProposition(proposition.Id, proposition.Pays, proposition.Ville, proposition.Titre, proposition.Description, proposition.Disponibilite, proposition.Programme, proposition.Hebergement, proposition.Activites, proposition.Restauration, proposition.Prix, proposition.Status);
+                propositionDal.EditProposition(proposition.Id, proposition.Pays, proposition.Ville, proposition.Titre,proposition.Disponibilite, proposition.Description, proposition.Programme, proposition.Hebergement, proposition.Activites, proposition.Restauration, proposition.Prix, proposition.Status);
                 return RedirectToAction("GetList", new { id = proposition.Id });
             }
             else

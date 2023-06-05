@@ -8,11 +8,11 @@
         <th>Pays</th>
         <th>Ville</th>
         <th>Type</th>
-        <th>Adresse</th>
         <th>Date</th>
         <th>Localisation</th>
-        <th>Prix</th>
         <th>Description</th>
+        <th>Prix</th>
+       
         <th>Statut</th>
     </tr>
 
@@ -24,8 +24,9 @@
             <td>@activity.Nom</td>
             <td>@activity.Date</td>
             <td>@activity.Localisation</td>
-            <td>@activity.Prix</td>
             <td>@activity.Description</td>
+            <td>@activity.Prix</td>
+             
             <td>@activity.Status </td>
             <td style="width: 60px;">
                 <form action="@Url.Action("EditActivity", "Activity", new { id = activity.Id })" method="get">
@@ -40,3 +41,4 @@
         </tr>
     }
 </table>
+<boutton>@Html.ActionLink("Ajouter", "ActivityForm", "Activity")</boutton>

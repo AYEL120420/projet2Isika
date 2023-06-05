@@ -23,7 +23,7 @@ namespace _001JIMCV.Models.Classes
        
         public string Restauration { get; set; }
 
-        public decimal Prix { get; set; }
+        public float Prix { get; set; }
         public string Status { get; set; }
     }
 }

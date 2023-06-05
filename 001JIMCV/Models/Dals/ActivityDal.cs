@@ -22,7 +22,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une activité
-        public int AddActivity(int ProviderId, string country, string city, string name, string description, DateAndTime date, string location, float price, byte[]image)
+        public int AddActivity(int ProviderId, string country, string city, string name, DateAndTime date, string description, string location, float price, byte[]image)
         {
             Activity activity = new Activity()
             {
@@ -59,7 +59,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une activité
-        public void EditActivity (int id, string country, string city, string name, string description, DateAndTime date, string location, float price, byte[] image, string status)
+        public void EditActivity (int id, string country, string city, string name,  DateAndTime date,  string location, string description, float price,byte[] image, string status)
         {
             Activity activity = _bddcontext.Activities.Find(id);
             if (activity != null)

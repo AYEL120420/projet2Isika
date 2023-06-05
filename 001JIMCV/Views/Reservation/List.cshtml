@@ -1,0 +1,42 @@
+﻿@model _001JIMCV.Models.Classes.Accommodation
+@{
+    Layout = "_LayoutJimcv";
+}
+
+
+
+<table border="1" style="width:60%">
+    <tr>
+        <th>Date de départ</th>
+        <th>Date de retour</th>
+        <th>Nom </th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Nombre de passagers</th>
+        <th>Prix Total</th>
+        <th>Status</th>
+
+    </tr>
+
+    @foreach (_001JIMCV.Models.Classes.Reservation reservation in ViewData["Reservations"] as List<_001JIMCV.Models.Classes.Reservation>)
+    {
+        <tr>
+            <td>@reservation.TravelStartDate </td>
+            <td>@reservation.TravelEndDate</td>
+            <td>@reservation.ContactName</td>
+            <td>@reservation.ContactEmail</td>
+            <td>@reservation.ContactPhone</td>
+            <td>@reservation.NumberOfPassengers</td>
+            <td>@reservation.TotalAmount</td>
+            <td>@reservation.Status</td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td style="width: 60px;">
+                    <form action="@Url.Action("EditReservation", "Reservation", new { id =reservation.Id })" method="get">
+                    <button type="submit">Modifier</button>
+                </form>
+            </td>
+            }
+        </tr>
+    }
+</table>
