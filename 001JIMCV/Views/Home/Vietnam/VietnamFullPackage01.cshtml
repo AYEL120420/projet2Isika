@@ -24,9 +24,38 @@
     </style>
 </head>
 <body>
-    
-    <div id="map"></div>
 
+
+    <div id="map"></div>
+    <br>
+    @foreach (_001JIMCV.Models.Classes.Journey journey in ViewData["VietnamJourneys"] as List<_001JIMCV.Models.Classes.Journey>)
+    {
+        <div class="container">
+            <div class="photo"></div>
+            <div class="container-content">
+                <div class="container2">
+                    <div id="description2" class="Texte1">
+                        <span class="bloc">
+                            @journey.CityDestination
+                        </span>
+                        <span class="bloc">
+                            @journey.DepartureDate
+                        </span>
+                        <span class="bloc">
+                            @journey.ReturnDate
+                        </span>
+                        <span class="bloc">
+                            @journey.Price
+                        </span>
+                    </div>
+                </div>
+                <div class="container3">
+                    @journey.Description
+                </div>
+            </div>
+        </div>
+        <br>
+    }
     <input type="date" id="date-picker">
 
     <button onclick="window.location.href='/Home';">Retour à la page principale</button>
