@@ -6,30 +6,49 @@
 @if (Model.Authentified)
 {
     <h3>
-        Vous êtes déjà authentifié avec le compte @Model.User.Role.ToString() :
+        Vous êtes déjà connecté avec le compte @Model.User.Role.ToString() :
         @Model.User.Email
     </h3>
-    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnection")
+    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
 }
 else
 {
-    <p>
-        Veuillez vous authentifier :
-    </p>
+
     using (Html.BeginForm())
     {
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
         <div>
-            @Html.LabelFor(m => m.User.Email)<br>
-            @Html.TextBoxFor(m => m.User.Email)
-            @Html.ValidationMessageFor(m => m.User.Email)
+            <h2>
+                Vous êtes déjà client de Jimcv ? Connectez vous et voyageons ensemble !
+            </h2>
         </div>
-        <div>
-            @Html.LabelFor(m => m.User.Password)<br>
-            @Html.PasswordFor(m => m.User.Password)
-            @Html.ValidationMessageFor(m => m.User.Password)
-        </div><br />
-        <input type="submit" value="Se connecter" />
+
         <br />
-        @Html.ActionLink("Créer un compte", "CreateAccount")
+
+        <div>
+            @Html.LabelFor(m => m.User.Email)
+            <br/>
+            @Html.TextBoxFor(m => m.User.Email)
+            <br>
+            @Html.ValidationMessageFor(m => m.User.Email)
+
+        </div>
+
+        <br />
+
+        <div>
+            @Html.LabelFor(m => m.User.Password)
+            <br>
+            @Html.PasswordFor(m => m.User.Password)
+            <br>
+            @Html.ValidationMessageFor(m => m.User.Password)
+        </div> 
+
+            <br />
+                <input type="submit" value="Connexion" />
+            <br>
+     </div>
+
     }
 }
+

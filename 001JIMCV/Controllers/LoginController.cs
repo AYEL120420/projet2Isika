@@ -88,7 +88,7 @@ namespace _001JIMCV.Controllers
             return View(user);
         }
 
-        public ActionResult Deconnection()
+        public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
             return Redirect("/");

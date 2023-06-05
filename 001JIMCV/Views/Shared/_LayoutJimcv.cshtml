@@ -21,25 +21,30 @@
     <span></span>
     <span></span>
 
-    <ul id="menu">
-      @if (User.Identity.IsAuthenticated)
+        <ul id="menu">
+             @if (User.Identity.IsAuthenticated)
                             {
                                 <a href="@Url.Action("Index", "Dashboard")"><li>Mon Profil</li></a>
                             }
                             <a href="@Url.Action("Index", "Home")"><li>Bienvenue</li></a>
-                            <a href="@Url.Action("Index", "Login")"><li>Login/Inscription</li></a>
+                            <a href="@Url.Action("Index", "Login")"><li>Login</li></a>
+                            <a href="@Url.Action("CreateAccount", "Login")"><li>Inscription</li></a>
                             <a href="#"><li>Manger avant tout !</li></a>
                             <a href=""><li>Découvrir les pays</li></a>
                             <a href="#"><li>Contact</li></a>
 
-    </ul>
+        </ul>
   </div>
+
+
 </nav>
      </div>
        <div>
            <span id="">
+             <a href="/Home/Index">
             <img src="/Images/logosimplifie.png" alt="Logo"
                  style="width:200px;height:120px">
+                 </a>
             </span>
        </div>
 
@@ -71,9 +76,3 @@
 
 </body>
 </html>
-
-
-
-
-
-

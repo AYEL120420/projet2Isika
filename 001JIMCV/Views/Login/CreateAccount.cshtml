@@ -3,26 +3,41 @@
     Layout = "_LayoutJimcv";
 }
 
-<p>
-    Veuillez Remplir les champs pour créer voter compte :
-</p>
+<br />
+<div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+    <h2>
+        Vous souhaitez créer votre compte et nous suivre ? C'est par ici !
+    </h2>
+    
+</div>
+<br />
 @using (Html.BeginForm())
 {
-    <div>
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+        <div>
         @Html.LabelFor(m => m.Name)
+        <br>
         @Html.TextBoxFor(m => m.Name)
+        <br>
         @Html.ValidationMessageFor(m => m.Name)
-    </div>
+     </div>
+    <br />
     <div>
         @Html.LabelFor(m => m.Email)
+        <br>
         @Html.TextBoxFor(m => m.Email)
+        <br>
         @Html.ValidationMessageFor(m => m.Email)
     </div>
+    <br>
     <div>
         @Html.LabelFor(m => m.Password)
+        <br>
         @Html.PasswordFor(m => m.Password)
+        <br>
         @Html.ValidationMessageFor(m => m.Password)
     </div>
+    <br />
     <div>
         <label for="Role">Rôle : </label>
         <select name="Role">
@@ -30,5 +45,8 @@
             <option value="2">Partenaire</option>
         </select>
     </div>
+    <br />
     <input type="submit" value="Créer" />
+    <br>
+    </div>
 }
