@@ -1,6 +1,6 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
+﻿@{
+    Layout ="_LayoutJimcv";
+}
     <meta name="viewport" content="width=device-width" />
     <title>India</title>
     <link href="~/css/Site.css" rel="stylesheet" />
@@ -52,8 +52,7 @@
             flex-grow: 1; /* Ajouter cette ligne */
         }
     </style>
-</head>
-<body>
+
     <div id="map"></div>
     <br>
     @foreach (_001JIMCV.Models.Classes.Journey journey in ViewData["IndeJourneys"] as List<_001JIMCV.Models.Classes.Journey>)
@@ -85,9 +84,10 @@
         </div>
         <br>
     }
+    <button onclick="window.location.href='@Url.Action("AfficherProduits","Journey")'">Afficher les produits</button>
+    
+    
     <input type="date" id="date-picker">
 
     <button onclick="window.location.href='/Home';">Retour à la page principale</button>
-
-</body>
-</html>
+    

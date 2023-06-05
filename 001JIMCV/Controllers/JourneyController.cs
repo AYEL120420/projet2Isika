@@ -27,6 +27,12 @@ namespace _001JIMCV.Controllers
         {
             return View();
         }
+
+        public IActionResult AfficherProduits()
+        {
+            return View("Produits");
+        }
+
         [HttpPost]
         public IActionResult CreateJourney(Journey journey)
         {
