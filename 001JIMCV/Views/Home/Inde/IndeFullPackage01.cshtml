@@ -37,11 +37,12 @@
                 <div class="journey-description">
                     @journey.Description
                 </div>
+                <div>
+                <button onclick="window.location.href='@Url.Action("AfficherProduits","Journey",  new { @Id = journey.Id })'">Afficher les détails</button>
+                </div>
             </div>
         </div>
-    }
-<button onclick="window.location.href='@Url.Action("AfficherProduits","Journey",  new { @Id = 8 })'">Afficher les produits</button>
-    
+    } 
     
     <input type="date" id="date-picker">
 
