@@ -14,6 +14,7 @@ namespace _001JIMCV.Models.Classes
         public float Price { get; set; }
         public string Description { get; set; }
         public int Persons { get; set; }
+        public string ImagePath { get; set; }
 
 
     }

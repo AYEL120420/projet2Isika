@@ -5,33 +5,20 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>India</title>
+    <title>Mexique</title>
     <link href="~/css/Site.css" rel="stylesheet" />
-    <style>
-        #map {
-            height: 350px;
-            width: 100%;
-            background-image: url("/images/MexiqueMap01.jpg");
-            background-size: 100% auto;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        #date-picker {
-            width: 100%;
-            height: 30px;
-        }
-    </style>
+    <link href="~/css/FullPackage.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="map"></div>
+    <br>
+    <div class="map" style="background-image: url('/images/Mexique/MexiqueMap01.jpg');"></div>
     <br>
     @foreach (_001JIMCV.Models.Classes.Journey journey in ViewData["MexiqueJourneys"] as List<_001JIMCV.Models.Classes.Journey>)
     {
-        <div class="container">
-            <div class="photo"></div>
-            <div class="container-content">
-                <div class="container2">
+        <div class="journey-container">
+            <div class="journey-photo" style="background-image: url('/images/Mexique/@journey.ImagePath');"></div>
+            <div class="journey-content">
+                <div class="journey-details">
                     <table>
                         <tr>
                             <th>Ville d'arrivée</th>
@@ -46,18 +33,16 @@
                             <td>@journey.Price</td>
                         </tr>
                     </table>
-
                 </div>
-                <div class="container3">
+                <div class="journey-description">
                     @journey.Description
                 </div>
             </div>
         </div>
-        <br>
     }
+
     <input type="date" id="date-picker">
 
-    <button onclick="window.location.href='/Home';">Retour à la page principale</button>
-
+    <script src="~/js/FullPackage.js"></script>
 </body>
 </html>

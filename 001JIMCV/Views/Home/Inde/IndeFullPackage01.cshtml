@@ -1,66 +1,24 @@
 ﻿@{
-    Layout ="_LayoutJimcv";
+    Layout = "_LayoutJimcv";
 }
+<!DOCTYPE html>
+<html>
+<head>
     <meta name="viewport" content="width=device-width" />
-    <title>India</title>
+    <title>Inde</title>
     <link href="~/css/Site.css" rel="stylesheet" />
-    <style>
-        #map {
-            height: 350px;
-            width: 100%;
-            background-image: url("/images/IndeMap01.jpg");
-            background-size: 100% auto;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        #date-picker {
-            width: 100%;
-            height: 30px;
-        }
-
-        .container {
-            width: 100%;
-            display: flex;
-            align-items: flex-start;
-            border: 1px solid red;
-            padding: 0px;
-        }
-
-        .photo {
-            width: calc(1/3 * 100%);
-            background-image: url("/Images/PageInde01.jpeg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 300px;
-            border: 1px solid red;
-        }
-
-        .container-content {
-            display: flex;
-            flex-direction: column;
-            width: calc(3/5 * 100%);
-        }
-
-        .container2,
-        .container3 {
-            width: 100%;
-            border: 1px solid red;
-            padding: 10px;
-            margin-bottom: 10px;
-            flex-grow: 1; /* Ajouter cette ligne */
-        }
-    </style>
-
-    <div id="map"></div>
+    <link href="~/css/FullPackage.css" rel="stylesheet" />
+</head>
+<body>
     <br>
-    @foreach (_001JIMCV.Models.Classes.Journey journey in ViewData["IndeJourneys"] as List<_001JIMCV.Models.Classes.Journey>)
+    <div class="map" style="background-image: url('/images/Inde/IndeMap01.jpg');"></div>
+    <br>
+    @foreach (var journey in ViewData["IndeJourneys"] as List<_001JIMCV.Models.Classes.Journey>)
     {
-        <div class="container">
-            <div class="photo"></div>
-            <div class="container-content">
-                <div class="container2">
+        <div class="journey-container">
+            <div class="journey-photo" style="background-image: url('/images/Inde/@journey.ImagePath');"></div>
+            <div class="journey-content">
+                <div class="journey-details">
                     <table>
                         <tr>
                             <th>Ville d'arrivée</th>
@@ -75,19 +33,18 @@
                             <td>@journey.Price</td>
                         </tr>
                     </table>
-                    
                 </div>
-                <div class="container3">
+                <div class="journey-description">
                     @journey.Description
                 </div>
             </div>
         </div>
-        <br>
     }
 <button onclick="window.location.href='@Url.Action("AfficherProduits","Journey",  new { @Id = 8 })'">Afficher les produits</button>
     
     
     <input type="date" id="date-picker">
 
-    <button onclick="window.location.href='/Home';">Retour à la page principale</button>
-    
+    <script src="~/js/FullPackage.js"></script>
+</body>
+</html>
