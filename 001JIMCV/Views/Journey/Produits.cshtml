@@ -1,0 +1,126 @@
+﻿@{
+    Layout = "_LayoutJimcv";
+}
+
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+        <div class="image-container">
+            <img src="/Images/Logo.png" alt="Image du produit">
+        </div>
+        <div>
+            <p>Voyagez au sein de la famille de pandur</p>
+        </div>
+    </div>
+    <div class="product-description">
+        <div class="description-section">
+            <h3>Titre de la description</h3>
+            <p>Première partie de la description du produit.</p>
+        </div>
+        <div class="description-section">
+            <h3>Autre titre de la description</h3>
+            <p>Deuxième partie de la description du produit.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="product-description">
+        <div class="description-section">
+            <h3>Hébergements</h3>
+            <p>Description des hébergements.</p>
+        </div>
+        <div class="description-section">
+            <label for="hebergements-dropdown">Sélectionnez un hébergement :</label>
+            <select id="hebergements-dropdown">
+                <option value="hotel">Hôtel</option>
+                <option value="appartement">Appartement</option>
+                <option value="maison">Maison</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="product-description">
+        <div class="description-section">
+            <h3>Vols</h3>
+            <p>Description des vols.</p>
+        </div>
+        <div class="description-section">
+            <label for="vols-dropdown">Sélectionnez un vol :</label>
+            <select id="vols-dropdown">
+                <option value="vol1">Vol 1</option>
+                <option value="vol2">Vol 2</option>
+                <option value="vol3">Vol 3</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="booking-search">
+    <h3 class="title-step">Votre voyage</h3>
+    <div class="booking-filter-search">
+        <div class="row inner-booking-filter-search">
+            <div class="col-6">
+                <div class="booking-form-element elem-select booking-select-departure">
+                    <label for="slt_departureBooking" class="custom-select-label">Ville de départ</label>
+                    <select class="form-control select" name="departureBooking" id="slt_departureBooking">
+                        <option value="BCN">Barcelone</option>
+                        <option value="BES">Brest</option>
+                        <option value="BOD">Bordeaux</option>
+                        <option value="BRU">Bruxelles</option>
+                        <option value="BSL">Bâle</option>
+                        <option value="GVA">Genève</option>
+                        <option value="LIL">Lille</option>
+                        <option value="LUX">Luxembourg</option>
+                        <option value="LYS">Lyon</option>
+                        <option value="MPL">Montpellier</option>
+                        <option value="MRS">Marseille</option>
+                        <option value="NCE">Nice</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="booking-form-element elem-select booking-select-duration">
+                    <label for="slt_durationBooking" class="custom-select-label">Durée</label>
+                    <select class="form-control select" name="durationBooking" id="slt_durationBooking">
+                        <option value="3-2">3 jours / 2 nuits</option>
+                        <option value="4-3">4 jours / 3 nuits</option>
+                        <option value="5-4">5 jours / 4 nuits</option>
+                        <option value="6-5">6 jours / 5 nuits</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="title-step">Nombre de voyageurs</h3>
+    <div class="booking-pax">
+        <div class="row booking-pax-inner">
+            <div class="col-sm-6 col-md-3">
+                <div class="booking-form-element elem-select booking-select-adults">
+                    <label for="slt_adultsBooking" class="custom-select-label">Adulte(s)</label>
+                    <select class="form-control" name="adultsBooking" id="slt_adultsBooking">
+                        <option value="1">1 Adulte</option>
+                        <option value="2">2 Adultes</option>
+                        <option value="3">3 Adultes</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="booking-form-element elem-select booking-select-children">
+                    <label for="slt_childrenBooking" class="custom-select-label">Enfant(s)</label>
+                    <select class="form-control" name="childrenBooking" id="slt_childrenBooking">
+                        <option value="0">0 Enfant</option>
+                        <option value="1">1 Enfant</option>
+                        <option value="2">2 Enfants</option>
+                        <option value="3">3 Enfants</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="error-message hidden"></div>
+</div>
