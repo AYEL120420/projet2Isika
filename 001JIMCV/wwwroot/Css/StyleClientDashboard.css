@@ -11,7 +11,7 @@
 
 
 .dashboard-item {
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     text-align: center;
 }
 
@@ -19,17 +19,13 @@
         margin-bottom: 0;
     }
 
-h2 {
-    font-size: 20px;
-    color: #ededed;
-}
 
 button {
     background-color: #ededed;
     color: black;
     border-radius: 10em;
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
     text-decoration: none;
     padding: 1em 2em;
     cursor: pointer;
@@ -54,15 +50,4 @@ button {
     .container {
         flex-direction: column;
     }
-}
-
-#ImageDashboard {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-basis: 20%;
-    width: 25%;
-    height: 25%;
-    padding: 0px;
-    box-sizing: border-box;
 }

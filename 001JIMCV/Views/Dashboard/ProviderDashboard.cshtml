@@ -17,7 +17,7 @@
         </div>
 
         <div class="dashboard-item">
-            <h2><button onclick="window.location.href='@Url.Action("GetActivity", "Activity")">Activités</button></h2>
+            <h2><button onclick="window.location.href='@Url.Action("GetActivity", "Activity")'">Activités</button></h2>
         </div>
 
         <div class="dashboard-item">
@@ -25,11 +25,11 @@
         </div>
 
         <div class="dashboard-item">
-            <h2><button onclick="window.location.href='@Url.Action("GetRestauration", "Restauration")">Restauration</button></h2>
+            <h2><button onclick="window.location.href='@Url.Action("GetRestauration", "Restauration")'">Restauration</button></h2>
         </div>
 
         <div class="dashboard-item">
-            <h2><button onclick="window.location.href='@Url.Action("GetOtherPropositions", "Proposition")">Propositions</button></h2>
+            <h2><button onclick="window.location.href='@Url.Action("GetOtherPropositions", "Proposition")'">Proposition</button></h2>
         </div>
        
 
@@ -43,43 +43,43 @@
   
     </div>
 
-    <div id="description" class="container">
-        <form>
-            <label for="firstname">Prénom:</label><br>
-            <input type="text" id="firstname" name="firstname"><br>
-            <br />
-            <label for="lastname">Nom:</label><br>
-            <input type="text" id="lastname" name="lastname"><br>
-            <br />
-            <label for="gender">Sexe:</label><br>
-            <select id="gender" name="gender">
-                <option value="male">Homme</option>
-                <option value="female">Femme</option>
-            </select><br>
-            <br>
-            <label for="mobile">Numéro de téléphone mobile:</label><br>
-            <input type="tel" id="mobile" name="mobile"><br>
-            <br>
-            <label for="email">Adresse email:</label><br>
-            <input type="email" id="email" name="email"><br>
-            <br>
-            <label for="country">Pays:</label><br>
-            <input type="text" id="country" name="country"><br>
-            <br />
-            <label for="city">Ville:</label><br>
-            <input type="text" id="city" name="city"><br>
-            <br />
-            <label for="travels">Voyages réalisés:</label><br>
-            <textarea id="travels" name="travels"></textarea><br>
-            <br />
-            <input type="submit" value="Soumettre"><br>
-            <br />
+    <div style="display:flex; align-items:center; flex-direction: column">
+        <h2>
+            Remplissez votre profil pour plus de visibilité sur JIMCV !
+        </h2>
 
-        </form>
-    </div>
+                <form>
+                <label for="firstname">Prénom:</label><br>
+                <input type="text" id="firstname" name="firstname"><br>
+                <br />
+                <label for="lastname">Nom:</label><br>
+                <input type="text" id="lastname" name="lastname"><br>
+                <br />
+                <label for="gender">Sexe:</label><br>
+                <select id="gender" name="gender">
+                    <option value="male">Homme</option>
+                    <option value="female">Femme</option>
+                </select><br>
+                <br>
+                <label for="mobile">Numéro de téléphone mobile:</label><br>
+                <input type="tel" id="mobile" name="mobile"><br>
+                <br>
+                <label for="email">Adresse email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <br>
+                <label for="country">Pays:</label><br>
+                <input type="text" id="country" name="country"><br>
+                <br />
+                <label for="city">Ville:</label><br>
+                <input type="text" id="city" name="city"><br>
+                <br />
+                <label for="travels">Voyages réalisés:</label><br>
+                <textarea id="travels" name="travels"></textarea><br>
+                <br />
+                <input type="submit" value="Soumettre"><br>
+                <br />
 
-    <div id="image" class="image-container">
-        <img src="/images/DashboardImage.jpg" alt="ProviderFood">
-    </div>
+                </form>
+        </div>
 
 </div>
