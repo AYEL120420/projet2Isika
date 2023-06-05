@@ -28,9 +28,70 @@ namespace _001JIMCV.Controllers
             return View();
         }
 
-        public IActionResult AfficherProduits()
+        public IActionResult AfficherProduits(int Id)
         {
-            return View("Produits");
+            if (Id != 0)
+            {
+                //On récupère le voyage associé à l'Id
+                Journey journey = JourneyDal.GetAllJourneys().Where(r => r.Id == Id).FirstOrDefault();
+
+                if (journey != null)
+                {
+                    // on crée le viewmodel du voyage
+                    JourneyViewModel jvm = new JourneyViewModel
+                    {
+                        Journey = journey,
+
+                        // On récupère le Pack de Service associé à l'id du voyage et qui est clé en main
+                        PackService = JourneyDal.GetAllPacks().Where(r => r.JourneyId == Id & r.AllInclusive == true).FirstOrDefault(),
+
+                    };
+
+                    //On récupère les vols associé au pack de Service
+                    FlightPackServices flightPackServices = JourneyDal.GetFLightPackServices(jvm.PackService.Id);
+                    jvm.DepartureFlight = JourneyDal.GetFlight(flightPackServices.DepartureFlightId);
+                    jvm.ReturnFlight = JourneyDal.GetFlight(flightPackServices.ReturnFlightId);
+
+                    // On récupère les Hébergements associés au Pack
+                    List<AccommodationPackServices> accommodationsPackServices = JourneyDal.GetAllAccommodationsPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
+                    List<Accommodation> accommodations = new List<Accommodation>();
+                    foreach (AccommodationPackServices aps in accommodationsPackServices)
+                    {
+                        Accommodation accommodation = new Accommodation();
+                        accommodation = JourneyDal.GetAccommodation(aps.AccommodationId);
+                        accommodations.Add(accommodation);
+                    }
+                    ViewBag.listAccommodations = accommodations;
+
+                    // On récupère les Activités associés au Pack
+                    List<ActivityPackServices> activityPackServices = JourneyDal.GetAllActivityPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
+                    List<Activity> activities = new List<Activity>();
+                    foreach (ActivityPackServices aps in activityPackServices)
+                    {
+                        Activity activity = new Activity();
+                        activity = JourneyDal.GetActivity(aps.ActivityId);
+                        activities.Add(activity);
+                    }
+                    ViewBag.listActivities = activities;
+
+                    // On récupère les restaurants associés au Pack
+                    List<RestaurationPackServices> restaurationPackServices = JourneyDal.GetAllRestaurationPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
+                    List<Restauration> restaurations = new List<Restauration>();
+                    foreach (RestaurationPackServices aps in restaurationPackServices)
+                    {
+                        Restauration restauration = new Restauration();
+                        restauration = JourneyDal.GetRestauration(aps.RestaurationId);
+                        restaurations.Add(restauration);
+                    }
+                    ViewBag.listRestaurations = restaurations;
+
+
+                    return View("Produits", jvm);
+                }
+
+            }
+
+            return RedirectToAction("CreateJourney");
         }
 
         [HttpPost]
@@ -115,7 +176,7 @@ namespace _001JIMCV.Controllers
             {
                 //On récupère le voyage associé à l'Id
                 Journey journey = JourneyDal.GetAllJourneys().Where(r => r.Id == journeyId).FirstOrDefault();
-                
+
                 if (journey != null)
                 {
                     // on crée le viewmodel du voyage
@@ -125,7 +186,7 @@ namespace _001JIMCV.Controllers
 
                         // On récupère le Pack de Service associé à l'id du voyage et qui est clé en main
                         PackService = JourneyDal.GetAllPacks().Where(r => r.JourneyId == journeyId & r.AllInclusive == true).FirstOrDefault(),
-                       
+
                     };
 
                     //On récupère les vols associé au pack de Service
@@ -135,7 +196,7 @@ namespace _001JIMCV.Controllers
 
                     // On récupère les Hébergements associés au Pack
                     List<AccommodationPackServices> accommodationsPackServices = JourneyDal.GetAllAccommodationsPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
-                    foreach(AccommodationPackServices aps in accommodationsPackServices)
+                    foreach (AccommodationPackServices aps in accommodationsPackServices)
                     {
                         jvm.Accommodations = JourneyDal.GetAllAccommodations().Where(a => a.Id == aps.Id).ToList();
                     }
@@ -162,6 +223,6 @@ namespace _001JIMCV.Controllers
             return View(journeyId);
         }
 
-        
+
     }
 }

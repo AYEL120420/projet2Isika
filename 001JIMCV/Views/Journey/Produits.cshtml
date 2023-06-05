@@ -1,42 +1,18 @@
-﻿@{
+﻿@model _001JIMCV.ViewModels.JourneyViewModel
+@{
     Layout = "_LayoutJimcv";
 }
 
 <div class="container">
-    <div style="display: flex; justify-content: space-between; align-items: center">
+    <div style="display: flex; align-items: center">
         <div class="image-container">
             <img src="/Images/Logo.png" alt="Image du produit">
         </div>
         <div>
-            <p>Voyagez au sein de la famille de pandur</p>
-        </div>
-    </div>
-    <div class="product-description">
-        <div class="description-section">
-            <h3>Titre de la description</h3>
-            <p>Première partie de la description du produit.</p>
-        </div>
-        <div class="description-section">
-            <h3>Autre titre de la description</h3>
-            <p>Deuxième partie de la description du produit.</p>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-
-    <div class="product-description">
-        <div class="description-section">
-            <h3>Hébergements</h3>
-            <p>Description des hébergements.</p>
-        </div>
-        <div class="description-section">
-            <label for="hebergements-dropdown">Sélectionnez un hébergement :</label>
-            <select id="hebergements-dropdown">
-                <option value="hotel">Hôtel</option>
-                <option value="appartement">Appartement</option>
-                <option value="maison">Maison</option>
-            </select>
+            <div class="description-section">
+                <h3>@Html.DisplayFor(model => model.Journey.CountryDestination) - @Html.DisplayFor(model => model.Journey.CityDestination)  </h3>
+                <p>@Html.DisplayFor(model => model.Journey.Description)</p>
+            </div>
         </div>
     </div>
 </div>
@@ -46,16 +22,82 @@
     <div class="product-description">
         <div class="description-section">
             <h3>Vols</h3>
-            <p>Description des vols.</p>
         </div>
+        <div>
+            <span>Compagnie aérienne : </span><span>@Html.DisplayFor(model => model.DepartureFlight.Airline)</span>
+            <span>Ville de départ : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DepartureCity)</span>
+            <span>Ville d'arrivée : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DestinationCity)</span>
+            <span>Date : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DepartureDate)</span>
+            <span>N° de vol : </span><span>@Html.DisplayFor(model => model.DepartureFlight.FlightNumber)</span>
+        </div>
+        <div>
+            <span>Compagnie aérienne : </span><span>@Html.DisplayFor(model => model.ReturnFlight.Airline)</span>
+            <span>Ville de départ : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DepartureCity)</span>
+            <span>Ville d'arrivée : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DestinationCity)</span>
+            <span>Date : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DepartureDate)</span>
+            <span>N° de vol : </span><span>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="product-description">
         <div class="description-section">
-            <label for="vols-dropdown">Sélectionnez un vol :</label>
-            <select id="vols-dropdown">
-                <option value="vol1">Vol 1</option>
-                <option value="vol2">Vol 2</option>
-                <option value="vol3">Vol 3</option>
-            </select>
+            <h3>Hébergements</h3>
         </div>
+        @foreach (var accommodation in ViewBag.listAccommodations)
+        {
+            <div>
+                <span>Nom : </span><span>@accommodation.Nom</span>
+                <span>Type : </span><span>@accommodation.Type</span>
+                <span>Ville : </span><span>@accommodation.Ville</span>
+                <span>Adresse : </span><span>@accommodation.Adresse</span>
+            </div>
+            <div>@accommodation.Description
+            </div>
+
+        }
+    </div>
+</div>
+<div class="container">
+
+    <div class="product-description">
+        <div class="description-section">
+            <h3>Activités</h3>
+        </div>
+        @foreach (var activity in ViewBag.listActivities)
+        {
+            <div>
+                <span>Nom : </span><span>@activity.Nom</span>
+                <span>Ville : </span><span>@activity.Ville</span>
+                <span>Adresse : </span><span>@activity.Localisation</span>
+            </div>
+            <div>
+                @activity.Description
+            </div>
+
+        }
+    </div>
+</div>
+<div class="container">
+
+    <div class="product-description">
+        <div class="description-section">
+            <h3>Restaurants</h3>
+        </div>
+        @foreach (var restaurants in ViewBag.listRestaurations)
+        {
+            <div>
+                <span>Nom : </span><span>@restaurants.Nom</span>
+                <span>Type : </span><span>@restaurants.Type</span>
+                <span>Ville : </span><span>@restaurants.Ville</span>
+            </div>
+            <div>
+                @restaurants.Description
+            </div>
+
+        }
     </div>
 </div>
 

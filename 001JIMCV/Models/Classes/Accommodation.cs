@@ -12,6 +12,7 @@ namespace _001JIMCV.Models.Classes
         public string Pays { get; set; }
         public string Ville { get; set; }
         public string Type { get; set; }
+        public string Nom { get; set; }
 
         public string Adresse { get; set; }
         public string De { get; set; }

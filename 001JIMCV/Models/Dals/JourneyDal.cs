@@ -53,6 +53,22 @@ namespace _001JIMCV.Models.Dals
         {
             return _bddContext.RestaurationPackServices.ToList();
         }
+        public Flight GetFlight(int id)
+        {
+            return _bddContext.Flights.FirstOrDefault(r => r.Id == id);
+        }
+        public Accommodation GetAccommodation(int id)
+        {
+            return _bddContext.Accommodations.FirstOrDefault(r => r.Id == id);
+        }
+        public Activity GetActivity(int id)
+        {
+            return _bddContext.Activities.FirstOrDefault(r => r.Id == id);
+        }
+        public Restauration GetRestauration(int id)
+        {
+            return _bddContext.Restaurations.FirstOrDefault(r => r.Id == id);
+        }
         public int AddJourney(string depDate, string returnDate, string country)
         {
             

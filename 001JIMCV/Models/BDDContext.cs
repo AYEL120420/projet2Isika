@@ -69,15 +69,15 @@ namespace _001JIMCV.Models
             Journey italie = new Journey() { CountryDestination = "Italie", DepartureDate = "15/08/2024", ReturnDate = "26/08/2024", Persons = 2 };
             this.Journeys.AddRange(inde, inde2, thailande, mexique, ethiopie, france, japon, maroc, italie);
 
-            Flight FlightInde = new Flight() { Airline = "Air India", DepartureCountry ="France", DepartureCity = "CDG", DepartureDate = "2024-02-10", DestinationCountry="Inde", DestinationCity = "Chennai", FlightNumber = 547896 };
-            Flight FlightThailande = new Flight() { Airline = "Air thai", DepartureCountry = "France", DepartureCity = "Paris Orly", DepartureDate = "2024-07-18", DestinationCountry = "Thailande", DestinationCity = "Pukhet", FlightNumber = 165866 };
-            Flight FlightMexique = new Flight() { Airline = "Mexico airline", DepartureCountry = "France", DepartureCity = "Aéroport de Nice", DepartureDate = "2024-02-10", DestinationCountry = "Mexique", DestinationCity = "Mexico", FlightNumber = 465732 };
-            Flight FlightEthiopie = new Flight() { Airline = "Ethiop'fly", DepartureCountry = "France", DepartureCity = "Aéroport Lyon Saint Exupéry", DepartureDate = "2024-02-10", DestinationCountry = "Ethiopie", DestinationCity = "Mekele", FlightNumber = 688486 };
-            Flight FlightFrance = new Flight() { Airline = "Air france", DepartureCountry = "France", DepartureCity = "Marseille Provence", DepartureDate = "2024-02-10", DestinationCountry = "France", DestinationCity = "Paris", FlightNumber = 864566 };
-            Flight FlightJapon = new Flight() { Airline = "Fly Japan", DepartureCountry = "France", DepartureCity = "Toulouse blagnac", DepartureDate = "2024-02-10", DestinationCountry = "Japon", DestinationCity = "Osaka", FlightNumber = 386618 };
-            Flight FlightMaroc = new Flight() { Airline = "Boeing Maroc", DepartureCountry = "France", DepartureCity = "Bordeaux-Mérignac", DepartureDate = "2024-02-10", DestinationCountry = "Maroc", DestinationCity = "Marrakech", FlightNumber = 548675 };
-            Flight FlightItalie = new Flight() { Airline = "Itaflyairway", DepartureCountry = "France", DepartureCity = "Nantes Atlantique", DepartureDate = "2024-02-10", DestinationCountry = "Italie", DestinationCity = "Naples", FlightNumber = 397668 };
-            Flight FlightIndeRetour = new Flight() { Airline = "Air India", DepartureCountry = "Inde", DepartureCity = "Chennai", DepartureDate = "2024-02-24", DestinationCountry = "France", DestinationCity = "CDG", FlightNumber = 987654 };
+            Flight FlightInde = new Flight() { Id = 1, Airline = "Air India", DepartureCountry ="France", DepartureCity = "CDG", DepartureDate = "2024-02-10", DestinationCountry="Inde", DestinationCity = "Chennai", FlightNumber = 547896 };
+            Flight FlightThailande = new Flight() { Id = 2, Airline = "Air thai", DepartureCountry = "France", DepartureCity = "Paris Orly", DepartureDate = "2024-07-18", DestinationCountry = "Thailande", DestinationCity = "Pukhet", FlightNumber = 165866 };
+            Flight FlightMexique = new Flight() {Id = 3, Airline = "Mexico airline", DepartureCountry = "France", DepartureCity = "Aéroport de Nice", DepartureDate = "2024-02-10", DestinationCountry = "Mexique", DestinationCity = "Mexico", FlightNumber = 465732 };
+            Flight FlightEthiopie = new Flight() { Id =4, Airline = "Ethiop'fly", DepartureCountry = "France", DepartureCity = "Aéroport Lyon Saint Exupéry", DepartureDate = "2024-02-10", DestinationCountry = "Ethiopie", DestinationCity = "Mekele", FlightNumber = 688486 };
+            Flight FlightFrance = new Flight() { Id = 5, Airline = "Air france", DepartureCountry = "France", DepartureCity = "Marseille Provence", DepartureDate = "2024-02-10", DestinationCountry = "France", DestinationCity = "Paris", FlightNumber = 864566 };
+            Flight FlightJapon = new Flight() { Id = 6, Airline = "Fly Japan", DepartureCountry = "France", DepartureCity = "Toulouse blagnac", DepartureDate = "2024-02-10", DestinationCountry = "Japon", DestinationCity = "Osaka", FlightNumber = 386618 };
+            Flight FlightMaroc = new Flight() { Id = 7, Airline = "Boeing Maroc", DepartureCountry = "France", DepartureCity = "Bordeaux-Mérignac", DepartureDate = "2024-02-10", DestinationCountry = "Maroc", DestinationCity = "Marrakech", FlightNumber = 548675 };
+            Flight FlightItalie = new Flight() { Id = 8, Airline = "Itaflyairway", DepartureCountry = "France", DepartureCity = "Nantes Atlantique", DepartureDate = "2024-02-10", DestinationCountry = "Italie", DestinationCity = "Naples", FlightNumber = 397668 };
+            Flight FlightIndeRetour = new Flight() { Id = 9, Airline = "Air India", DepartureCountry = "Inde", DepartureCity = "Chennai", DepartureDate = "2024-02-24", DestinationCountry = "France", DestinationCity = "CDG", FlightNumber = 987654 };
             this.Flights.AddRange(FlightInde, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie, FlightIndeRetour);  
             
 
@@ -95,6 +95,9 @@ namespace _001JIMCV.Models
 
             PackServices PS1 = new PackServices() { Id=1,AllInclusive=true, JourneyId=inde.Id, Journey=inde, UserId=1 };
             this.PackService.Add(PS1);
+
+            FlightPackServices fPS = new FlightPackServices() { DepartureFlightId = FlightInde.Id, ReturnFlightId = FlightIndeRetour.Id, PackServicesId = PS1.Id };
+            this.FlightPackServices.AddRange(fPS);
 
             AccommodationPackServices AccPS1 = new AccommodationPackServices() { PackServicesId = PS1.Id, AccommodationId= accommodation1.Id };
             AccommodationPackServices AccPS2 = new AccommodationPackServices() { PackServicesId = PS1.Id, AccommodationId = accommodation2.Id };
