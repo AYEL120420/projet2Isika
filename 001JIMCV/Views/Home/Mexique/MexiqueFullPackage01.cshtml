@@ -32,20 +32,21 @@
             <div class="photo"></div>
             <div class="container-content">
                 <div class="container2">
-                    <div id="description2" class="Texte1">
-                        <span class="bloc">
-                            @journey.CityDestination
-                        </span>
-                        <span class="bloc">
-                            @journey.DepartureDate
-                        </span>
-                        <span class="bloc">
-                            @journey.ReturnDate
-                        </span>
-                        <span class="bloc">
-                            @journey.Price
-                        </span>
-                    </div>
+                    <table>
+                        <tr>
+                            <th>Ville d'arrivée</th>
+                            <th>Date de départ</th>
+                            <th>Date de Retour</th>
+                            <th>Prix</th>
+                        </tr>
+                        <tr>
+                            <td>@journey.CityDestination</td>
+                            <td>@journey.DepartureDate</td>
+                            <td>@journey.ReturnDate</td>
+                            <td>@journey.Price</td>
+                        </tr>
+                    </table>
+
                 </div>
                 <div class="container3">
                     @journey.Description
