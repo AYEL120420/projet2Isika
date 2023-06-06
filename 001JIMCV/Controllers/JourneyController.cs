@@ -61,7 +61,7 @@ namespace _001JIMCV.Controllers
                         accommodation = JourneyDal.GetAccommodation(aps.AccommodationId);
                         accommodations.Add(accommodation);
                     }
-                    ViewBag.listAccommodations = accommodations;
+                    jvm.Accommodations = accommodations;
 
                     // On récupère les Activités associés au Pack
                     List<ActivityPackServices> activityPackServices = JourneyDal.GetAllActivityPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
@@ -72,7 +72,7 @@ namespace _001JIMCV.Controllers
                         activity = JourneyDal.GetActivity(aps.ActivityId);
                         activities.Add(activity);
                     }
-                    ViewBag.listActivities = activities;
+                    jvm.Activities = activities;
 
                     // On récupère les restaurants associés au Pack
                     List<RestaurationPackServices> restaurationPackServices = JourneyDal.GetAllRestaurationPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
@@ -83,7 +83,7 @@ namespace _001JIMCV.Controllers
                         restauration = JourneyDal.GetRestauration(aps.RestaurationId);
                         restaurations.Add(restauration);
                     }
-                    ViewBag.listRestaurations = restaurations;
+                    jvm.Restaurations = restaurations;
 
 
                     return View("Produits", jvm);
