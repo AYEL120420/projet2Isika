@@ -157,7 +157,7 @@ namespace _001JIMCV.Controllers
                     ViewBag.listActivities = JourneyDal.GetAllActivities().Where(a => a.Country == jvm.Journey.CountryDestination);
                     ViewBag.listRestaurants = JourneyDal.GetAllRestaurations().Where(r => r.Country == jvm.Journey.CountryDestination);
 
-                    return View(jvm);
+                    return View("ModifProduits",jvm);
                 }
 
             }
