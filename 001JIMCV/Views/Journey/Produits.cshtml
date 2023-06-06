@@ -50,10 +50,10 @@
         @foreach (var accommodation in ViewBag.listAccommodations)
         {
             <div>
-                <span>Nom : </span><span>@accommodation.Nom</span>
+                <span>Nom : </span><span>@accommodation.Name</span>
                 <span>Type : </span><span>@accommodation.Type</span>
-                <span>Ville : </span><span>@accommodation.Ville</span>
-                <span>Adresse : </span><span>@accommodation.Adresse</span>
+                <span>Ville : </span><span>@accommodation.City</span>
+                <span>Adresse : </span><span>@accommodation.Adress</span>
             </div>
             <div>@accommodation.Description
             </div>
@@ -71,9 +71,9 @@
         @foreach (var activity in ViewBag.listActivities)
         {
             <div>
-                <span>Nom : </span><span>@activity.Nom</span>
-                <span>Ville : </span><span>@activity.Ville</span>
-                <span>Adresse : </span><span>@activity.Localisation</span>
+                <span>Nom : </span><span>@activity.Name</span>
+                <span>Ville : </span><span>@activity.City</span>
+                <span>Adresse : </span><span>@activity.Adress</span>
             </div>
             <div>
                 @activity.Description
@@ -92,9 +92,10 @@
         @foreach (var restaurants in ViewBag.listRestaurations)
         {
             <div>
-                <span>Nom : </span><span>@restaurants.Nom</span>
+                <span>Nom : </span><span>@restaurants.Name</span>
                 <span>Type : </span><span>@restaurants.Type</span>
-                <span>Ville : </span><span>@restaurants.Ville</span>
+                <span>Ville : </span><span>@restaurants.City</span>
+                <span>Adresse : </span><span>@restaurants.Adress</span>
             </div>
             <div>
                 @restaurants.Description
