@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using XAct;
-using XAct.Users;
 
 namespace _001JIMCV.Controllers
 {
@@ -15,9 +13,11 @@ namespace _001JIMCV.Controllers
     {
         private static string DEPARTURECOUNTRYOFALLJOURNEYS = "France";
         private JourneyDal JourneyDal;
+        private LoginDal LoginDal;
         public JourneyController()
         {
             JourneyDal = new JourneyDal();
+            LoginDal = new LoginDal();
         }
         public IActionResult Index()
         {
@@ -118,6 +118,7 @@ namespace _001JIMCV.Controllers
 
                     JourneyViewModel jvm = new JourneyViewModel
                     {
+                        journeyId = id,
                         Journey = journey
                     };
 
@@ -138,34 +139,45 @@ namespace _001JIMCV.Controllers
         {
             if (ModelState.IsValid)
             {
-                int idPackServices = JourneyDal.AddPackServices();
-
-                JourneyDal.AddFlightPackServices(jvm.DepartureFlightId, jvm.ReturnFlightId, idPackServices);
-
-                foreach (string accomodationId in jvm.AccommodationsCocheIds)
+                LoginViewModel loginViewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+                if (!loginViewModel.Authentified)
                 {
-                    if (accomodationId != null)
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    string userId = User.FindFirst(ClaimTypes.Name).Value;
+                    loginViewModel.User = LoginDal.GetUser(userId);
+
+                    int idPackServices = JourneyDal.AddPackServices(jvm.journeyId, loginViewModel.User.Id);
+
+                    JourneyDal.AddFlightPackServices(jvm.DepartureFlightId, jvm.ReturnFlightId, idPackServices);
+
+                    foreach (string accomodationId in jvm.AccommodationsCocheIds)
                     {
-                        int idAccomodation;
-                        if (int.TryParse(accomodationId, out idAccomodation))
+                        if (accomodationId != null)
                         {
-                            JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
+                            int idAccomodation;
+                            if (int.TryParse(accomodationId, out idAccomodation))
+                            {
+                                JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
+                            }
                         }
                     }
-                }
-                foreach (string activityId in jvm.ActivitiesCocheIds)
-                {
-                    if (activityId != null)
+                    foreach (string activityId in jvm.ActivitiesCocheIds)
                     {
-                        int idActivity;
-                        if (int.TryParse(activityId, out idActivity))
+                        if (activityId != null)
                         {
-                            JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                            int idActivity;
+                            if (int.TryParse(activityId, out idActivity))
+                            {
+                                JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                            }
                         }
                     }
-                }
 
-                return RedirectToAction("DashboardJourney");
+                    return RedirectToAction("DashboardJourney");
+                }
             }
             return View(jvm);
         }

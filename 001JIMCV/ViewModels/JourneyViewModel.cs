@@ -9,6 +9,7 @@ namespace _001JIMCV.ViewModels
 {
     public class JourneyViewModel
     {
+        public int journeyId { get; set; }  
         public Journey Journey { get; set; }
         public PackServices PackService { get; set; }
 

@@ -9,6 +9,7 @@
 <body>
     @using (Html.BeginForm("JourneyAddServices", "Journey", FormMethod.Post))
     {
+        @Html.HiddenFor(model => model.journeyId)
         <fieldset>
             <legend>Associer des vols au voyage : </legend>
             <div>
