@@ -36,8 +36,10 @@ namespace _001JIMCV.Models.Dals
                 Date = date,
                 Adress = location,
                 Price = price,
-                Status= "En cours de traitement",
-                Image=image
+                Status = "En cours de traitement",
+                Image = image,
+           
+               
               
             };
 
@@ -61,7 +63,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une activité
-        public void EditActivity (int id, string providerName, string providerEmail, string country, string city, string name,  DateAndTime date,  string location, string description, float price,byte[] image, string status)
+        public void EditActivity (int id, string providerName, string providerEmail, string country, string city, string name,  DateAndTime date,  string location, string description, float price, string status,byte[] image)
         {
             Activity activity = _bddcontext.Activities.Find(id);
             if (activity != null)
@@ -77,7 +79,9 @@ namespace _001JIMCV.Models.Dals
                 activity.Price = price;
                 activity.Status = status;
                 activity.Image = image;             
-            }
+            };
+            _bddcontext.Activities.Update(activity);
+            _bddcontext.SaveChanges();
         }
 
         // Modifier une activité

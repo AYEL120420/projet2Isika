@@ -5,6 +5,7 @@ using _001JIMCV.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Reflection;
 using XAct.Users;
 using User = _001JIMCV.Models.Classes.User;
 
@@ -60,6 +61,55 @@ public class DashboardController : Controller
 
         return View(viewModel);
     }
-   
+    [HttpGet]
+    public IActionResult EditProfil(int id)
+    {
+        LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+        if (viewModel.Authentified)
+        {
+            viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+            UserEnum role = viewModel.User.Role; // Accéder au rôle de l'utilisateur
+
+             id = viewModel.User.Id;
+        }
+            if (id == 0)
+        {
+            return NotFound();
+        }
+
+        User user = dashboardDal.GetUser(id);
+
+        if (user == null)
+        {
+            return View("Error");
+        }
+
+        return View("DashboardClientEdit", user);
+    }
+
+
+    [HttpPost]
+    public IActionResult EditProfil(User user)
+    {
+        if (ModelState.IsValid)
+        {
+            if (user.Id != 0)
+            {
+                dashboardDal.EditProfil(user.Id, user.Name, user.Email, user.Phone, user.Gender, user.Country, user.City);
+                return RedirectToAction("Index", new { id = user.Id });
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+        else
+        {
+            return View(user);
+        }
+    }
 
 }
+
+
+

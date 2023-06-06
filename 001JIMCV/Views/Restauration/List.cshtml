@@ -14,7 +14,7 @@
         <th>Localisation</th>
         <th>Menu</th>
         <th>Tarif</th>
-        <th>Email de contact</th>
+        <th>Image</th>
         <th>Statut</th>
     </tr>
 
@@ -31,6 +31,7 @@
             <td>@restauration.Adress</td>
             <td>@restauration.Menu</td>
             <td>@restauration.Price</td>
+            <td>@restauration.Images</td>
             <td>@restauration.Status</td>
             <td style="width: 60px;">
                 <form action="@Url.Action("EditRestauration", "Restauration", new { id = restauration.Id })" method="get">

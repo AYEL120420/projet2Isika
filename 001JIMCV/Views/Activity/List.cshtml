@@ -13,7 +13,8 @@
         <th>Date</th>
         <th>Localisation</th>
         <th>Description</th>
-        <th>Prix</th>    
+        <th>Prix</th> 
+        <th>Image</th>
         <th>Statut</th>
     </tr>
 
@@ -28,7 +29,8 @@
             <td>@activity.Date</td>
             <td>@activity.Adress</td>
             <td>@activity.Description</td>
-            <td>@activity.Price</td>        
+            <td>@activity.Price</td>    
+            <td>@activity.Image</td>
             <td>@activity.Status </td>
             <td style="width: 60px;">
                 <form action="@Url.Action("EditActivity", "Activity", new { id = activity.Id })" method="get">

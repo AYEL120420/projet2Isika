@@ -77,7 +77,7 @@ namespace _001JIMCV.Controllers
             UserEnum role = viewModel.User.Role;
 
             propositionDal.AddProposition(viewModel.User.Id,proposition.ProviderName,proposition.ProviderEmail, proposition.Country, proposition.City, proposition.Name,
-                proposition.Description, proposition.Disponibility, proposition.Program, proposition.Accommodation, proposition.Activities, proposition.Restauration, proposition.Price);
+                proposition.Description, proposition.Disponibility, proposition.Program, proposition.Accommodation, proposition.Activities, proposition.Restauration, proposition.Price, proposition.Image);
 
             return RedirectToAction("GetOtherPropositions");
         }
@@ -109,8 +109,8 @@ namespace _001JIMCV.Controllers
             if (proposition.Id != 0)
             {
                 propositionDal.EditProposition(proposition.Id, proposition.ProviderName, proposition.ProviderEmail, proposition.Country, proposition.City, proposition.Name,
-                proposition.Description, proposition.Disponibility, proposition.Program, proposition.Accommodation, proposition.Activities, proposition.Restauration, proposition.Price, proposition.Status);
-                return RedirectToAction("GetList", new { id = proposition.Id });
+                proposition.Description, proposition.Disponibility, proposition.Program, proposition.Accommodation, proposition.Activities, proposition.Restauration, proposition.Price,proposition.Image, proposition.Status);
+                return RedirectToAction("GetOtherPropositions", new { id = proposition.Id });
             }
             else
             {
@@ -147,7 +147,7 @@ namespace _001JIMCV.Controllers
             if (proposition.Id != 0)
             {
                 propositionDal.DeleteProposition(proposition);
-                return RedirectToAction("GetList", new { id = proposition.Id });
+                return RedirectToAction("GetOtherPropositions", new { id = proposition.Id });
             }
             else
             {

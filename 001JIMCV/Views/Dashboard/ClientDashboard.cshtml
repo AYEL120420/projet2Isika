@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "_LayoutJimcv";
+     
 }
 
 @section ExtraCss{
@@ -16,11 +17,11 @@
         </div>
 
         <div class="dashboard-item">
-            <h2><a href="@Url.Action("GetClientReservation","Reservation")"> Reservations</a></h2>
+            <h2><button onclick="window.location.href= '@Url.Action("GetClientReservation","Reservation")'"> Reservations</button></h2>
         </div>
 
         <div class="dashboard-item">
-            <h2><button onclick="window.location.href='@Url.Action("Index", "Home")'">Accueil</button></h2>
+            <h2><button onclick="window.location.href='@Url.Action("EditProfil", "Dashboard")'">Editer mon Profil</button></h2>
         </div>
 
         <div class="dashboard-item">
@@ -35,37 +36,34 @@
             <h2>
                 Remplissez votre profil pour gagner du temps sur vos prochaines réservations !
             </h2>
+<form>
+            <label for="Name">Nom:</label><br>
+            <input type="text" id="Name" name="Name" value="@ViewData["UserName"]" required><br>
 
-            <form>
-                <label for="firstname">Prénom:</label><br>
-                <input type="text" id="firstname" name="firstname" value="@ViewData["UserName"]"><br>
-                <br />
-                <label for="lastname">Nom:</label><br>
-                <input type="text" id="lastname" name="lastname"><br>
-                <br />
-                <label for="gender">Sexe:</label><br>
-                <select id="gender" name="gender" value="@ViewData["UserGender"]">
-                    <option value="male">Homme</option>
-                    <option value="female">Femme</option>
-                </select><br>
-                <br>
-                <label for="mobile">Numéro de téléphone mobile:</label><br>
-                <input type="tel" id="mobile" name="mobile" value="@ViewData["UserPhone"]"><br>
-                <br>
-                <label for="email">Adresse email:</label><br>
-                <input type="email" id="email" name="email" value="@ViewData["UserEmail"]"><br>
-                <br>
-                <label for="country">Pays:</label><br>
-                <input type="text" id="country" name="country" value="@ViewData["UserCountry"]"><br>
-                <br />
-                <label for="city">Ville:</label><br>
-                <input type="text" id="city" name="city" value="@ViewData["UserCity"]"><br>
-                <br />
-                <label for="travels">Voyages réalisés:</label><br>
-                <textarea id="travels" name="travels"></textarea><br>
-                <br />
-                <input type="submit" value="Soumettre"><br>
-                <br />
-    </div>
+            <label for="Gender">Sexe:</label><br>
+            <select id="Gender" name="Gender" value="@ViewData["UserGender"]" required>
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+            </select><br>
+            <br>
+            <label for="Phone">Numéro de téléphone mobile:</label><br>
+            <input type="tel" id="Phone" name="Phone" value="@ViewData["UserPhone"]"><br>
+            <br>
+            <label for="Email">Adresse email:</label><br>
+            <input type="email" id="Email" name="Email" value="@ViewData["UserEmail"]" required><br>
+            <br>
+            <label for="Country">Pays:</label><br>
+            <input type="text" id="Country" name="Country" value="@ViewData["UserCountry"]"><br>
+            <br />
+            <label for="City">Ville:</label><br>
+            <input type="text" id="City" name="City" value="@ViewData["UserCity"]"><br>
+            <br />
+            <label for="Travels">Voyages réalisés:</label><br>
+            <textarea id="Travels" name="Travels"></textarea><br>
+            <br />
+            <input type="submit" value="Soumettre"><br>
+            <br />
+            </form>
+                </div>
 
 </div>

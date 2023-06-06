@@ -17,6 +17,7 @@
         <th>Activités</th>
         <th>Restauration</th>
         <th>Prix</th>
+        <th>Image</th>
         <th>Statut</th>
     </tr>
 
@@ -36,6 +37,7 @@
             <td>@otherProposition.Activities</td>
             <td>@otherProposition.Restauration</td>
             <td>@otherProposition.Price</td>
+            <td>@otherProposition.Image</td>
             <td>@otherProposition.Status</td>
             <td style="width: 60px;">
                 <form action="@Url.Action("EditOtherProposition", "Proposition", new { id = otherProposition.Id })" method="get">
