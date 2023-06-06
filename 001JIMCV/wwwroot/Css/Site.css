@@ -47,7 +47,7 @@ header {
 
 #Accueildescription {
     margin: 20px auto;
-    max-width: 900px;
+    width: 100%;
     padding: 20px;
 }
 
