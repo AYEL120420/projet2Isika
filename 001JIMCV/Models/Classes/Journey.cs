@@ -9,6 +9,7 @@ namespace _001JIMCV.Models.Classes
         public int Id { get; set; }
         public string DepartureDate { get; set; }
         public string ReturnDate { get; set; }
+        public string DepartureCity { get; set; }
         public string CountryDestination { get; set; }
         public string CityDestination { get; set; }
         public float Price { get; set; }

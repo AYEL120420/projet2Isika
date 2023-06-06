@@ -19,9 +19,9 @@ namespace _001JIMCV.ViewModels
         public List<Restauration> Restaurations { get; set; }
 
         [Required]
-        public int DepartureFlightId { get; set; }
+        public int DepartureFlightCocheId { get; set; }
         [Required]
-        public int ReturnFlightId { get; set; }
+        public int ReturnFlightCocheId { get; set; }
         public List<string> AccommodationsCocheIds { get; set; }
         public List<string> ActivitiesCocheIds { get; set; }
         public List<string> RestaurationsCocheIds { get; set; }

@@ -6,7 +6,7 @@
 <div class="container">
     <div style="display: flex; align-items: center">
         <div class="image-container">
-            <img src="/Images/Logo.png" alt="Image du produit">
+            <img src="/images/@Model.Journey.ImagePath" alt="Image du produit">
         </div>
         <div>
             <div class="description-section">
@@ -47,7 +47,7 @@
         <div class="description-section">
             <h3>Hébergements</h3>
         </div>
-        @foreach (var accommodation in ViewBag.listAccommodations)
+        @foreach (var accommodation in Model.Accommodations)
         {
             <div>
                 <span>Nom : </span><span>@accommodation.Name</span>
@@ -68,7 +68,7 @@
         <div class="description-section">
             <h3>Activités</h3>
         </div>
-        @foreach (var activity in ViewBag.listActivities)
+        @foreach (var activity in Model.Activities)
         {
             <div>
                 <span>Nom : </span><span>@activity.Name</span>
@@ -89,7 +89,7 @@
         <div class="description-section">
             <h3>Restaurants</h3>
         </div>
-        @foreach (var restaurants in ViewBag.listRestaurations)
+        @foreach (var restaurants in Model.Restaurations)
         {
             <div>
                 <span>Nom : </span><span>@restaurants.Name</span>

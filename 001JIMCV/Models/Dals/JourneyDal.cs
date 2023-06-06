@@ -85,6 +85,13 @@ namespace _001JIMCV.Models.Dals
             this._bddContext.SaveChanges();
             return pack.Id;
         }
+        public int AddPackServices(int UserId)
+        {
+            PackServices pack = new PackServices() { UserId = UserId, AllInclusive = false};
+            this._bddContext.PackService.Add(pack);
+            this._bddContext.SaveChanges();
+            return pack.Id;
+        }
         public void AddFlightPackServices(int depFlightId, int returnFlightId, int packServiceId)
         {
             FlightPackServices pack = new FlightPackServices() { DepartureFlightId = depFlightId, ReturnFlightId = returnFlightId, PackServicesId= packServiceId };
