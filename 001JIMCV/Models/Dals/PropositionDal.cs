@@ -25,7 +25,7 @@ namespace _001JIMCV.Models.Dals
 
         // Ajouter une autre proposition
         public int AddProposition(int ProviderId,string providerName,string providerEmail,  string country, string city, string name, string disponibility,
-            string description, string program, string accommodation, string activities, string restauration, float price)
+            string description, string program, string accommodation, string activities, string restauration, float price, byte[] image)
         {
             OtherProposition proposition = new OtherProposition()
             {
@@ -42,7 +42,9 @@ namespace _001JIMCV.Models.Dals
                 Activities=activities,
                 Restauration=restauration,
                 Price=price,
-                Status = "En Cours de traitement"
+                Image = image,
+                Status = "En Cours de traitement",
+               
             };
 
             _bddcontext.OtherPropositions.Add(proposition);
@@ -59,7 +61,8 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une autre proposition
-        public void EditProposition(int id, string providerName, string providerEmail, string country, string city, string name, string disponibility, string description, string program, string accommodation, string activities, string restauration, float price, string status)
+        public void EditProposition(int id, string providerName, string providerEmail, string country, string city, string name, string disponibility, string description, 
+            string program, string accommodation, string activities, string restauration, float price, byte[] image,string status)
         {
             OtherProposition proposition = _bddcontext.OtherPropositions.Find(id);
             if (proposition != null)
@@ -77,7 +80,9 @@ namespace _001JIMCV.Models.Dals
                 proposition.Activities = activities;
                 proposition.Restauration = restauration;
                 proposition.Price = price;
+                proposition.Image = image;
                 proposition.Status = status;
+               
 
                 _bddcontext.OtherPropositions.Update(proposition);
                 _bddcontext.SaveChanges();

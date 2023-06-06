@@ -26,11 +26,14 @@ namespace _001JIMCV.Models.Dals
         }
 
         //Ajouter un service
-        public int AddAccommodation(int ProviderId, string country, string city, string type, string name, string address, string from, string to, float price, string description)
+        public int AddAccommodation(int ProviderId, string providerName, string providerEmail, string country, string city, string type, string name, string address, string from, string to, float price, 
+            string description, byte[]image)
         {
             Accommodation accommodation = new Accommodation()
             {   
                 ProviderId = ProviderId,
+                ProviderName = providerName,
+                ProviderEmail = providerEmail,
                 Country = country,
                 City = city,
                 Type = type,
@@ -40,6 +43,7 @@ namespace _001JIMCV.Models.Dals
                 EndDate = to,
                 Price = price,
                 Description = description,
+                Image=image,
                 Status = "En Cours de traitement"
             };
 
@@ -56,7 +60,7 @@ namespace _001JIMCV.Models.Dals
           }
 
         //modifier un service
-        public void EditAccommodation(int id,string country, string city, string type,string name, string address, string from, string to, float price, string description, string status)
+        public void EditAccommodation(int id,string country, string city, string type,string name, string address, string from, string to, float price, string description, string status, byte[] image)
         {
             Accommodation accommodation = _bddcontext.Accommodations.Find(id);
             if (accommodation != null)
@@ -72,6 +76,7 @@ namespace _001JIMCV.Models.Dals
                 accommodation.Price = price;
                 accommodation.Description = description;
                 accommodation.Status = status;
+                accommodation.Image = image;
                 _bddcontext.SaveChanges();
             }
             _bddcontext.Accommodations.Update(accommodation);

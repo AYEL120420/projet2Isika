@@ -116,8 +116,8 @@ namespace _001JIMCV.Controllers
             if (restauration.Id != 0)
             {
                 restaurationDal.EditRestauration(restauration.Id, restauration.ProviderName, restauration.ProviderEmail, restauration.Country, restauration.City, restauration.Type, restauration.Description, 
-                    restauration.Adress, restauration.Menu, restauration.Price,restauration.Images, restauration.Status);
-                return RedirectToAction("GetList", new { @id = restauration.Id });
+                    restauration.Adress, restauration.Menu, restauration.Price, restauration.Status,restauration.Images);
+                return RedirectToAction("GetRestauration", new { @id = restauration.Id });
             }
             else
             {
@@ -154,7 +154,7 @@ namespace _001JIMCV.Controllers
             if (restauration.Id != 0)
             {
                 restaurationDal.DeleteRestauration(restauration);
-                return RedirectToAction("GetList", new { id = restauration.Id });
+                return RedirectToAction("GetRestauration", new { id = restauration.Id });
             }
             else
             {

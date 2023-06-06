@@ -26,5 +26,6 @@ namespace _001JIMCV.Models.Classes
         public string Restauration { get; set; }
         public float Price { get; set; }
         public string Status { get; set; }
+        public byte[] Image { get; set; }
     }
 }

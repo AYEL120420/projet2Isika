@@ -111,8 +111,8 @@ namespace _001JIMCV.Controllers
 
             if (activity.Id != 0)
             {
-                activityDal.EditActivity(activity.Id,activity.ProviderName, activity.ProviderEmail, activity.Country, activity.City, activity.Name,  activity.Date, activity.Adress, activity.Description, activity.Price,  activity.Image, activity.Status);
-                return RedirectToAction("GetList", new { id = activity.Id });
+                activityDal.EditActivity(activity.Id,activity.ProviderName, activity.ProviderEmail, activity.Country, activity.City, activity.Name,  activity.Date, activity.Adress, activity.Description, activity.Price, activity.Status, activity.Image);
+                return RedirectToAction("GetActivity", new { id = activity.Id });
             }
             else
             {
@@ -149,7 +149,7 @@ namespace _001JIMCV.Controllers
             if (activity.Id != 0)
             {
                 activityDal.DeleteActivity(activity);
-                return RedirectToAction("GetList", new { id = activity.Id });
+                return RedirectToAction("GetActivity", new { id = activity.Id });
             }
             else
             {

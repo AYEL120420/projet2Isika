@@ -18,6 +18,12 @@ namespace _001JIMCV.Models.Dals
             _bddcontext = new BDDContext();
         }
 
+        public User GetUser(int id)
+
+        {
+            return _bddcontext.Users.FirstOrDefault(s => s.Id == id);
+        }
+
         public void EditProfil(int id, string name, string email, string phone, string gender, string country, string city)
         {
             User user = _bddcontext.Users.Find(id);
