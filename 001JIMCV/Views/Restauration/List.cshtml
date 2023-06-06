@@ -3,7 +3,12 @@
     Layout = "_LayoutJimcv";
 }
 
-<table border="1" style="width:60%">
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Table.css" link />
+}
+<br />
+
+<table>
     <tr>
         <th>Nom partenaire</th>
         <th>Adresse Email</th>
@@ -15,13 +20,14 @@
         <th>Menu</th>
         <th>Tarif</th>
         <th>Email de contact</th>
-        <th>Statut</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
     </tr>
-
 
     @foreach (_001JIMCV.Models.Classes.Restauration restauration in ViewData["Restaurations"] as List<_001JIMCV.Models.Classes.Restauration>)
     {
         <tr>
+            
             <td>@restauration.ProviderName</td>
             <td>@restauration.ProviderEmail</td>
             <td>@restauration.Country</td>
@@ -32,17 +38,21 @@
             <td>@restauration.Menu</td>
             <td>@restauration.Price</td>
             <td>@restauration.Status</td>
-            <td style="width: 60px;">
+            <td>
                 <form action="@Url.Action("EditRestauration", "Restauration", new { id = restauration.Id })" method="get">
                     <button type="submit">Modifier</button>
                 </form>
             </td>
-            <td style="width: 70px;">
+            
+            <td>
                 <form action="@Url.Action("DeleteRestauration", "Restauration", new { id = restauration.Id })" method="post">
                     <button type="submit">Supprimer</button>
                 </form>
             </td>
         </tr>
+       
     }
 </table>
-<boutton>@Html.ActionLink("Ajouter", "RestaurationForm", "Restauration")</boutton>
+<br />
+<br />
+<button>@Html.ActionLink("Ajouter", "RestaurationForm", "Restauration")</button>

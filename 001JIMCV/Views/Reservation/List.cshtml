@@ -3,9 +3,13 @@
     Layout = "_LayoutJimcv";
 }
 
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Table.css" link />
+}
 
+<br />
 
-<table border="1" style="width:60%">
+<table>
     <tr>
         <th>Date de départ</th>
         <th>Date de retour</th>
@@ -31,7 +35,7 @@
             <td>@reservation.Status</td>
             @if (User.IsInRole("Admin"))
             {
-                <td style="width: 60px;">
+                <td>
                     <form action="@Url.Action("EditReservation", "Reservation", new { id =reservation.Id })" method="get">
                     <button type="submit">Modifier</button>
                 </form>
@@ -40,3 +44,4 @@
         </tr>
     }
 </table>
+

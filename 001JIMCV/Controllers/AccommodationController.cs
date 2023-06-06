@@ -57,8 +57,8 @@ namespace _001JIMCV.Controllers
                     case UserEnum.Provider:
                         //  partenaire
                         var accommodations = accommodationDal.GetAllAccommodations()
-                            .Where(p => p.ProviderId == viewModel.User.Id).ToList();                     
-
+                            .Where(p => p.ProviderId == viewModel.User.Id).ToList();
+                        ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
                         return View("List");
                     default:
                         

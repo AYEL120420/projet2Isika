@@ -3,7 +3,13 @@
     Layout = "_LayoutJimcv";
 }
 
-<table border="1" style="width:60%">
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Table.css" link />
+}
+
+<br />
+
+<table>
     <tr>
         <th>Nom partenaire</th>
         <th>Adresse Email</th>
@@ -15,6 +21,8 @@
         <th>Description</th>
         <th>Prix</th>    
         <th>Statut</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
     </tr>
 
     @foreach (_001JIMCV.Models.Classes.Activity activity in ViewData["Activities"] as List<_001JIMCV.Models.Classes.Activity>)
@@ -30,12 +38,12 @@
             <td>@activity.Description</td>
             <td>@activity.Price</td>        
             <td>@activity.Status </td>
-            <td style="width: 60px;">
+            <td>
                 <form action="@Url.Action("EditActivity", "Activity", new { id = activity.Id })" method="get">
                     <button type="submit">Modifier</button>
                 </form>
             </td>
-            <td style="width: 70px;">
+            <td>
                 <form action="@Url.Action("DeleteActivity", "Activity", new { id = activity.Id })" method="post">
                     <button type="submit">Supprimer</button>
                 </form>
@@ -43,4 +51,6 @@
         </tr>
     }
 </table>
-<boutton>@Html.ActionLink("Ajouter", "ActivityForm", "Activity")</boutton>
+<br />
+<br />
+<button>@Html.ActionLink("Ajouter", "ActivityForm", "Activity")</button>

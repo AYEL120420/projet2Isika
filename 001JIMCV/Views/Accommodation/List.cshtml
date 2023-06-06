@@ -3,9 +3,13 @@
     Layout = "_LayoutJimcv";
 }
 
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Table.css" link />
+}
 
+<br />
 
-<table border="1" style="width:60%">
+<table>
     <tr>
         <th>Nom du partenaire</th>
         <th>Adresse Email</th>
@@ -19,6 +23,8 @@
         <th>Prix</th>
         <th>Description</th>
         <th>Status</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
         
     </tr>
    
@@ -37,13 +43,14 @@
             <td>@accommodation.Price</td>
             <td>@accommodation.Description</td>
             <td>@accommodation.Status</td>
+           
     
-            <td style="width: 60px;">
+            <td>
                 <form action="@Url.Action("EditAccommodation", "Accommodation", new { id = accommodation.Id })" method="get">
                     <button type="submit">Modifier</button>
                 </form>
                 </td>
-            <td style="width: 70px;">
+            <td>
                 <form action="@Url.Action("DeleteAccommodation", "Accommodation", new { id = accommodation.Id })" method="post">
                     <button type="submit">Supprimer</button>
                 </form>
@@ -51,6 +58,8 @@
         </tr>
     }
 </table>
-<boutton>@Html.ActionLink("Ajouter", "AccommodationForm", "Accommodation")</boutton>
+<br />
+<br />
+<button>@Html.ActionLink("Ajouter", "AccommodationForm", "Accommodation")</button>
 
 
