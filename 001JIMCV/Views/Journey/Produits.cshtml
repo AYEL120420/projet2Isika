@@ -105,6 +105,10 @@
         }
     </div>
 </div>
+<div>
+    <button onclick="window.location.href='@Url.Action("ReservationAllInclusive","Journey", new { @Id = @Model.Journey.Id})'">Réserver ce voyage</button>
+    <button onclick="window.location.href='@Url.Action("DisplayJourneyPerso","Journey", new { @Id = @Model.Journey.Id, departureCity = "CDG"})'">Personnaliser votre voyage</button>
+</div>
 
 <div class="booking-search">
     <h3 class="title-step">Votre voyage</h3>
