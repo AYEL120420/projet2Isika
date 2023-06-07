@@ -9,53 +9,49 @@
 @using (Html.BeginForm(formAction, "Reservation", FormMethod.Post))
 {
     <fieldset>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
         <div>
             @Html.LabelFor(m => m.TravelStartDate, "Date de début du voyage :")
             @Html.TextBoxFor(m => m.TravelStartDate, new { @type = "date", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.TravelStartDate)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.TravelEndDate, "Date de fin du voyage :")
             @Html.TextBoxFor(m => m.TravelEndDate, new { @type = "date", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.TravelEndDate)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.NumberOfPassengers, "Nombre de voyageurs :")
             @Html.TextBoxFor(m => m.NumberOfPassengers, new { type = "number", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.NumberOfPassengers)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.ContactName, "Nom :")
             @Html.TextBoxFor(m => m.ContactName, new { required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.ContactName)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.ContactEmail, "Email :")
             @Html.TextBoxFor(m => m.ContactEmail, new { type = "email", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.ContactEmail)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.ContactPhone, "Téléphone :")
             @Html.TextBoxFor(m => m.ContactPhone, new { type = "tel", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.ContactPhone)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.Status, "Statut :")
             @Html.TextBoxFor(m => m.Status)
             @Html.ValidationMessageFor(m => m.Status)
         </div>
+     </div>
     </fieldset>
 
     <input type="submit" value="@submitText" class="btn btn-primary" />

@@ -87,7 +87,6 @@ public class DashboardController : Controller
         return View("DashboardClientEdit", user);
     }
 
-
     [HttpPost]
     public IActionResult EditProfil(User user)
     {

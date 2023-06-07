@@ -3,25 +3,23 @@
     Layout = "_LayoutJimcv";
 }
 
-<div class="container">
-    <div style="display: flex; align-items: center">
-        <div class="image-container">
-            <img src="/Images/Logo.png" alt="Image du produit">
-        </div>
-        <div>
-            <div class="description-section">
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/FullPackage.css" link />
+
+}
+
+<div class="journey-photo">
+    <div style="display:flex; flex-direction: column">
+            <img src="/Images/Inde/VoyageInde03.jpg" alt="Image du produit">
+            <div class="description-section" style="display: flex">
                 <h3>@Html.DisplayFor(model => model.Journey.CountryDestination) - @Html.DisplayFor(model => model.Journey.CityDestination)  </h3>
                 <p>@Html.DisplayFor(model => model.Journey.Description)</p>
             </div>
         </div>
     </div>
-</div>
-
-<div class="container">
-
-    <div class="product-description">
-        <div class="description-section">
-            <h3>Vols</h3>
+     <div class="product-description">
+        <div>
+            <h4>Vols</h4>
         </div>
         <div>
             <span>Compagnie aérienne : </span><span>@Html.DisplayFor(model => model.DepartureFlight.Airline)</span>
@@ -39,13 +37,10 @@
             <span>N° de vol : </span><span>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</span>
         </div>
     </div>
-</div>
-
-<div class="container">
 
     <div class="product-description">
         <div class="description-section">
-            <h3>Hébergements</h3>
+            <h4>Hébergements</h4>
         </div>
         @foreach (var accommodation in Model.Accommodations)
         {
@@ -56,14 +51,12 @@
                 <span>Adresse : </span><span>@accommodation.Adress</span>
             </div>
             <div>@accommodation.Description
-            </div>
-            <br />
+        </div>
+        
+        <br />
 
         }
     </div>
-</div>
-<div class="container">
-
     <div class="product-description">
         <div class="description-section">
             <h3>Activités</h3>
@@ -82,9 +75,6 @@
 
         }
     </div>
-</div>
-<div class="container">
-
     <div class="product-description">
         <div class="description-section">
             <h3>Restaurants</h3>
@@ -104,10 +94,9 @@
 
         }
     </div>
-</div>
 
-<div class="booking-search">
-    <h3 class="title-step">Votre voyage</h3>
+<div class="title">
+    <h4>Votre voyage</h4>
     <div class="booking-filter-search">
         <div class="row inner-booking-filter-search">
             <div class="col-6">

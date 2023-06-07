@@ -1,19 +1,20 @@
 ﻿@model _001JIMCV.ViewModels.JourneyViewModel
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Ajouter des services à votre voyage</title>
-</head>
-<body>
+@{
+    Layout = "_LayoutJimcv";
+}
+
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Table.css" link />
+
+}
     @using (Html.BeginForm("JourneyAddServices", "Journey", FormMethod.Post))
     {
         <fieldset>
             <legend>Associer des vols au voyage : </legend>
             <div>
             <div>Vol de départ : </div>
-            <table border="1" style="width:100%">
+            <table>
                 <tr>
                         <th></th>
                         <th>Date de départ</th>
@@ -114,5 +115,3 @@
        
         <input type="submit" value="Suivant" />
     }
-</body>
-</html>

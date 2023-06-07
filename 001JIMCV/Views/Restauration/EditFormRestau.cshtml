@@ -18,30 +18,31 @@
 @using (Html.BeginForm(formAction, "Restauration", FormMethod.Post))
 {
     <fieldset>
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
         <div>
             @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
+        <br/>
         <div>
             @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
+            <br />
         <div>
-            @Html.LabelFor(m => m.Country, "Pays")<br>
+            @Html.LabelFor(m => m.Country, "Pays")
             @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
             @Html.ValidationMessageFor(m => m.Country)
         </div>
-        <br>
-
+        <br/>
         <div>
-            @Html.LabelFor(m => m.City, "Ville")<br>
+            @Html.LabelFor(m => m.City, "Ville")
             @Html.TextBoxFor(m => m.City, new {required = "required" })
             @Html.ValidationMessageFor(m => m.City)
         </div>
-
-
+            <br />
         <div>
             @Html.LabelFor(m => m.Type)
             <select class="form-control" name="Type">
@@ -51,47 +52,43 @@
             </select>
             @Html.ValidationMessageFor(m => m.Type)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.Description)
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.Adress,"Adresse")
             @Html.TextBoxFor(m => m.Adress)
             @Html.ValidationMessageFor(m => m.Adress)
         </div>
-        <br>
-
+        <br/>
         <div>
-            @Html.LabelFor(m => m.Menu)<br>
+            @Html.LabelFor(m => m.Menu)
             @Html.TextAreaFor(m => m.Menu)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.Price, "Prix")
             @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
             @Html.ValidationMessageFor(m => m.Price)
         </div>
-        <br>
-
+        <br/>
         <div class="form-group">
             @Html.LabelFor(m => m.Images)
             <input type="file" name="Images" multiple class="form-control-file" />
             @Html.ValidationMessageFor(m => m.Images)
         </div>
-        <br>
+        <br/>
         <div class="form-group">
             <label for="Status">Status</label>
             <input type="text" id="Status" name="Status" class="form-control" value="@Model.Status" @((User.IsInRole("Provider")) ? "readonly" : "") />
         </div>
-
+            <br />
         <div class="form-group">
             <input type="submit" value="Enregistrer" class="btn btn-primary" />
+        </div>
         </div>
     </fieldset>
 }
