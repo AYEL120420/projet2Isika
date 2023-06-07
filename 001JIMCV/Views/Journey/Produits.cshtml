@@ -6,100 +6,120 @@
     <link rel="stylesheet" type="text/css" href="~/Css/FullPackage.css" link />
 
 }
-<div class="container">
+<div class="container" style="margin: 30px 150px">
     <div style="display: flex; align-items: center">
         <div class="image-container">
             <img src="/images/@Model.Journey.ImagePath" alt="Image du produit">
         </div>
-        <div>
+        <div style="width:60%">
             <div class="description-section">
                 <h3>@Html.DisplayFor(model => model.Journey.CountryDestination) - @Html.DisplayFor(model => model.Journey.CityDestination)  </h3>
                 <p>@Html.DisplayFor(model => model.Journey.Description)</p>
             </div>
         </div>
     </div>
-     <div class="product-description">
-        <div>
-            <h4>Vols</h4>
-        </div>
-        <div>
-            <span>Compagnie aérienne : </span><span>@Html.DisplayFor(model => model.DepartureFlight.Airline)</span>
-            <span>Ville de départ : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DepartureCity)</span>
-            <span>Ville d'arrivée : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DestinationCity)</span>
-            <span>Date : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DepartureDate)</span>
-            <span>N° de vol : </span><span>@Html.DisplayFor(model => model.DepartureFlight.FlightNumber)</span>
-        </div>
-        <br />
-        <div>
-            <span>Compagnie aérienne : </span><span>@Html.DisplayFor(model => model.ReturnFlight.Airline)</span>
-            <span>Ville de départ : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DepartureCity)</span>
-            <span>Ville d'arrivée : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DestinationCity)</span>
-            <span>Date : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DepartureDate)</span>
-            <span>N° de vol : </span><span>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</span>
-        </div>
-    </div>
-
-    <div class="product-description">
-        <div class="description-section">
-            <h4>Hébergements</h4>
-        </div>
-        @foreach (var accommodation in Model.Accommodations)
-        {
-            <div>
-                <span>Nom : </span><span>@accommodation.Name</span>
-                <span>Type : </span><span>@accommodation.Type</span>
-                <span>Ville : </span><span>@accommodation.City</span>
-                <span>Adresse : </span><span>@accommodation.Adress</span>
-            </div>
-            <div>@accommodation.Description
-        </div>
+     
+    
+    <div style="display:flex">
         
-        <br />
+        <div style="width:50%">
 
-        }
-    </div>
-    <div class="product-description">
-        <div class="description-section">
-            <h3>Activités</h3>
+            <div class="product-description">
+                <div>
+                    <h4>Vols</h4>
+                </div>
+                <div>
+                    <span>Compagnie aérienne : </span><span>@Html.DisplayFor(model => model.DepartureFlight.Airline)</span>
+                    <span>Ville de départ : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DepartureCity)</span>
+                    <span>Ville d'arrivée : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DestinationCity)</span>
+                    <span>Date : </span><span>@Html.DisplayFor(model => model.DepartureFlight.DepartureDate)</span>
+                    <span>N° de vol : </span><span>@Html.DisplayFor(model => model.DepartureFlight.FlightNumber)</span>
+                </div>
+                <br />
+                <div>
+                    <span>Compagnie aérienne : </span><span>@Html.DisplayFor(model => model.ReturnFlight.Airline)</span>
+                    <span>Ville de départ : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DepartureCity)</span>
+                    <span>Ville d'arrivée : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DestinationCity)</span>
+                    <span>Date : </span><span>@Html.DisplayFor(model => model.ReturnFlight.DepartureDate)</span>
+                    <span>N° de vol : </span><span>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</span>
+                </div>
+            </div>
+            <div class="product-description">
+                <div class="description-section">
+                    <h4>Hébergements</h4>
+                </div>
+                @foreach (var accommodation in Model.Accommodations)
+                {
+                    <div>
+                        <span>Nom : </span><span>@accommodation.Name</span>
+                        <span>Type : </span><span>@accommodation.Type</span>
+                        <span>Ville : </span><span>@accommodation.City</span>
+                        <span>Adresse : </span><span>@accommodation.Adress</span>
+                    </div>
+                    <div>
+                        @accommodation.Description
+                    </div>
+
+                    <br />
+
+                }
+            </div>
+
         </div>
-        @foreach (var activity in Model.Activities)
-        {
-            <div>
-                <span>Nom : </span><span>@activity.Name</span>
-                <span>Ville : </span><span>@activity.City</span>
-                <span>Adresse : </span><span>@activity.Adress</span>
-            </div>
-            <div>
-                @activity.Description
-            </div>
-            <br />
 
-        }
-    </div>
-    <div class="product-description">
-        <div class="description-section">
-            <h3>Restaurants</h3>
+        <div style="width:50%">
+
+            <div class="product-description">
+                <div class="description-section">
+                    <h3>Activités</h3>
+                </div>
+                @foreach (var activity in Model.Activities)
+                {
+                    <div>
+                        <span>Nom : </span><span>@activity.Name</span>
+                        <span>Ville : </span><span>@activity.City</span>
+                        <span>Adresse : </span><span>@activity.Adress</span>
+                    </div>
+                    <div>
+                        @activity.Description
+                    </div>
+                    <br />
+
+                }
+            </div>
+            <div class="product-description">
+                <div class="description-section">
+                    <h3>Restaurants</h3>
+                </div>
+                @foreach (var restaurants in Model.Restaurations)
+                {
+                    <div>
+                        <span>Nom : </span><span>@restaurants.Name</span>
+                        <span>Type : </span><span>@restaurants.Type</span>
+                        <span>Ville : </span><span>@restaurants.City</span>
+                        <span>Adresse : </span><span>@restaurants.Adress</span>
+                    </div>
+                    <div>
+                        @restaurants.Description
+                    </div>
+                    <br />
+
+                }
+            </div>
+
         </div>
-        @foreach (var restaurants in Model.Restaurations)
-        {
-            <div>
-                <span>Nom : </span><span>@restaurants.Name</span>
-                <span>Type : </span><span>@restaurants.Type</span>
-                <span>Ville : </span><span>@restaurants.City</span>
-                <span>Adresse : </span><span>@restaurants.Adress</span>
-            </div>
-            <div>
-                @restaurants.Description
-            </div>
-            <br />
 
-        }
+        
     </div>
+
+
+    <div>
+        <button onclick="window.location.href='@Url.Action("ReservationAllInclusive","Journey", new { @Id = @Model.Journey.Id})'">Réserver ce voyage</button>
+        <button onclick="window.location.href='@Url.Action("DisplayJourneyPerso","Journey", new { @Id = @Model.Journey.Id, departureCity = "CDG"})'">Personnaliser votre voyage</button>
+    </div>
+
 </div>
-<div>
-    <button onclick="window.location.href='@Url.Action("ReservationAllInclusive","Journey", new { @Id = @Model.Journey.Id})'">Réserver ce voyage</button>
-    <button onclick="window.location.href='@Url.Action("DisplayJourneyPerso","Journey", new { @Id = @Model.Journey.Id, departureCity = "CDG"})'">Personnaliser votre voyage</button>
-</div>
+
 
 <div class="title">
     <h4>Votre voyage</h4>
