@@ -27,7 +27,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Ajouter une restauration
-        public int AddRestauration(int providerId, string providerName, string Email, string country, string city, string type, string description, string adress, string menu, float price, byte[] image)
+        public int AddRestauration(int providerId, string providerName, string Email, string country, string city, string type, string description, string adress, string menu, float price, byte[] image, string status)
         {
             Restauration restauration = new Restauration()
             {
@@ -58,7 +58,7 @@ namespace _001JIMCV.Models.Dals
         }
 
         // Modifier une restauration
-        public void EditRestauration(int id, string providerName, string Email, string country, string city, string type, string description, string adress, string menu, float price, string status, byte[] image)
+        public void EditRestauration(int id, string providerName, string Email, string country, string city, string type, string description, string adress, string menu, float price,  byte[] image, string status)
         {
             Restauration restauration = _bddcontext.Restaurations.Find(id);
             if (restauration != null)
@@ -76,7 +76,7 @@ namespace _001JIMCV.Models.Dals
                 restauration.Status = status;
                 restauration.Images = image;
             };
-            _bddcontext.Restaurations.Remove(restauration);
+            _bddcontext.Restaurations.Update(restauration);
             _bddcontext.SaveChanges();
         }
 

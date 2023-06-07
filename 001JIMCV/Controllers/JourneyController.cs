@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using XAct;
-using XAct.UI.Views;
 using XAct.Users;
+
 
 namespace _001JIMCV.Controllers
 {
@@ -26,10 +26,16 @@ namespace _001JIMCV.Controllers
         {
             return View();
         }
+
+        public IActionResult GetAllJourneys()
+        {
+            var journey = JourneyDal.GetAllJourneys();
+            ViewData["Journeys"] = journey ?? new List<Journey>();
+            return View("ListJourney");
+        }
+
         public JourneyViewModel GetJourneyViewModelFull(int JourneyId)
         {
-            JourneyViewModel jvm = new JourneyViewModel();
-
             jvm.journeyId = JourneyId;
 
             //On récupère le voyage associé à l'Id

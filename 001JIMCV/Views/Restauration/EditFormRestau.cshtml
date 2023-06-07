@@ -15,7 +15,7 @@
     Layout = "_LayoutJimcv";
 }
 
-@using (Html.BeginForm(formAction, "Restauration", FormMethod.Post))
+@using (Html.BeginForm(formAction, "Restauration", FormMethod.Post, new { id = Model.Id }))
 {
     <fieldset>
         <div>

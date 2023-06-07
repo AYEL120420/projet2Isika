@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using _001JIMCV.ViewModels;
 using _001JIMCV.Models.Classes.Enum;
 using System.Linq;
-using XAct;
-using XAct.UI.Views;
+
 
 namespace _001JIMCV.Controllers
 {
@@ -39,7 +38,7 @@ namespace _001JIMCV.Controllers
         {
            
             var accommodations = accommodationDal.GetAllAccommodations();
-            ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
+            ViewData["Accommodations"] = accommodations ?? new List<Accommodation>();
                 return View("List");
           
         }
@@ -61,7 +60,7 @@ namespace _001JIMCV.Controllers
                        
                         var accommodations = accommodationDal.GetAllAccommodations()
                             .Where(p => p.ProviderId == viewModel.User.Id).ToList();
-                        ViewData["Accommodations"] = accommodations ?? new List<_001JIMCV.Models.Classes.Accommodation>();
+                        ViewData["Accommodations"] = accommodations ?? new List<Accommodation>();
                         return View("List");
                     default:
                         
@@ -116,7 +115,7 @@ namespace _001JIMCV.Controllers
 
             if (accommodation.Id != 0)
             {
-                accommodationDal.EditAccommodation(accommodation.Id, accommodation.Country, accommodation.City, accommodation.Type, accommodation.Name, accommodation.Adress, accommodation.StartDate, 
+                accommodationDal.EditAccommodation(accommodation.Id, accommodation.ProviderName, accommodation.ProviderEmail, accommodation.Country, accommodation.City, accommodation.Type, accommodation.Name, accommodation.Adress, accommodation.StartDate, 
                     accommodation.EndDate, accommodation.Price, accommodation.Description, accommodation.Status, accommodation.Image);
                 return RedirectToAction("GetAccommodation", new { id = accommodation.Id });
             }

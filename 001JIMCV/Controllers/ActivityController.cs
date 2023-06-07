@@ -35,11 +35,6 @@ namespace _001JIMCV.Controllers
         {
             var activities = activityDal.GetAllActivities();
 
-            foreach (var activity in activities)
-            {
-                activity.Status = "En cours de traitement";
-            }
-
             ViewData["Activities"] = activities ?? new List<Activity>();
             return View("List");
         }
@@ -59,7 +54,7 @@ namespace _001JIMCV.Controllers
                         //  partenaire
                         var activities = activityDal.GetAllActivities()
                             .Where(p => p.ProviderId == viewModel.User.Id).ToList();
-                        ViewData["Activities"] = activities ?? new List<_001JIMCV.Models.Classes.Activity>();
+                        ViewData["Activities"] = activities ?? new List<Activity>();
 
                         return View("List");
                     default:
@@ -111,7 +106,8 @@ namespace _001JIMCV.Controllers
 
             if (activity.Id != 0)
             {
-                activityDal.EditActivity(activity.Id,activity.ProviderName, activity.ProviderEmail, activity.Country, activity.City, activity.Name,  activity.Date, activity.Adress, activity.Description, activity.Price, activity.Status, activity.Image);
+                activityDal.EditActivity(activity.Id,activity.ProviderName, activity.ProviderEmail, activity.Country, activity.City, activity.Name, 
+                    activity.Date, activity.Adress, activity.Description, activity.Price, activity.Status, activity.Image);
                 return RedirectToAction("GetActivity", new { id = activity.Id });
             }
             else

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model _001JIMCV.Models.Classes.User
+@{
     Layout = "_LayoutJimcv";
     string formAction = ViewData["FormAction"] as string;
     string formMethod = ViewData["FormMethod"] as string ?? "post";
@@ -38,35 +39,47 @@
             <h2>
                 Remplissez votre profil pour gagner du temps sur vos prochaines réservations !
             </h2>
-            <form action="@Url.Action("EditProfil", "Dashboard")" method="post">
-                <label for="Name">Nom:</label><br>
-                <input type="text" id="Name" name="Name" required><br>
 
-                <label for="Gender">Sexe:</label><br>
-                <select id="Gender" name="Gender" required>
-                    <option value="male">Homme</option>
-                    <option value="female">Femme</option>
-                </select><br>
-                <br>
-                <label for="Phone">Numéro de téléphone mobile:</label><br>
-                <input type="tel" id="Phone" name="Phone"><br>
-                <br>
-                <label for="Email">Adresse email:</label><br>
-                <input type="email" id="Email" name="Email" required><br>
-                <br>
-                <label for="Country">Pays:</label><br>
-                <input type="text" id="Country" name="Country"><br>
+@using (Html.BeginForm(formAction, "Dashboard", FormMethod.Post))
+            {
+
+                @Html.LabelFor(model => model.Name, "Nom:")
                 <br />
-                <label for="City">Ville:</label><br>
-                <input type="text" id="City" name="City"><br>
+                @Html.TextBoxFor(model => model.Name)
                 <br />
-                <label for="Travels">Voyages réalisés:</label><br>
-                <textarea id="Travels" name="Travels"></textarea><br>
                 <br />
-                <input type="submit" value="Soumettre"><br>
+
+                @Html.LabelFor(model => model.Gender, "Sexe:")
                 <br />
-            </form>
-        </div>
+                @Html.DropDownListFor(model => model.Gender, new SelectList(new[] { "Homme", "Femme" }))
+                <br />
+                <br />
+
+                @Html.LabelFor(model => model.Phone, "Numéro de téléphone:")
+                <br />
+                @Html.TextBoxFor(model => model.Phone)
+                <br />
+                <br />
+
+                @Html.LabelFor(model => model.Email, "Adresse email:")
+                <br />
+                @Html.TextBoxFor(model => model.Email)
+                <br />
+                <br />
+
+                @Html.LabelFor(model => model.Country, "Pays:")
+                <br />
+                @Html.TextBoxFor(model => model.Country)
+                <br />
+                <br />
+
+                @Html.LabelFor(model => model.City, "Ville:")
+                <br />
+                @Html.TextBoxFor(model => model.City)
+                <br />
+                <br />
+    <input type="submit" value="Enregistrer" />
 
 
-    </div>
+            }
+

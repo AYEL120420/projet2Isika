@@ -1,5 +1,7 @@
 ﻿using _001JIMCV.Models.Classes.Enum;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _001JIMCV.Models.Classes
 {
@@ -18,5 +20,8 @@ namespace _001JIMCV.Models.Classes
         [Required(ErrorMessage = "Le mot de passe est requis.")]
         public string Password { get; set; }
         public UserEnum Role { get; set; }
+        public string ImagePath { get; set; }
+        [NotMapped]
+        public IFormFile Image { get; set; }
     }
 }
