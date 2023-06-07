@@ -4,6 +4,7 @@
 }
 @using (Html.BeginForm("JourneyAddServices", "Journey", FormMethod.Post))
 {
+    @Html.HiddenFor(model => model.journeyId)
     <fieldset>
         <legend>Associer des vols au voyage : </legend>
         <div>
@@ -116,7 +117,7 @@
                 <th>Ville</th>
                 <th>Description</th>
             </tr>
-            @foreach (_001JIMCV.Models.Classes.Restauration restaurant in ViewBag.ViewBag.listRestaurants)
+            @foreach (_001JIMCV.Models.Classes.Restauration restaurant in ViewBag.listRestaurants)
             {
                 <tr>
                     <td><input type="checkbox" name="RestaurationsCocheIds" value="@restaurant.Id" /></td>

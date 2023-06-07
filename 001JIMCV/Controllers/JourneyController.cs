@@ -30,6 +30,8 @@ namespace _001JIMCV.Controllers
         {
             JourneyViewModel jvm = new JourneyViewModel();
 
+            jvm.journeyId = JourneyId;
+
             //On récupère le voyage associé à l'Id
             Journey journey = JourneyDal.GetAllJourneys().Where(r => r.Id == JourneyId).FirstOrDefault();
 
@@ -114,7 +116,7 @@ namespace _001JIMCV.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    int idPackServices = JourneyDal.AddPackServices(loginViewModel.User.Id);
+                    int idPackServices = JourneyDal.AddPackServices(jvm.journeyId, loginViewModel.User.Id);
 
                     JourneyDal.AddFlightPackServices(jvm.DepartureFlight.Id, jvm.ReturnFlight.Id, idPackServices);
 
@@ -160,8 +162,8 @@ namespace _001JIMCV.Controllers
 
                 if (jvm.Journey != null)
                 {
-                    ViewBag.listFlightsDep = JourneyDal.GetAllFLights().Where(f => f.DestinationCountry == jvm.Journey.CountryDestination & f.DepartureCity == departureCity);
-                    ViewBag.listFlightsReturn = JourneyDal.GetAllFLights().Where(f => f.DepartureCountry == jvm.Journey.CountryDestination & f.DestinationCity == departureCity);
+                    ViewBag.listFlightsDep = JourneyDal.GetAllFLights().Where(f => f.DestinationCountry == jvm.Journey.CountryDestination );
+                    ViewBag.listFlightsReturn = JourneyDal.GetAllFLights().Where(f => f.DepartureCountry == jvm.Journey.CountryDestination );
                     ViewBag.listAccommodations = JourneyDal.GetAllAccommodations().Where(a => a.Country == jvm.Journey.CountryDestination);
                     ViewBag.listActivities = JourneyDal.GetAllActivities().Where(a => a.Country == jvm.Journey.CountryDestination);
                     ViewBag.listRestaurants = JourneyDal.GetAllRestaurations().Where(r => r.Country == jvm.Journey.CountryDestination);
@@ -182,7 +184,7 @@ namespace _001JIMCV.Controllers
                 string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 loginViewModel.User = LoginDal.GetUser(userId);
 
-                int idPackServices = JourneyDal.AddPackServices(loginViewModel.User.Id);
+                int idPackServices = JourneyDal.AddPackServices(jvm.journeyId, loginViewModel.User.Id);
 
                 JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
 
@@ -273,34 +275,45 @@ namespace _001JIMCV.Controllers
         {
             if (ModelState.IsValid)
             {
-                int idPackServices = JourneyDal.AddPackServices();
-
-                JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
-
-                foreach (string accomodationId in jvm.AccommodationsCocheIds)
+                LoginViewModel loginViewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+                if (!loginViewModel.Authentified)
                 {
-                    if (accomodationId != null)
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    string userId = User.FindFirst(ClaimTypes.Name).Value;
+                    loginViewModel.User = LoginDal.GetUser(userId);
+
+                    int idPackServices = JourneyDal.AddPackServices(jvm.journeyId, loginViewModel.User.Id);
+
+                    JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
+
+                    foreach (string accomodationId in jvm.AccommodationsCocheIds)
                     {
-                        int idAccomodation;
-                        if (int.TryParse(accomodationId, out idAccomodation))
+                        if (accomodationId != null)
                         {
-                            JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
+                            int idAccomodation;
+                            if (int.TryParse(accomodationId, out idAccomodation))
+                            {
+                                JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
+                            }
                         }
                     }
-                }
-                foreach (string activityId in jvm.ActivitiesCocheIds)
-                {
-                    if (activityId != null)
+                    foreach (string activityId in jvm.ActivitiesCocheIds)
                     {
-                        int idActivity;
-                        if (int.TryParse(activityId, out idActivity))
+                        if (activityId != null)
                         {
-                            JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                            int idActivity;
+                            if (int.TryParse(activityId, out idActivity))
+                            {
+                                JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                            }
                         }
                     }
-                }
 
-                return RedirectToAction("DashboardJourney");
+                    return RedirectToAction("DashboardJourney");
+                }
             }
             return View(jvm);
         }

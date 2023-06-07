@@ -22,7 +22,7 @@ namespace _001JIMCV.Models.Classes
         public int NumCard { get; set; }
         public string ExpirationDate { get; set; }
         public string SecurityCode { get; set; }
-         public int JourneyId { get; set; }
+        public int JourneyId { get; set; }
         public int UserId { get; set; }
         
         // public virtual Journey Journey { get; set; }
