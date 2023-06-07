@@ -10,48 +10,48 @@
     .ToList();
     Layout = "_LayoutJimcv";
     }
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Site.css" link />
+}
 
 <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
     <h2>
-        Vous souhaitez faire découvrir votre cuisine aux voyageurs du monde entier ? Egayez nos papilles par ici !
+        Vous souhaitez faire découvrir votre cuisine aux voyageurs du monde entier ?<br /> Egayez nos papilles par ici !
     </h2>
-
 </div>
-<br />
-
     @using(Html.BeginForm("CreateRestauration", "Restauration", FormMethod.Post))
     {
         <br />
     <fieldset>
-       <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+        <div style="display:flex; align-items:center; flex-direction: column">
             <div>
                
-                @Html.LabelFor(m => m.ProviderName, "Nom partenaire", new { style = "align-self: flex-start;" }))
+            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")<br>
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
-        <br/>
-            <div>
+            <br />
+        <div>
                 
-                @Html.LabelFor(m => m.ProviderEmail, "Adresse email", new { style = "align-self: flex-start;" }))
+            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")<br>
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
             <br />
         <div>
-            @Html.LabelFor(m => m.Country, "Pays")
+                @Html.LabelFor(m => m.Country, "Pays")<br>
             @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
             @Html.ValidationMessageFor(m => m.Country)
         </div>
-        <br/>
+            <br />
         <div>
-            @Html.LabelFor(m => m.City, "Ville")
+                @Html.LabelFor(m => m.City, "Ville")<br>
             @Html.TextBoxFor(m => m.City, new {required = "required" })
             @Html.ValidationMessageFor(m => m.City)
         </div>
             <br />
         <div>
-            @Html.LabelFor(m => m.Type)
+                @Html.LabelFor(m => m.Type)<br>
             <select class="form-control" name="Type">
                 <option value="Restaurant">Restaurant</option>
                 <option value="Habitant">Habitant</option>
@@ -59,35 +59,35 @@
             </select>
             @Html.ValidationMessageFor(m => m.Type)
         </div>
-        <br/>
+            <br />
         <div>
-            @Html.LabelFor(m => m.Description)
+                @Html.LabelFor(m => m.Description)<br>
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
         </div>
-        <br/>
+            <br />
         <div>
-            @Html.LabelFor(m => m.Adress,"Adresse")
+                @Html.LabelFor(m => m.Adress,"Adresse")<br>
             @Html.TextBoxFor(m => m.Adress)
             @Html.ValidationMessageFor(m => m.Adress)
         </div>
-        <br/>
+            <br />
         <div>
-            @Html.LabelFor(m => m.Menu)
+                @Html.LabelFor(m => m.Menu)<br>
             @Html.TextAreaFor(m => m.Menu)
         </div>
-        <br/>
+            <br />
         <div>
-            @Html.LabelFor(m => m.Price, "Prix")
+                @Html.LabelFor(m => m.Price, "Prix")<br>
             @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
             @Html.ValidationMessageFor(m => m.Price)
         </div>
-        <br>
+            <br />
         <div>
-            @Html.LabelFor(m => m.Images)
+                @Html.LabelFor(m => m.Images)<br>
             <input type="file" name="Images" multiple class="form-control-file" />
             @Html.ValidationMessageFor(m => m.Images)
         </div>
-        <br/>
+            <br />
         <div>
             <input type="submit" value="Enregistrer" class="btn btn-primary" />
         </div>

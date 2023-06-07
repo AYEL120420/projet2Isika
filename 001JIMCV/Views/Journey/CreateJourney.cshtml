@@ -12,18 +12,18 @@
 {
     <fieldset>
         <h2> Créer un voyage</h2>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
-            @Html.LabelFor(m => m.Journey.CountryDestination, "Pays : ")
+        <div style="display:flex; align-items:center; flex-direction: column">
+            @Html.LabelFor(m => m.Journey.CountryDestination, "Pays : ")<br>
             @Html.TextBoxFor(m => m.Journey.CountryDestination)
             @Html.ValidationMessageFor(m => m.Journey.CountryDestination)
         <br/>
         <br/>
-            @Html.LabelFor(m => m.Journey.DepartureDate, "Date de départ : ")
+            @Html.LabelFor(m => m.Journey.DepartureDate, "Date de départ : ")<br>
             @Html.TextBoxFor(m => m.Journey.DepartureDate, new { @type="date"} )
             @Html.ValidationMessageFor(m => m.Journey.DepartureDate)
         <br />
         <br/>
-            @Html.LabelFor(m => m.Journey.ReturnDate, "Date de Retour : ")
+            @Html.LabelFor(m => m.Journey.ReturnDate, "Date de Retour : ")<br>
             @Html.TextBoxFor(m => m.Journey.ReturnDate, new { @type="date" } )
             @Html.ValidationMessageFor(m => m.Journey.ReturnDate)
         <br/>

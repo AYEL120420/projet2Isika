@@ -16,18 +16,21 @@
             })
     .ToList();
 }
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Site.css" link />
+}
 
 @using (Html.BeginForm(formAction, "Accommodation", FormMethod.Post))
 {
     <fieldset>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+        <div style="display:flex; align-items:center; flex-direction: column">
         <div>
-            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
+            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")<br>
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
         <div>
-            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
+                @Html.LabelFor(m => m.ProviderEmail, "Adresse email")<br>
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
@@ -44,7 +47,7 @@
             @Html.ValidationMessageFor(m => m.City)
         </div>
         <div>
-            @Html.LabelFor(m => m.Type)
+                @Html.LabelFor(m => m.Type)<br>
             <span>
                 <label>
                     @Html.RadioButtonFor(m => m.Type, "Chez l'habitant")
@@ -53,7 +56,7 @@
             </span>
             <span>
                 <label>
-                    @Html.RadioButtonFor(m => m.Type, "Hôtel")
+                        @Html.RadioButtonFor(m => m.Type, "Hôtel")<br>
                     Hôtel
                 </label>
             </span>
@@ -66,17 +69,16 @@
             @Html.ValidationMessageFor(m => m.Type)
         </div>
         <br />
-        <br />
         <div>
             Disponibilté
             <span>
-                @Html.LabelFor(m => m.StartDate, "Disponible de")
+                    @Html.LabelFor(m => m.StartDate, "Disponible de")<br>
                 @Html.TextBoxFor(m => m.StartDate, new { @type = "date" })
                 @Html.ValidationMessageFor(m => m.StartDate)
             </span>
 
             <span>
-                @Html.LabelFor(m => m.EndDate, "A")
+                    @Html.LabelFor(m => m.EndDate, "A")<br>
                 @Html.TextBoxFor(m => m.EndDate, new { @type = "date" })
                 @Html.ValidationMessageFor(m => m.EndDate)
             </span>
@@ -85,29 +87,30 @@
         <div>
             @Html.LabelFor(m => m.Adress, "Adresse" )<br>
             @Html.TextBoxFor(m => m.Adress)
-            @Html.ValidationMessageFor(m => m.Adress)<br>
+            @Html.ValidationMessageFor(m => m.Adress)
         </div>
+        <br/>
         <div>
             @Html.LabelFor(m => m.Description)<br>
             @Html.TextAreaFor(m => m.Description)
-            @Html.ValidationMessageFor(m => m.Description)<br>
+            @Html.ValidationMessageFor(m => m.Description)
         </div>
+        <br/>
         <div>
             @Html.LabelFor(m => m.Price,"Prix")<br>
             @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
             @Html.ValidationMessageFor(m => m.Price)<br>
         </div>
-        <br>
-
-        <br>
+        <br/>
         <div class="form-group">
             <label for="Status">Status</label>
             <input type="text" id="Status" name="Status" class="form-control" value="@Model.Status" @((User.IsInRole("Provider")) ? "readonly" : "") />
         </div>
+        <br/>
         <div>
             @Html.LabelFor(m => m.Image)<br>
             <input type="file" name="Image" id="Image" />
-            @Html.ValidationMessageFor(m => m.Image)<br>
+            @Html.ValidationMessageFor(m => m.Image)
         </div>
         <br />
         <div class="form-control">
