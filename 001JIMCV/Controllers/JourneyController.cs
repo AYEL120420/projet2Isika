@@ -190,7 +190,7 @@ namespace _001JIMCV.Controllers
             if (ModelState.IsValid)
             {
                 LoginViewModel loginViewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
-                string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                string userId = User.FindFirst(ClaimTypes.Name).Value;
                 loginViewModel.User = LoginDal.GetUser(userId);
 
                 int idPackServices = JourneyDal.AddPackServices(jvm.journeyId, loginViewModel.User.Id);
@@ -231,7 +231,7 @@ namespace _001JIMCV.Controllers
                     }
                 }
 
-                return Redirect("Reservation/Index");
+                return RedirectToAction("Index", "Reservation", new { id = idPackServices });
             }
             return View(jvm);
         }
@@ -290,6 +290,7 @@ namespace _001JIMCV.Controllers
                     ViewBag.listFlightsReturn = JourneyDal.GetAllFLights().Where(f => f.DepartureCountry == journey.CountryDestination & f.DepartureDate == journey.ReturnDate);
                     ViewBag.listAccommodations = JourneyDal.GetAllAccommodations().Where(a => a.Country == journey.CountryDestination);
                     ViewBag.listActivities = JourneyDal.GetAllActivities().Where(a => a.Country == journey.CountryDestination);
+                    ViewBag.listRestaurants = JourneyDal.GetAllRestaurations().Where(r => r.Country == jvm.Journey.CountryDestination);
 
                     return View(jvm);
                 }
@@ -339,8 +340,19 @@ namespace _001JIMCV.Controllers
                             }
                         }
                     }
+                    foreach (string restaurationId in jvm.RestaurationsCocheIds)
+                    {
+                        if (restaurationId != null)
+                        {
+                            int idRestauration;
+                            if (int.TryParse(restaurationId, out idRestauration))
+                            {
+                                JourneyDal.AddRestaurationPackServices(idRestauration, idPackServices);
+                            }
+                        }
+                    }
 
-                    return RedirectToAction("DashboardJourney");
+                    return RedirectToAction("GetAllJourneys");
                 }
             }
             return View(jvm);
