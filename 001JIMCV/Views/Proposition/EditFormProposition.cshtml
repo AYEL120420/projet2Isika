@@ -18,54 +18,54 @@
     @using (Html.BeginForm(formAction, "Proposition", FormMethod.Post))
     {
     <fieldset>
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
         <div>
             @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
+        <br/>
         <div>
             @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
+            <br />
         <div>
             @Html.LabelFor(m => m.Country, "Pays")<br>
             @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
             @Html.ValidationMessageFor(m => m.Country)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.City, "Ville")<br>
             @Html.TextBoxFor(m => m.City, new {required = "required" })
             @Html.ValidationMessageFor(m => m.City)
         </div>
-
+            <br />
         <div>
             @Html.LabelFor(m => m.Name)
             @Html.TextBoxFor(m => m.Name)
             @Html.ValidationMessageFor(m => m.Name)
         </div>
-        <br>
+        <br/>
         <div>
             @Html.LabelFor(m => m.Disponibility, "Disponibilité")
             @Html.TextBoxFor(m => m.Disponibility)
             @Html.ValidationMessageFor(m => m.Disponibility)
         </div>
-        <br>
-
-
+        <br/>
         <div class="form-group">
             @Html.LabelFor(m => m.Description)
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.Price,"Prix")
             @Html.TextBoxFor(m => m.Price , new { step = "0.01" })
             @Html.ValidationMessageFor(m => m.Price)
         </div>
+            <br />
         <div class="form-group">
             @Html.LabelFor(m => m.Image)
             @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control-file" })
@@ -81,5 +81,6 @@
                 <div class="form-group">
                     <input type="submit" value="Enregistrer" class="btn btn-primary" />
                 </div>
+        </div>
         </fieldset>
     }

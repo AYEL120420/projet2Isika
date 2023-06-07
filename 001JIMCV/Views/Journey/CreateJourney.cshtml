@@ -1,29 +1,33 @@
 ﻿@model _001JIMCV.ViewModels.JourneyViewModel
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Créer un voyage</title>
-</head>
-<body>
+@{
+    Layout = "_LayoutJimcv";
+}
+
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/StyleAdminDashboard.css" link />
+
+}
+
     @using (Html.BeginForm())
 {
     <fieldset>
-        <legend>Créer un voyage : </legend>
+        <h2> Créer un voyage</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
             @Html.LabelFor(m => m.Journey.CountryDestination, "Pays : ")
             @Html.TextBoxFor(m => m.Journey.CountryDestination)
             @Html.ValidationMessageFor(m => m.Journey.CountryDestination)
+        <br/>
         <br/>
             @Html.LabelFor(m => m.Journey.DepartureDate, "Date de départ : ")
             @Html.TextBoxFor(m => m.Journey.DepartureDate, new { @type="date"} )
             @Html.ValidationMessageFor(m => m.Journey.DepartureDate)
         <br />
+        <br/>
             @Html.LabelFor(m => m.Journey.ReturnDate, "Date de Retour : ")
             @Html.TextBoxFor(m => m.Journey.ReturnDate, new { @type="date" } )
             @Html.ValidationMessageFor(m => m.Journey.ReturnDate)
         <br/>
         <input type="submit" value="Suivant" />
+    <div/>
     </fieldset>
 }
-</body>
-</html>

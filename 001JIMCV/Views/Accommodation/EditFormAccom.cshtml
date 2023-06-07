@@ -20,6 +20,7 @@
 @using (Html.BeginForm(formAction, "Accommodation", FormMethod.Post))
 {
     <fieldset>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
         <div>
             @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
             @Html.TextBoxFor(m => m.ProviderName)
@@ -112,6 +113,7 @@
         <div class="form-control">
             <input type="submit" value="Envoyer" class="btn btn-primary" />
 
+        </div>
         </div>
     </fieldset>
 }

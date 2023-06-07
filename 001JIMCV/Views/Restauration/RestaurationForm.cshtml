@@ -10,32 +10,46 @@
     .ToList();
     Layout = "_LayoutJimcv";
     }
+
+<div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+    <h2>
+        Vous souhaitez faire découvrir votre cuisine aux voyageurs du monde entier ? Egayez nos papilles par ici !
+    </h2>
+
+</div>
+<br />
+
     @using(Html.BeginForm("CreateRestauration", "Restauration", FormMethod.Post))
     {
+        <br />
     <fieldset>
-        <div>
-            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
+       <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+            <div>
+               
+                @Html.LabelFor(m => m.ProviderName, "Nom partenaire", new { style = "align-self: flex-start;" }))
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
-        <div>
-            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
+        <br/>
+            <div>
+                
+                @Html.LabelFor(m => m.ProviderEmail, "Adresse email", new { style = "align-self: flex-start;" }))
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
+            <br />
         <div>
-            @Html.LabelFor(m => m.Country, "Pays")<br>
+            @Html.LabelFor(m => m.Country, "Pays")
             @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
             @Html.ValidationMessageFor(m => m.Country)
         </div>
-        <br>
+        <br/>
         <div>
-            @Html.LabelFor(m => m.City, "Ville")<br>
+            @Html.LabelFor(m => m.City, "Ville")
             @Html.TextBoxFor(m => m.City, new {required = "required" })
             @Html.ValidationMessageFor(m => m.City)
         </div>
-
-
+            <br />
         <div>
             @Html.LabelFor(m => m.Type)
             <select class="form-control" name="Type">
@@ -45,26 +59,23 @@
             </select>
             @Html.ValidationMessageFor(m => m.Type)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.Description)
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
         </div>
-        <br>
+        <br/>
         <div>
             @Html.LabelFor(m => m.Adress,"Adresse")
             @Html.TextBoxFor(m => m.Adress)
             @Html.ValidationMessageFor(m => m.Adress)
         </div>
-        <br>
-
+        <br/>
         <div>
-            @Html.LabelFor(m => m.Menu)<br>
+            @Html.LabelFor(m => m.Menu)
             @Html.TextAreaFor(m => m.Menu)
         </div>
-        <br>
-
+        <br/>
         <div>
             @Html.LabelFor(m => m.Price, "Prix")
             @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
@@ -76,10 +87,11 @@
             <input type="file" name="Images" multiple class="form-control-file" />
             @Html.ValidationMessageFor(m => m.Images)
         </div>
-        <br>
-
+        <br/>
         <div>
             <input type="submit" value="Enregistrer" class="btn btn-primary" />
         </div>
+        </div>
+
         </fieldset>
     }
