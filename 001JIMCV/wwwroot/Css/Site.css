@@ -47,8 +47,11 @@ header {
 
 #Accueildescription {
     margin: 20px auto;
-    width: 100%;
+    width: 80%;
     padding: 20px;
+    justify-content: center;
+    text-align: center;
+  /*  font-family: "Nom de la police", sans-serif;*/
 }
 
 #menuToggle {
