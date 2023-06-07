@@ -286,7 +286,7 @@ namespace _001JIMCV.Controllers
                     string userId = User.FindFirst(ClaimTypes.Name).Value;
                     loginViewModel.User = LoginDal.GetUser(userId);
 
-                    int idPackServices = JourneyDal.AddPackServices(jvm.journeyId, loginViewModel.User.Id);
+                    int idPackServices = JourneyDal.AddPackServicesAllInclusive(jvm.journeyId, loginViewModel.User.Id);
 
                     JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
 
