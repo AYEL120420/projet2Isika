@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using XAct;
-using XAct.Users;
+
 
 namespace _001JIMCV.Controllers
 {
@@ -26,6 +25,12 @@ namespace _001JIMCV.Controllers
         public IActionResult CreateJourney()
         {
             return View();
+        }
+        public IActionResult GetAllJourneys()
+        {
+            var journey = JourneyDal.GetAllJourneys();
+            ViewData["Journeys"] = journey ?? new List<Journey>();
+            return View("ListJourney");
         }
 
         public IActionResult DisplayJourney(int Id)

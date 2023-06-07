@@ -22,6 +22,18 @@ namespace _001JIMCV.Controllers
         {
             return View("FormReservation");
         }
+        public IActionResult ReservationForm()
+        {
+            JourneyViewModel jvm = new JourneyViewModel();
+
+            ///Récupérez les informations du voyage la bdd
+          //Journey journey = GetJourneyRecap();
+
+          //jvm.Journey = journey;
+
+            return View(jvm);
+
+        }
         private decimal CalculateTotalAmount(int numberOfPassengers)
         {
             // Effectuez les calculs appropriés pour déterminer le montant en fonction du nombre de passagers
@@ -131,7 +143,7 @@ namespace _001JIMCV.Controllers
                 reservationDal.EditReservation(reservation.Id, reservation.TravelStartDate, reservation.TravelEndDate, reservation.ContactName, reservation.ContactEmail, reservation.ContactPhone,
                     reservation.NumberOfPassengers, reservation.TotalAmount, reservation.Status);
 
-                return RedirectToAction("GetReservationsList", new { id = reservation.Id });
+                return RedirectToAction("GetReservations", new { id = reservation.Id });
             }
             else
             {

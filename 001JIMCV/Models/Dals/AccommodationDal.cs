@@ -60,12 +60,14 @@ namespace _001JIMCV.Models.Dals
           }
 
         //modifier un service
-        public void EditAccommodation(int id,string country, string city, string type,string name, string address, string from, string to, float price, string description, string status, byte[] image)
+        public void EditAccommodation(int id, string providerName, string providerEmail, string country, string city, string type,string name, string address, string from, string to, float price, string description, string status, byte[] image)
         {
             Accommodation accommodation = _bddcontext.Accommodations.Find(id);
             if (accommodation != null)
             {
                 accommodation.Id = id;
+                accommodation.ProviderName = providerName;
+                accommodation.ProviderEmail = providerEmail;
                 accommodation.Country = country;
                 accommodation.City = city;
                 accommodation.Type = type;
@@ -77,15 +79,19 @@ namespace _001JIMCV.Models.Dals
                 accommodation.Description = description;
                 accommodation.Status = status;
                 accommodation.Image = image;
-                _bddcontext.SaveChanges();
+              
             }
             _bddcontext.Accommodations.Update(accommodation);
             _bddcontext.SaveChanges();
 
         }
-
-          //Supprimer un service
-          public void DeleteAccommodation(int id)
+        public void EditAccommodation(Accommodation accommodation)
+        {
+            _bddcontext.Accommodations.Update(accommodation);
+            _bddcontext.SaveChanges();
+        }
+        //Supprimer un service
+        public void DeleteAccommodation(int id)
           {
               Accommodation accommodation = _bddcontext.Accommodations.Find(id);
              

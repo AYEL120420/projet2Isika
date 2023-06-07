@@ -1,13 +1,14 @@
-﻿@{
+﻿@model _001JIMCV.ViewModels.LoginViewModel
+@{
     Layout = "_LayoutJimcv";
-     
+
 }
 
 @section ExtraCss{
     <link rel="stylesheet" type="text/css" href="~/Css/StyleProviderDashboard.css" link />
 
 }
-<div class="container">
+ <div class="container">
 
 
     <div class="dashboard-container">
@@ -37,37 +38,47 @@
                 Remplissez votre profil pour gagner du temps sur vos prochaines réservations !
             </h2>
 
-            <form>
-                <label for="firstname">Prénom:</label><br>
-                <input type="text" id="firstname" name="firstname" value="@ViewData["UserName"]"><br>
-                <br />
-                <label for="lastname">Nom:</label><br>
-                <input type="text" id="lastname" name="lastname"><br>
-                <br />
-                <label for="gender">Sexe:</label><br>
-                <select id="gender" name="gender" value="@ViewData["UserGender"]">
-                    <option value="male">Homme</option>
-                    <option value="female">Femme</option>
-                </select><br>
-                <br>
-                <label for="mobile">Numéro de téléphone mobile:</label><br>
-                <input type="tel" id="mobile" name="mobile" value="@ViewData["UserPhone"]"><br>
-                <br>
-                <label for="email">Adresse email:</label><br>
-                <input type="email" id="email" name="email" value="@ViewData["UserEmail"]"><br>
-                <br>
-                <label for="country">Pays:</label><br>
-                <input type="text" id="country" name="country" value="@ViewData["UserCountry"]"><br>
-                <br />
-                <label for="city">Ville:</label><br>
-                <input type="text" id="city" name="city" value="@ViewData["UserCity"]"><br>
-                <br />
-                <label for="travels">Voyages réalisés:</label><br>
-                <textarea id="travels" name="travels"></textarea><br>
-                <br />
-                <input type="submit" value="Soumettre"><br>
-                <br />
-            </form>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.User.Name, "Nom:")
+    <br />
+    @Html.TextBoxFor(model => model.User.Name)
+    <br />
+    <br />
+
+    @Html.LabelFor(model => model.User.Gender, "Sexe:")
+    <br />
+    @Html.DropDownListFor(model => model.User.Gender, new SelectList(new[] { "Homme", "Femme" }))
+    <br />
+    <br />
+
+    @Html.LabelFor(model => model.User.Phone, "Numéro de téléphone:")
+    <br />
+    @Html.TextBoxFor(model => model.User.Phone)
+    <br />
+    <br />
+
+    @Html.LabelFor(model => model.User.Email, "Adresse email:")
+    <br />
+    @Html.TextBoxFor(model => model.User.Email)
+    <br />
+    <br />
+
+    @Html.LabelFor(model => model.User.Country, "Pays:")
+    <br />
+    @Html.TextBoxFor(model => model.User.Country)
+    <br />
+    <br />
+
+    @Html.LabelFor(model => model.User.City, "Ville:")
+    <br />
+    @Html.TextBoxFor(model => model.User.City)
+    <br />
+    <br />
+
+    <input type="submit" value="Soumettre" />
+}
+
     </div>
 
 </div>

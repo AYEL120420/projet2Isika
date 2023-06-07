@@ -1,0 +1,48 @@
+﻿@model _001JIMCV.ViewModels.JourneyViewModel
+@{
+    Layout = "_LayoutJimcv";
+}
+
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Table.css" link />
+}
+<table>
+    <tr>
+        <th>Pays de destination</th>
+        <th>Ville</th>
+        <th>Date de départ</th>
+        <th>Date de retour</th>
+        <th>Prix</th>
+        <th>Description</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+
+    </tr>
+
+    @foreach (_001JIMCV.Models.Classes.Journey journey in ViewData["Journeys"] as List<_001JIMCV.Models.Classes.Journey>)
+    {
+        <tr>
+            <td>@journey.CountryDestination </td>
+            <td>@journey.CityDestination </td>
+            <td>@journey.DepartureDate</td>
+            <td>@journey.ReturnDate</td>
+            <td>@journey.Price</td>
+            <td>@journey.Description</td>
+
+            <td>
+                <form action="@Url.Action("", "", new { id = journey.Id })" method="get">
+                    <button type="submit">Modifier</button>
+                </form>
+            </td>
+            <td>
+                <form action="@Url.Action("", "", new { id = journey.Id })" method="post">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+<button>@Html.ActionLink("Ajouter", "CreateJourney", "Journey")</button>
+
