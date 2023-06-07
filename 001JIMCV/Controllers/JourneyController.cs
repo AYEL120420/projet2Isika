@@ -2,12 +2,13 @@
 using _001JIMCV.Models.Dals;
 using _001JIMCV.ViewModels;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
-using XAct;
-using XAct.Users;
 
 
 namespace _001JIMCV.Controllers
@@ -17,11 +18,15 @@ namespace _001JIMCV.Controllers
         private static string DEPARTURECOUNTRYOFALLJOURNEYS = "France";
         private JourneyDal JourneyDal;
         private LoginDal LoginDal;
-        public JourneyController()
+        private IWebHostEnvironment _webEnv;
+        public JourneyController(IWebHostEnvironment environment)
         {
             JourneyDal = new JourneyDal();
             LoginDal = new LoginDal();
+            _webEnv = environment;
         }
+
+  
         public IActionResult Index()
         {
             return View();
@@ -34,8 +39,9 @@ namespace _001JIMCV.Controllers
             return View("ListJourney");
         }
 
-        public JourneyViewModel GetJourneyViewModelFull(int JourneyId)
+        public JourneyViewModel GetJourneyViewModelFull(int JourneyId, Boolean allInclusive)
         {
+            JourneyViewModel jvm = new JourneyViewModel();
             jvm.journeyId = JourneyId;
 
             //On récupère le voyage associé à l'Id
@@ -46,7 +52,7 @@ namespace _001JIMCV.Controllers
                 jvm.Journey = journey;
 
                 // On récupère le Pack de Service associé à l'id du voyage et qui est clé en main
-                jvm.PackService = JourneyDal.GetAllPacks().Where(r => r.JourneyId == JourneyId & r.AllInclusive == true).FirstOrDefault();
+                jvm.PackService = JourneyDal.GetAllPacks().Where(r => r.JourneyId == JourneyId & r.AllInclusive == allInclusive).FirstOrDefault();
 
 
                 //On récupère les vols associé au pack de Service
@@ -94,7 +100,7 @@ namespace _001JIMCV.Controllers
         {
             if (Id != 0)
             {
-                JourneyViewModel jvm = GetJourneyViewModelFull(Id);
+                JourneyViewModel jvm = GetJourneyViewModelFull(Id, true);
 
 
                 return View("Produits", jvm);
@@ -105,7 +111,7 @@ namespace _001JIMCV.Controllers
             return View("Error");
         }
 
-        [HttpPost]
+        
         public IActionResult ReservationAllInclusive(int Id)
         {
             LoginViewModel loginViewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
@@ -115,9 +121,9 @@ namespace _001JIMCV.Controllers
             }
             else
             {
-                JourneyViewModel jvm = GetJourneyViewModelFull(Id);
+                JourneyViewModel jvm = GetJourneyViewModelFull(Id, true);
 
-                string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                string userId = User.FindFirst(ClaimTypes.Name).Value;
                 loginViewModel.User = LoginDal.GetUser(userId);
 
                 if (ModelState.IsValid)
@@ -150,7 +156,7 @@ namespace _001JIMCV.Controllers
                         }
                     }
 
-                    return Redirect("Reservation/Index");
+                    return RedirectToAction("Index", "Reservation", new { id = idPackServices });
                 }
             }
 
@@ -164,7 +170,7 @@ namespace _001JIMCV.Controllers
             }
             else
             {
-                JourneyViewModel jvm = GetJourneyViewModelFull(Id);
+                JourneyViewModel jvm = GetJourneyViewModelFull(Id, true);
 
                 if (jvm.Journey != null)
                 {
@@ -242,12 +248,30 @@ namespace _001JIMCV.Controllers
         {
             if (ModelState.IsValid)
             {
-                int id = JourneyDal.AddJourney(journey.DepartureDate, journey.ReturnDate, journey.CountryDestination);
+                if (journey.Image != null)
+                {
+                    if (journey.Image.Length != 0)
+                    {
+                        string uploads = Path.Combine(_webEnv.WebRootPath, "Images");
+                        string filePath = Path.Combine(uploads, journey.Image.FileName);
+                        using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            journey.Image.CopyTo(fileStream);
+                        }
+                        int id = JourneyDal.AddJourney(journey.DepartureDate, journey.ReturnDate, journey.CountryDestination,journey.CityDestination,journey.DepartureCity,journey.Price , journey.Description,"/Images/" + journey.Image.FileName);
 
-                return RedirectToAction("JourneyAddServices", new { @id = id });
+                        return RedirectToAction("JourneyAddServices", new { @id = id });
+                    }
+                }else 
+                {
+                    int id = JourneyDal.AddJourney(journey.DepartureDate, journey.ReturnDate, journey.CountryDestination, journey.CityDestination, journey.DepartureCity, journey.Price, journey.Description,journey.ImagePath);
+
+                    return RedirectToAction("JourneyAddServices", new { @id = id });
+                }
             }
-
-            return View("Error");
+                    return View("Error");
+                
+            
         }
         public IActionResult JourneyAddServices(int id)
         {

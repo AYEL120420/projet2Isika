@@ -1,4 +1,4 @@
-﻿
+﻿@model _001JIMCV.ViewModels.LoginViewModel
 @{
     Layout = "_LayoutJimcv";
 }
@@ -31,11 +31,12 @@
         <div class="dashboard-item">
             <h2><button onclick="window.location.href='@Url.Action("GetOtherPropositions", "Proposition")'">Proposition</button></h2>
         </div>
-       
+
 
         <div class="dashboard-item">
-            <h2>Avis</h2>
+            <h2><button onclick="window.location.href='@Url.Action("EditProfil", "Dashboard")'">Editer mon Profil</button></h2>
         </div>
+
   
         <div class="dashboard-item">
             <h2>Paiement</h2>
@@ -50,33 +51,41 @@
             Remplissez votre profil pour plus de visibilité sur JIMCV !
         </h2>
 
-              
-                <form>
-                <label for="Name">Nom:</label><br>
-            <input type="text" id="Name" Name="Name" value="@ViewData["UserName"]"><br>
-              
-                <label for="gender">Sexe:</label><br>
-                <select id="gender" name="gender" value="@ViewData["UserGender"]">
-                    <option value="male">Homme</option>
-                    <option value="female">Femme</option>
-                </select><br>
-                <br>
-                <label for="mobile">Numéro de téléphone mobile:</label><br>
-                <input type="tel" id="mobile" name="mobile" value="@ViewData["UserPhone"]"><br>
-                <br>
-                <label for="email">Adresse email:</label><br>
-                <input type="email" id="email" name="email" value="@ViewData["UserEmail"]"><br>
-                <br>
-                <label for="country">Pays:</label><br>
-                <input type="text" id="country" name="country" value="@ViewData["UserCountry"]"><br>
-                <br />
-                <label for="city">Ville:</label><br>
-            <input type="text" id="city" name="city" value="@ViewData["UserCity"]"><br>
-                
-                <input type="submit" value="Soumettre"><br>
-                <br /><br>
+            @Html.LabelFor(model => model.User.Name, "Nom:")
+            <br />
+            @Html.TextBoxFor(model => model.User.Name, new { @readonly = "readonly" })
+            <br />
+            <br />
 
-                </form>
+            @Html.LabelFor(model => model.User.Gender, "Sexe:")
+            <br />
+            @Html.DropDownListFor(model => model.User.Gender, new SelectList(new[] { "Homme", "Femme" }), new { @disabled = "disabled" })
+            <br />
+            <br />
+
+            @Html.LabelFor(model => model.User.Phone, "Numéro de téléphone:")
+            <br />
+            @Html.TextBoxFor(model => model.User.Phone, new { @readonly = "readonly" })
+            <br />
+            <br />
+
+            @Html.LabelFor(model => model.User.Email, "Adresse email:")
+            <br />
+            @Html.TextBoxFor(model => model.User.Email, new { @readonly = "readonly" })
+            <br />
+            <br />
+
+            @Html.LabelFor(model => model.User.Country, "Pays:")
+            <br />
+            @Html.TextBoxFor(model => model.User.Country, new { @readonly = "readonly" })
+            <br />
+            <br />
+
+            @Html.LabelFor(model => model.User.City, "Ville:")
+            <br />
+            @Html.TextBoxFor(model => model.User.City, new { @readonly = "readonly" })
+            <br />
+            <br />
         </div>
 
 </div>

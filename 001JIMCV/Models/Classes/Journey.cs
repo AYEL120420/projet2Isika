@@ -1,6 +1,8 @@
 ﻿using _001JIMCV.Models.Classes.Enum;
+using Microsoft.AspNetCore.Http;
 using Microsoft.VisualBasic;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _001JIMCV.Models.Classes
 {
@@ -16,6 +18,8 @@ namespace _001JIMCV.Models.Classes
         public string Description { get; set; }
         public int Persons { get; set; }
         public string ImagePath { get; set; }
+        [NotMapped]
+        public IFormFile Image { get; set; }
 
 
     }

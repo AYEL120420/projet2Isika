@@ -1,4 +1,5 @@
-﻿@model _001JIMCV.ViewModels.JourneyViewModel
+﻿@model _001JIMCV.Models.Classes.Journey
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,22 +7,49 @@
     <title>Créer un voyage</title>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm( new { enctype = "multipart/form-data" }))
 {
     <fieldset>
         <legend>Créer un voyage : </legend>
-            @Html.LabelFor(m => m.Journey.CountryDestination, "Pays : ")
-            @Html.TextBoxFor(m => m.Journey.CountryDestination)
-            @Html.ValidationMessageFor(m => m.Journey.CountryDestination)
+            @Html.LabelFor(m => m.CountryDestination, "Pays : ")
+            @Html.TextBoxFor(m => m.CountryDestination)
+            @Html.ValidationMessageFor(m => m.CountryDestination)
         <br/>
-            @Html.LabelFor(m => m.Journey.DepartureDate, "Date de départ : ")
-            @Html.TextBoxFor(m => m.Journey.DepartureDate, new { @type="date"} )
-            @Html.ValidationMessageFor(m => m.Journey.DepartureDate)
+            @Html.LabelFor(m => m.CityDestination, "Ville d'arrivée: ")
+            @Html.TextBoxFor(m => m.CityDestination)
+            @Html.ValidationMessageFor(m => m.CityDestination)
+            <br />
+            @Html.LabelFor(m => m.DepartureCity, "Ville de départ : ")
+            @Html.TextBoxFor(m => m.DepartureCity)
+            @Html.ValidationMessageFor(m => m.DepartureCity)
+            <br />
+            
+            @Html.LabelFor(m => m.DepartureDate, "Date de départ : ")
+            @Html.TextBoxFor(m => m.DepartureDate, new { @type="date"} )
+            @Html.ValidationMessageFor(m => m.DepartureDate)
         <br />
-            @Html.LabelFor(m => m.Journey.ReturnDate, "Date de Retour : ")
-            @Html.TextBoxFor(m => m.Journey.ReturnDate, new { @type="date" } )
-            @Html.ValidationMessageFor(m => m.Journey.ReturnDate)
+            @Html.LabelFor(m => m.ReturnDate, "Date de Retour : ")
+            @Html.TextBoxFor(m => m.ReturnDate, new { @type="date" } )
+            @Html.ValidationMessageFor(m => m.ReturnDate)
         <br/>
+            @Html.LabelFor(m => m.Price, "Prix : ")
+            @Html.TextBoxFor(m => m.Price)
+            @Html.ValidationMessageFor(m => m.Price)
+            <br />
+            <br />
+            @Html.LabelFor(m => m.Description, "Description : ")
+            @Html.TextAreaFor(m => m.Description)
+            @Html.ValidationMessageFor(m => m.Description)
+            <br />
+            @Html.HiddenFor(m=>m.ImagePath)
+            <div class="d-flex flex-row my-3">
+                <div class="mb-3 d-flex">
+                    <div>
+                        @Html.LabelFor(m=>m.Image, new { id = "imageLabel", @style = "text-align:center;" })
+                        @Html.TextBoxFor(m=>m.Image, new { placeholder = "Description", @type = "file" })
+
+                    </div>
+                </div>
         <input type="submit" value="Suivant" />
     </fieldset>
 }
