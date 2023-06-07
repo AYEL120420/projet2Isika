@@ -16,24 +16,30 @@
     @foreach (var journey in ViewData["IndeJourneys"] as List<_001JIMCV.Models.Classes.Journey>)
     {
         <div class="journey-container">
-            <div class="journey-photo" style="background-image: url('/images/@journey.ImagePath');"></div>
+            <div class="journey-photo" style="background-image: url('@journey.ImagePath');"></div>
             <div class="journey-content">
-                <div class="journey-details">
-                    <table>
-                        <tr>
-                            <th>Ville d'arrivée</th>
-                            <th>Date de départ</th>
-                            <th>Date de Retour</th>
-                            <th>Prix</th>
-                        </tr>
-                        <tr>
-                            <td>@journey.CityDestination</td>
-                            <td>@journey.DepartureDate</td>
-                            <td>@journey.ReturnDate</td>
-                            <td>@journey.Price</td>
-                        </tr>
-                    </table>
+                <div class="journey-details" style="display:flex; justify-content:space-between">
+                    <div>
+                        <h4>Ville d'arrivée</h4>
+                        <div>@journey.CityDestination</div>
+                    </div>
+                    <div>
+                        <h4>Date de départ</h4>
+                        <div>@journey.DepartureDate</div>
+                    </div>
+                    <div>
+                        <h4>Date de Retour</h4>
+                        <div>@journey.ReturnDate</div>
+                    </div>
+                    <div>
+                        <h4>Prix</h4>
+                        <div>@journey.Price</div>
+                    </div>
+
+
+
                 </div>
+
                 <div class="journey-description">
                     @journey.Description
                 </div>

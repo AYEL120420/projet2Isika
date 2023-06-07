@@ -32,43 +32,41 @@
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(model => model.User.Name, "Nom:")
-    <br />
-    @Html.TextBoxFor(model => model.User.Name)
-    <br />
-    <br />
+                @Html.LabelFor(model => model.User.Name, "Nom:")
+                <br />
+                @Html.TextBoxFor(model => model.User.Name, new { @readonly = "readonly" })
+                <br />
+                <br />
 
-    @Html.LabelFor(model => model.User.Gender, "Sexe:")
-    <br />
-    @Html.DropDownListFor(model => model.User.Gender, new SelectList(new[] { "Homme", "Femme" }))
-    <br />
-    <br />
+                @Html.LabelFor(model => model.User.Gender, "Sexe:")
+                <br />
+                @Html.DropDownListFor(model => model.User.Gender, new SelectList(new[] { "Homme", "Femme" }), new { @disabled = "disabled" })
+                <br />
+                <br />
 
-    @Html.LabelFor(model => model.User.Phone, "Numéro de téléphone:")
-    <br />
-    @Html.TextBoxFor(model => model.User.Phone)
-    <br />
-    <br />
+                @Html.LabelFor(model => model.User.Phone, "Numéro de téléphone:")
+                <br />
+                @Html.TextBoxFor(model => model.User.Phone, new { @readonly = "readonly" })
+                <br />
+                <br />
 
-    @Html.LabelFor(model => model.User.Email, "Adresse email:")
-    <br />
-    @Html.TextBoxFor(model => model.User.Email)
-    <br />
-    <br />
+                @Html.LabelFor(model => model.User.Email, "Adresse email:")
+                <br />
+                @Html.TextBoxFor(model => model.User.Email, new { @readonly = "readonly" })
+                <br />
+                <br />
 
-    @Html.LabelFor(model => model.User.Country, "Pays:")
-    <br />
-    @Html.TextBoxFor(model => model.User.Country)
-    <br />
-    <br />
+                @Html.LabelFor(model => model.User.Country, "Pays:")
+                <br />
+                @Html.TextBoxFor(model => model.User.Country, new { @readonly = "readonly" })
+                <br />
+                <br />
 
-    @Html.LabelFor(model => model.User.City, "Ville:")
-    <br />
-    @Html.TextBoxFor(model => model.User.City)
-    <br />
-    <br />
-
-    <input type="submit" value="Soumettre" />
+                @Html.LabelFor(model => model.User.City, "Ville:")
+                <br />
+                @Html.TextBoxFor(model => model.User.City, new { @readonly = "readonly" })
+                <br />
+                <br />
 }
 
     </div>
