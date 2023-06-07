@@ -1,0 +1,136 @@
+﻿@model _001JIMCV.ViewModels.JourneyViewModel
+@{
+    Layout = "_LayoutJimcv";
+}
+@using (Html.BeginForm("JourneyAddServices", "Journey", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.journeyId)
+    <fieldset>
+        <legend>Associer des vols au voyage : </legend>
+        <div>
+            <div>Vol de départ : </div>
+            <table border="1" style="width:100%">
+                <tr>
+                    <th></th>
+                    <th>Date de départ</th>
+                    <th>Ville de départ</th>
+                    <th>Ville d'arrivée</th>
+                    <th>Compagnie Aérienne</th>
+                    <th>Numéro de vol</th>
+                </tr>
+                @foreach (_001JIMCV.Models.Classes.Flight flightDep in ViewBag.listFLightsDep)
+                {
+                    <tr>
+                        <td>@Html.RadioButtonFor(m => m.DepartureFlightCocheId, flightDep.Id)</td>
+                        <td>@flightDep.DepartureDate</td>
+                        <td>@flightDep.DepartureCity</td>
+                        <td>@flightDep.DestinationCity</td>
+                        <td>@flightDep.Airline</td>
+                        <td>@flightDep.FlightNumber</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <br />
+        <div>
+            <div>Vol de retour : </div>
+            <table border="1" style="width:100%">
+                <tr>
+                    <th></th>
+                    <th>Date de départ</th>
+                    <th>Ville de départ</th>
+                    <th>Ville d'arrivée'</th>
+                    <th>Compagnie Aérienne</th>
+                    <th>Numéro de vol</th>
+                </tr>
+                @foreach (_001JIMCV.Models.Classes.Flight flightReturn in ViewBag.listFLightsReturn)
+                {
+                    <tr>
+                        <td>@Html.RadioButtonFor(m => m.ReturnFlightCocheId, flightReturn.Id)</td>
+                        <td>@flightReturn.DepartureDate</td>
+                        <td>@flightReturn.DepartureCity</td>
+                        <td>@flightReturn.DestinationCity</td>
+                        <td>@flightReturn.Airline</td>
+                        <td>@flightReturn.FlightNumber</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Associer des Hébergements au voyage : </legend>
+
+        <table border="1" style="width:100%">
+            <tr>
+                <th></th>
+                <th>Type</th>
+                <th>Ville</th>
+                <th>Description</th>
+            </tr>
+            @foreach (_001JIMCV.Models.Classes.Accommodation accommodation in ViewBag.listAccommodations)
+            {
+                <tr>
+                    <td><input type="checkbox" name="AccommodationsCocheIds" value="@accommodation.Id" /></td>
+                    <td>@accommodation.Type</td>
+                    <td>@accommodation.City</td>
+                    <td>@accommodation.Description</td>
+                </tr>
+            }
+
+        </table>
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Associer des Activités au voyage : </legend>
+
+        <table border="1" style="width:100%">
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Ville</th>
+                <th>Description</th>
+            </tr>
+            @foreach (_001JIMCV.Models.Classes.Activity activity in ViewBag.listActivities)
+            {
+                <tr>
+                    <td><input type="checkbox" name="ActivitiesCocheIds" value="@activity.Id" /></td>
+                    <td>@activity.Name</td>
+                    <td>@activity.City</td>
+                    <td>@activity.Description</td>
+                </tr>
+            }
+
+        </table>
+
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Associer des Restaurant à votre voyage : </legend>
+
+        <table border="1" style="width:100%">
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Ville</th>
+                <th>Description</th>
+            </tr>
+            @foreach (_001JIMCV.Models.Classes.Restauration restaurant in ViewBag.listRestaurants)
+            {
+                <tr>
+                    <td><input type="checkbox" name="RestaurationsCocheIds" value="@restaurant.Id" /></td>
+                    <td>@restaurant.Name</td>
+                    <td>@restaurant.City</td>
+                    <td>@restaurant.Description</td>
+                </tr>
+            }
+
+        </table>
+
+    </fieldset>
+    <br />
+
+    <input type="submit" value="Suivant" />
+}

@@ -6,7 +6,7 @@
 <div class="container">
     <div style="display: flex; align-items: center">
         <div class="image-container">
-            <img src="/Images/Logo.png" alt="Image du produit">
+            <img src="/images/@Model.Journey.ImagePath" alt="Image du produit">
         </div>
         <div>
             <div class="description-section">
@@ -105,6 +105,10 @@
         }
     </div>
 </div>
+<div>
+    <button onclick="window.location.href='@Url.Action("ReservationAllInclusive","Journey", new { @Id = @Model.Journey.Id})'">Réserver ce voyage</button>
+    <button onclick="window.location.href='@Url.Action("DisplayJourneyPerso","Journey", new { @Id = @Model.Journey.Id, departureCity = "CDG"})'">Personnaliser votre voyage</button>
+</div>
 
 <div class="booking-search">
     <h3 class="title-step">Votre voyage</h3>
@@ -114,18 +118,13 @@
                 <div class="booking-form-element elem-select booking-select-departure">
                     <label for="slt_departureBooking" class="custom-select-label">Ville de départ</label>
                     <select class="form-control select" name="departureBooking" id="slt_departureBooking">
-                        <option value="BCN">Barcelone</option>
-                        <option value="BES">Brest</option>
-                        <option value="BOD">Bordeaux</option>
-                        <option value="BRU">Bruxelles</option>
-                        <option value="BSL">Bâle</option>
-                        <option value="GVA">Genève</option>
-                        <option value="LIL">Lille</option>
-                        <option value="LUX">Luxembourg</option>
-                        <option value="LYS">Lyon</option>
-                        <option value="MPL">Montpellier</option>
-                        <option value="MRS">Marseille</option>
-                        <option value="NCE">Nice</option>
+                        <option value="Paris CDG">Paris CDG</option>
+                        <option value="Paris Orly">Paris Orly</option>
+                        <option value="Bordeaux">Bordeaux</option>
+                        <option value="Lyon">Lyon</option>
+                        <option value="Marseill">Marseille</option>
+                        <option value="Nice">Nice</option>
+                        <option value="Toulouse">Toulouse</option>
                     </select>
                 </div>
             </div>

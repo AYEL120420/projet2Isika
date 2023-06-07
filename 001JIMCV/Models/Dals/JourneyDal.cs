@@ -80,7 +80,7 @@ namespace _001JIMCV.Models.Dals
 
         public int AddPackServices(int journeyId, int userId)
         {
-            PackServices pack = new PackServices() { JourneyId = journeyId , UserId = userId};
+            PackServices pack = new PackServices() { JourneyId = journeyId, UserId = userId };
             this._bddContext.PackService.Add(pack);
             this._bddContext.SaveChanges();
             return pack.Id;
