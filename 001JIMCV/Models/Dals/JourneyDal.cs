@@ -1,7 +1,9 @@
 ﻿using _001JIMCV.Models.Classes;
 using _001JIMCV.Models.Classes.Enum;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace _001JIMCV.Models.Dals
 {
@@ -53,6 +55,10 @@ namespace _001JIMCV.Models.Dals
         {
             return _bddContext.RestaurationPackServices.ToList();
         }
+        public PackServices GetPackServices(int id)
+        {
+            return _bddContext.PackService.FirstOrDefault(r => r.Id == id);
+        }
         public Flight GetFlight(int id)
         {
             return _bddContext.Flights.FirstOrDefault(r => r.Id == id);
@@ -69,14 +75,15 @@ namespace _001JIMCV.Models.Dals
         {
             return _bddContext.Restaurations.FirstOrDefault(r => r.Id == id);
         }
-        public int AddJourney(string depDate, string returnDate, string country)
+        public int AddJourney(string depDate, string returnDate, string country, string city, string departCity, float price, string description, string imagePath)
         {
             
-            Journey journey = new Journey() { DepartureDate = depDate, ReturnDate = returnDate, CountryDestination = country };
+            Journey journey = new Journey() { DepartureDate = depDate, ReturnDate = returnDate, CountryDestination = country, CityDestination=city,DepartureCity=departCity,Price=price, Description=description, ImagePath=imagePath };
             this._bddContext.Journeys.Add(journey);
             this._bddContext.SaveChanges();
             return journey.Id;
         }
+
 
         public int AddPackServices(int journeyId, int userId)
         {

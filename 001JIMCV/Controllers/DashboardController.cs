@@ -83,7 +83,7 @@ public class DashboardController : Controller
             return View("Error");
         }
 
-        return View("DashboardClientEdit", user);
+        return View("EditProfil", user);
     }
 
     [HttpPost]
