@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using XAct;
-using XAct.Users;
-
 
 namespace _001JIMCV.Controllers
 {
@@ -36,6 +33,7 @@ namespace _001JIMCV.Controllers
 
         public JourneyViewModel GetJourneyViewModelFull(int JourneyId)
         {
+            JourneyViewModel jvm = new JourneyViewModel();
             jvm.journeyId = JourneyId;
 
             //On récupère le voyage associé à l'Id
@@ -96,12 +94,9 @@ namespace _001JIMCV.Controllers
             {
                 JourneyViewModel jvm = GetJourneyViewModelFull(Id);
 
-
                 return View("Produits", jvm);
 
-
             }
-
             return View("Error");
         }
 
