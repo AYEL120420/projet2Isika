@@ -151,7 +151,7 @@ namespace _001JIMCV.Controllers
 
             return View("Error");
         }
-        public IActionResult DisplayJourneyPerso(int Id, string departureCity)
+        public IActionResult DisplayJourneyPerso(int Id)
         {
             if (!HttpContext.User.Identity.IsAuthenticated)
             {
