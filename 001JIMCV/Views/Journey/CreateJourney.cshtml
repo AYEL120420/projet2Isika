@@ -7,7 +7,7 @@
     <title>Créer un voyage</title>
 </head>
 <body>
-    @using (Html.BeginForm( new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("CreateJourney" ,"Journey",FormMethod.Post,new { enctype = "multipart/form-data" }))
 {
     <fieldset>
         <legend>Créer un voyage : </legend>
