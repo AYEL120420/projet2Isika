@@ -13,5 +13,6 @@
         public string DestinationCity { get; set; }
         public string DepartureDate { get; set; }
         public int ServiceId { get; set; }
+        public int Price { get; set; }
     }
 }
