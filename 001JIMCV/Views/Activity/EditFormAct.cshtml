@@ -81,6 +81,7 @@
             @Html.ValidationMessageFor(m => m.Image)
         </div>
         <br>
+        
         <div class="form-group">
             <label for="Status">Status</label>
             <input type="text" id="Status" name="Status" class="form-control" value="@Model.Status" @((User.IsInRole("Provider")) ? "readonly" : "") />
@@ -89,6 +90,7 @@
         <div class="form-group">
             <input type="submit" value="Enregistrer" class="btn btn-primary" />
         </div>
+
     </fieldset>
 }
 

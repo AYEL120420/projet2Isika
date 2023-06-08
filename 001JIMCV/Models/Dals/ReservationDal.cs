@@ -46,24 +46,20 @@ namespace _001JIMCV.Models.Dals
         {
             return _bddcontext.Reservations.FirstOrDefault(r => r.Id == id);
         }
-        public int EditReservation(int id, DateTime travelStartDate, DateTime travelEndDate, string contactName, string contactEmail, string contactPhone, int numberOfPassengers, float totalAmount, string status)
+        public void EditReservation(int id,  string contactName, string contactEmail, string contactPhone,  string status)
         {
             Reservation reservation = new Reservation();
             {
                 reservation.Id = id;
-                reservation.TravelStartDate = travelStartDate;
-                reservation.TravelEndDate = travelEndDate;
+               
                 reservation.ContactName = contactName;
                 reservation.ContactEmail = contactEmail;
                 reservation.ContactPhone = contactPhone;
-                reservation.NumberOfPassengers = numberOfPassengers;
-                reservation.TotalAmount = totalAmount;
+               
                 reservation.Status = status;
             }
             _bddcontext.Reservations.Update(reservation);
-            _bddcontext.SaveChanges();
-
-            return reservation.Id;
+            _bddcontext.SaveChanges(); 
         }
         public void Dispose()
         {

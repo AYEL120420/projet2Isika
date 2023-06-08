@@ -1,4 +1,4 @@
-﻿@model _001JIMCV.Models.Classes.Accommodation
+﻿@model _001JIMCV.ViewModels.JourneyViewModel
 @{
     Layout = "_LayoutJimcv";
 }
@@ -30,7 +30,7 @@
             <td>@reservation.ContactName</td>
             <td>@reservation.ContactEmail</td>
             <td>@reservation.ContactPhone</td>
-            <td>@reservation.NumberOfPassengers</td>
+           
             <td>@reservation.TotalAmount</td>
             <td>@reservation.Status</td>
             @if (User.IsInRole("Admin"))
