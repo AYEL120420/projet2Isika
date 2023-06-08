@@ -129,40 +129,46 @@ namespace _001JIMCV.Controllers
             return View();
         }
 
-    
-    /*   public ActionResult GetClientReservation()
-       {
-           LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
-           if (viewModel.Authentified)
+
+           public ActionResult GetClientReservation()
            {
-               viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
-               UserEnum role = viewModel.User.Role;
-
-               if (role == UserEnum.Customer)
+               LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+               if (viewModel.Authentified)
                {
-                   var reservations = reservationDal.GetAllReservations()
-                       .Where(p => p.ClientId == viewModel.User.Id)
-                       .ToList();
+                   viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+                   UserEnum role = viewModel.User.Role;
 
-                   ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
+                   if (role == UserEnum.Customer)
+                   {
+                       var reservations = reservationDal.GetAllReservations()
+                           .Where(p => p.ClientId == viewModel.User.Id)
+                           .ToList();
+
+                       ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
+                   }
                }
+
+               return View("List");
            }
-
-           return View("List");
-       }
-    */
-
-    [HttpPost]
-        public IActionResult AddReservation(Reservation reservation)
+        
+        [HttpPost]
+        public IActionResult AddReservation(JourneyViewModel jvm)
         {
             LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
             viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
             UserEnum role = viewModel.User.Role;
+            string name = viewModel.User.Name;
+            string email = viewModel.User.Email;
+            string phone = viewModel.User.Phone;
+            ViewData["UserName"] = name;
+            ViewData["UserEmail"] = email;
+            ViewData["UserPhone"] = phone;
+            PackServices packServices = JourneyDal.GetPackServices(jvm.PackService.Id);
+           
+            jvm = GetJourneyViewModelFull(packServices.JourneyId, false);
+            reservationDal.AddReservation(viewModel.User.Id, jvm.Journey.DepartureDate, jvm.Journey.ReturnDate, name, email, phone, jvm.Journey.Price);
 
-            reservationDal.AddReservation(viewModel.User.Id, reservation.TravelStartDate, reservation.TravelEndDate, reservation.ContactName, reservation.ContactEmail, reservation.ContactPhone,
-                reservation.NumberOfPassengers, reservation.TotalAmount);
-
-            return RedirectToAction("GetReservations");
+            return View("ConfirmationPayement");
         }
 
         [HttpGet]
@@ -185,16 +191,17 @@ namespace _001JIMCV.Controllers
 
 
         [HttpPost]
-        public IActionResult EditReservation(Reservation reservation)
+        public IActionResult EditReservation(Reservation reservation, int id)
         {
-          if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
                 return View("Error");
-                    }
+            }
 
             if (reservation.Id != 0)
             {
-                reservationDal.EditReservation(reservation.Id, reservation.ContactName, reservation.ContactEmail, reservation.ContactPhone,
-                    reservation.Status);
+                PackServices packServices = JourneyDal.GetPackServices(id);
+                reservationDal.EditReservation(reservation.Id, reservation.ClientId, reservation.Status);
 
                 return RedirectToAction("GetReservations", new { id = reservation.Id });
             }
@@ -203,6 +210,7 @@ namespace _001JIMCV.Controllers
                 return View("Error");
             }
         }
-        
+
     }
+
 }

@@ -42,7 +42,7 @@ namespace _001JIMCV.Models
             User admin3 = new User() { Name = "Raounak Elaissaoui", Email = "raounak.elaissaoui@gmail.com", Gender = "Feminin", Country = "France", City = "Lille",Password = LoginDal.EncodeMD5("Isika24admin"), Role = UserEnum.Admin };
             this.Users.AddRange(admin, admin1, admin2, admin3);
 
-            User customer = new User() { Name = "Frederic", Email = "frederic@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer };
+            User customer = new User() { Name = "Frederic", Email = "frederic@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer , Phone="0665609580"};
             User customer1 = new User() { Name = "Karen", Email = "karen@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer };
             User customer2 = new User() { Name = "Serdar", Email = "serdar@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer };
             User customer3 = new User() { Name = "Florian", Email = "florian@gmail.com", Password = LoginDal.EncodeMD5("Isika24client"), Role = UserEnum.Customer };

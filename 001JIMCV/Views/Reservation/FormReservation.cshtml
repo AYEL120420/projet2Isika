@@ -22,7 +22,7 @@
 {
     using (Html.BeginForm("AddReservation", "Reservation", FormMethod.Post, new { id = "FormReservation" }))
     {
-        <fieldset>
+        @*<fieldset>
             <div>
                 @Html.LabelFor(m => m.Reservation.ContactName, "Nom :")
                 @Html.TextBoxFor(m => m.Reservation.ContactName, new { required = "required" })
@@ -43,7 +43,7 @@
                 @Html.ValidationMessageFor(m => m.Reservation.ContactPhone)
             </div>
             <br>
-        </fieldset>
+        </fieldset>*@
         <fieldset>
             <div>
                 @Html.LabelFor(m => m.Reservation.NameCard, "Nom sur la carte")
@@ -68,6 +68,8 @@
                 @Html.TextBoxFor(m => m.Reservation.SecurityCode, new { required = "required", pattern = @"\d{3}", title = "Veuillez entrer un code de sécurité valide (3 chiffres)." })
                 @Html.ValidationMessageFor(m => m.Reservation.SecurityCode)
             </div>
+            @Html.HiddenFor(m=>m.PackService.Id)
+            @Html.HiddenFor(m=>m.User.Id)
         </fieldset>
 
         <input type="submit" value="Réserver" class="btn btn-primary" />
