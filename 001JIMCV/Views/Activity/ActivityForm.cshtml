@@ -11,7 +11,11 @@
     Layout = "_LayoutJimcv";
 }
 
-<div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Site.css" link />
+}
+
+<div style="display:flex; align-items:center; flex-direction: column">
     <h2>
         Vous avez une ou des activités à proposer ? C'est par ici !
     </h2>
@@ -22,62 +26,62 @@
 @using (Html.BeginForm("CreateActivity", "Activity", FormMethod.Post))
 {
     <fieldset>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+        <div style="display:flex; align-items:center; flex-direction: column">
         <div>
-            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
+            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")<br>
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
         <br />
         <div>
-            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
+                @Html.LabelFor(m => m.ProviderEmail, "Adresse email")<br>
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
             <br />
         <div>
-            @Html.LabelFor(m => m.Country, "Pays")
+                @Html.LabelFor(m => m.Country, "Pays")<br>
             @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
             @Html.ValidationMessageFor(m => m.Country)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.City, "Ville")
+                @Html.LabelFor(m => m.City, "Ville")<br>
             @Html.TextBoxFor(m => m.City, new {required = "required" })
             @Html.ValidationMessageFor(m => m.City)
         </div>
             <br />
         <div>
-            @Html.LabelFor(m => m.Name, "Nom")
+                @Html.LabelFor(m => m.Name, "Nom")<br>
             @Html.TextBoxFor(m => m.Name)
             @Html.ValidationMessageFor(m => m.Name)
         </div>
         <br />
         <div>
-            @Html.LabelFor(m => m.Description)
+                @Html.LabelFor(m => m.Description)<br>
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
         </div>
         <br />
         <div>
-            @Html.LabelFor(m => m.Date)
+                @Html.LabelFor(m => m.Date)<br>
             @Html.TextBoxFor(m => m.Date, new { @type = "date"})
             @Html.ValidationMessageFor(m => m.Date)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Adress, "Adresse")
+                @Html.LabelFor(m => m.Adress, "Adresse")<br>
             @Html.TextBoxFor(m => m.Adress)
             @Html.ValidationMessageFor(m => m.Adress)
         </div>
         <br />
         <div>
-            @Html.LabelFor(m => m.Price,"Prix")
+                @Html.LabelFor(m => m.Price,"Prix")<br>
             @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
             @Html.ValidationMessageFor(m => m.Price)
         </div>
         <br />
         <div>
-            @Html.LabelFor(m => m.Image)
+                @Html.LabelFor(m => m.Image)<br>
             @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control-file" })
             @Html.ValidationMessageFor(m => m.Image)
         </div>

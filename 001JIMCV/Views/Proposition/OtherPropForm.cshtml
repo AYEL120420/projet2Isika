@@ -11,26 +11,29 @@
     Layout = "_LayoutJimcv";
 }
 
-<div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
-    <h2>
-        Vous avez une proposition globale de votre activité sur place ? Détaillez votre offre par ici !
-    </h2>
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Site.css" link />
+}
 
+<div style="display:flex; align-items:center; flex-direction: column">
+    <h2>
+        Vous avez une proposition globale de votre activité sur place ? <br> Détaillez votre offre par ici !
+    </h2>
 </div>
 <br />
 
 @using (Html.BeginForm("CreateOtherProposition", "Proposition", FormMethod.Post))
     {
         <fieldset>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+        <div style="display:flex; align-items:center; flex-direction: column">
         <div>
-            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
+            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")<br>
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
+                @Html.LabelFor(m => m.ProviderEmail, "Adresse email")<br>
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
@@ -48,25 +51,24 @@
         </div>
             <br />
         <div>
-            @Html.LabelFor(m => m.Name)
+            @Html.LabelFor(m => m.Name)<br>
             @Html.TextBoxFor(m => m.Name)
             @Html.ValidationMessageFor(m => m.Name)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Disponibility, "Disponibilité")
+                @Html.LabelFor(m => m.Disponibility, "Disponibilité")<br>
             @Html.TextBoxFor(m => m.Disponibility)
             @Html.ValidationMessageFor(m => m.Disponibility)
         </div>
         <br/>
-
         <div class="form-group">
-            @Html.LabelFor(m => m.Description)
+                @Html.LabelFor(m => m.Description)<br>
             @Html.TextAreaFor(m => m.Description)
         </div>
             <br />
         <div class="form-group">
-            @Html.LabelFor(m => m.Image)
+                @Html.LabelFor(m => m.Image)<br>
             @Html.TextBoxFor(m => m.Image, new { @type = "file", @class = "form-control-file" })
             @Html.ValidationMessageFor(m => m.Image)
         </div>

@@ -11,16 +11,10 @@
 
 }
 <div class="container">
-
-
     <div class="dashboard-container">
-
-  
-
         <div class="dashboard-item">
             <h2><button onclick="window.location.href='@Url.Action("Index", "Home")'">Accueil</button></h2>
         </div>
-
     </div>
 
     <div id="description" class="container">
@@ -71,7 +65,7 @@
                 @Html.HiddenFor(model=>model.Password)
                 @Html.HiddenFor(model=>model.Id)
     <input type="submit" value="Enregistrer" />
-
+                <br/>
 
             }
 

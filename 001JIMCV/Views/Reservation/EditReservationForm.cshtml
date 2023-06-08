@@ -5,49 +5,52 @@
     string formMethod = ViewData["FormMethod"] as string ?? "post";
     string submitText = ViewData["SubmitText"] as string ?? "Enregistrer";
 }
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Site.css" link />
+}
 
 @using (Html.BeginForm(formAction, "Reservation", FormMethod.Post))
 {
     <fieldset>
         <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
         <div>
-            @Html.LabelFor(m => m.TravelStartDate, "Date de début du voyage :")
+            @Html.LabelFor(m => m.TravelStartDate, "Date de début du voyage :")<br>
             @Html.TextBoxFor(m => m.TravelStartDate, new { @type = "date", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.TravelStartDate)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.TravelEndDate, "Date de fin du voyage :")
+                @Html.LabelFor(m => m.TravelEndDate, "Date de fin du voyage :")<br>
             @Html.TextBoxFor(m => m.TravelEndDate, new { @type = "date", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.TravelEndDate)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.NumberOfPassengers, "Nombre de voyageurs :")
+                @Html.LabelFor(m => m.NumberOfPassengers, "Nombre de voyageurs :")<br>
             @Html.TextBoxFor(m => m.NumberOfPassengers, new { type = "number", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.NumberOfPassengers)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.ContactName, "Nom :")
+                @Html.LabelFor(m => m.ContactName, "Nom :")<br>
             @Html.TextBoxFor(m => m.ContactName, new { required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.ContactName)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.ContactEmail, "Email :")
+                @Html.LabelFor(m => m.ContactEmail, "Email :")<br>
             @Html.TextBoxFor(m => m.ContactEmail, new { type = "email", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.ContactEmail)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.ContactPhone, "Téléphone :")
+                @Html.LabelFor(m => m.ContactPhone, "Téléphone :")<br>
             @Html.TextBoxFor(m => m.ContactPhone, new { type = "tel", required = "required", @readonly = "readonly" })
             @Html.ValidationMessageFor(m => m.ContactPhone)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Status, "Statut :")
+                @Html.LabelFor(m => m.Status, "Statut :")<br>
             @Html.TextBoxFor(m => m.Status)
             @Html.ValidationMessageFor(m => m.Status)
         </div>

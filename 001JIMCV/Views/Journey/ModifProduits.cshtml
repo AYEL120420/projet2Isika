@@ -2,11 +2,16 @@
 @{
     Layout = "_LayoutJimcv";
 }
+
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Table.css" link />
+}
+
 @using (Html.BeginForm("DisplayJourneyPerso", "Journey", FormMethod.Post))
 {
     @Html.HiddenFor(model => model.journeyId)
     <fieldset>
-        <legend>Associer des vols au voyage : </legend>
+        <legend><h3>Associer des vols au voyage : </h3></legend>
         <div>
             <div>Vol de départ : </div>
             <table border="1" style="width:100%">
@@ -65,7 +70,7 @@
     </fieldset>
     <br />
     <fieldset>
-        <legend>Associer des Hébergements au voyage : </legend>
+        <legend><h3>Associer des Hébergements au voyage : </h3></legend>
 
         <table border="1" style="width:100%">
             <tr>
@@ -90,7 +95,7 @@
     </fieldset>
     <br />
     <fieldset>
-        <legend>Associer des Activités au voyage : </legend>
+        <legend><h3>Associer des Activités au voyage : </h3></legend>
 
         <table border="1" style="width:100%">
             <tr>
@@ -116,7 +121,7 @@
     </fieldset>
     <br />
     <fieldset>
-        <legend>Associer des Restaurant à votre voyage : </legend>
+        <legend><h3>Associer des Restaurant à votre voyage : </h3></legend>
 
         <table border="1" style="width:100%">
             <tr>
@@ -142,5 +147,5 @@
     </fieldset>
     <br />
 
-    <input type="submit" value="Suivant" />
+    <input type="submit" value="Suivant" style="align-items: center" />
 }

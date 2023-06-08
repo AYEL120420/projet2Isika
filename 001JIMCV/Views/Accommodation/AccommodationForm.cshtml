@@ -13,46 +13,47 @@
             })
     .ToList();
 }
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Site.css" link />
+}
 
 <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
     <h2>
-        Vous avez un hébergement à proposer pour nos clients ? Remplissez ce formulaire et recevez une validation de notre service sous 48h !
+        Vous avez un hébergement à proposer pour nos clients ? <br /> Remplissez ce formulaire et recevez une validation de notre service sous 48h !
     </h2>
-
 </div>
-
 <br />
 
 @using (Html.BeginForm("CreateAccommodation", "Accommodation", FormMethod.Post))
 {
     <fieldset>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+        <div style="display:flex; align-items:center; flex-direction: column">
         <div>
-            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
+            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")<br>
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
+                @Html.LabelFor(m => m.ProviderEmail, "Adresse email")<br>
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Country, "Pays")
+                @Html.LabelFor(m => m.Country, "Pays")<br>
             @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
             @Html.ValidationMessageFor(m => m.Country)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.City, "Ville")
+                @Html.LabelFor(m => m.City, "Ville")<br>
             @Html.TextBoxFor(m => m.City, new {required = "required" })
             @Html.ValidationMessageFor(m => m.City)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Type)
+                @Html.LabelFor(m => m.Type)<br>
             <span>
                 <label>
                     @Html.RadioButtonFor(m => m.Type, "Chez l'habitant")
@@ -76,38 +77,38 @@
         <br />
         <div>
             <span>
-                @Html.LabelFor(m => m.StartDate, "Disponible de")
+                    @Html.LabelFor(m => m.StartDate, "Disponible de")<br>
                 @Html.TextBoxFor(m => m.StartDate, new { @type = "date" })
                 @Html.ValidationMessageFor(m => m.StartDate)
             </span>
 
             <span>
-                @Html.LabelFor(m => m.EndDate, "A")
+                    @Html.LabelFor(m => m.EndDate, "A")<br>
                 @Html.TextBoxFor(m => m.EndDate, new { @type = "date" })
                 @Html.ValidationMessageFor(m => m.EndDate)
             </span>
         </div>
         <br />
         <div>
-            @Html.LabelFor(m => m.Adress, "Adresse" )
+                @Html.LabelFor(m => m.Adress, "Adresse" )<br>
             @Html.TextBoxFor(m => m.Adress)
             @Html.ValidationMessageFor(m => m.Adress)
         </div>
         <br />
         <div>
-            @Html.LabelFor(m => m.Description)
+                @Html.LabelFor(m => m.Description)<br>
             @Html.TextAreaFor(m => m.Description)
             @Html.ValidationMessageFor(m => m.Description)
         </div>
         <br />
         <div>
-            @Html.LabelFor(m => m.Price,"Prix")
+                @Html.LabelFor(m => m.Price,"Prix")<br>
             @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
             @Html.ValidationMessageFor(m => m.Price)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Image)
+                @Html.LabelFor(m => m.Image)<br>
             <input type="file" name="Image" id="Image" />
             @Html.ValidationMessageFor(m => m.Image)
         </div>

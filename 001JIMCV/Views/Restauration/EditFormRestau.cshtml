@@ -15,36 +15,45 @@
     Layout = "_LayoutJimcv";
 }
 
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/Site.css" link />
+}
+
+<div style="display:flex; align-items:center; flex-direction: column; flex-basis: 150%">
+    <h2>
+        Editez la proposition de restauration !
+    </h2>
+
 @using (Html.BeginForm(formAction, "Restauration", FormMethod.Post, new { id = Model.Id }))
 {
     <fieldset>
     <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
         <div>
-            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")
+            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")<br>
             @Html.TextBoxFor(m => m.ProviderName)
             @Html.ValidationMessageFor(m => m.ProviderName)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.ProviderEmail, "Adresse email")
+                @Html.LabelFor(m => m.ProviderEmail, "Adresse email")<br>
             @Html.TextBoxFor(m => m.ProviderEmail)
             @Html.ValidationMessageFor(m => m.ProviderEmail)
         </div>
             <br />
         <div>
-            @Html.LabelFor(m => m.Country, "Pays")
+                @Html.LabelFor(m => m.Country, "Pays")<br>
             @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
             @Html.ValidationMessageFor(m => m.Country)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.City, "Ville")
+                @Html.LabelFor(m => m.City, "Ville")<br>
             @Html.TextBoxFor(m => m.City, new {required = "required" })
             @Html.ValidationMessageFor(m => m.City)
         </div>
             <br />
         <div>
-            @Html.LabelFor(m => m.Type)
+                @Html.LabelFor(m => m.Type)<br>
             <select class="form-control" name="Type">
                 <option value="Restaurant">Restaurant</option>
                 <option value="Habitant">Habitant</option>
@@ -54,35 +63,35 @@
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Description)
+                @Html.LabelFor(m => m.Description)<br>
             @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Adress,"Adresse")
+                @Html.LabelFor(m => m.Adress,"Adresse")<br>
             @Html.TextBoxFor(m => m.Adress)
             @Html.ValidationMessageFor(m => m.Adress)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Menu)
+                @Html.LabelFor(m => m.Menu)<br>
             @Html.TextAreaFor(m => m.Menu)
         </div>
         <br/>
         <div>
-            @Html.LabelFor(m => m.Price, "Prix")
+                @Html.LabelFor(m => m.Price, "Prix")<br>
             @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
             @Html.ValidationMessageFor(m => m.Price)
         </div>
         <br/>
         <div class="form-group">
-            @Html.LabelFor(m => m.Images)
+                @Html.LabelFor(m => m.Images)<br>
             <input type="file" name="Images" multiple class="form-control-file" />
             @Html.ValidationMessageFor(m => m.Images)
         </div>
         <br/>
         <div class="form-group">
-            <label for="Status">Status</label>
+            <label for="Status">Status</label><br>
             <input type="text" id="Status" name="Status" class="form-control" value="@Model.Status" @((User.IsInRole("Provider")) ? "readonly" : "") />
         </div>
             <br />
