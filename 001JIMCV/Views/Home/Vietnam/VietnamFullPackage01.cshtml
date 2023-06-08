@@ -1,15 +1,10 @@
 ﻿@{
     Layout = "_LayoutJimcv";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Vietnam</title>
-    <link href="~/css/Site.css" rel="stylesheet" />
-    <link href="~/css/FullPackage.css" rel="stylesheet" />
-</head>
-<body>
+@section ExtraCss{
+    <link rel="stylesheet" type="text/css" href="~/Css/FullPackage.css" link />
+    <link rel="stylesheet" type="text/css" href="~/Css/Site.css" link />
+}
     <br>
     <div class="map" style="background-image: url('/images/Vietnam/AcceuilVietnam01t.jpg');"></div>
     <br>
@@ -41,9 +36,3 @@
         </div>
         <br>
     }
-
-    <input type="date" id="date-picker">
-
-    <script src="~/js/FullPackage.js"></script>
-</body>
-</html>

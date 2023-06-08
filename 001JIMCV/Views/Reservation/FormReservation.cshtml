@@ -10,14 +10,17 @@
 @if (User.Identity.IsAuthenticated)
 {   
     <fieldset>
+        
     <!-- Afficher le recap du voyage -->
     <h2>Récapitulatif du voyage :</h2>
+        <div style="display: flex; align-items: center; flex-direction: column">
         <p>Destination : </p>
             <p>-Pays:@Model.Journey.CountryDestination</p>
             <p>-Ville : @Model.Journey.CityDestination</p>
         <p>Date de départ : @Model.Journey.DepartureDate</p>
         <p>Date de retour : @Model.Journey.ReturnDate</p>
         <p>Prix:@Model.Journey.Price</p>
+        </div>
     </fieldset>
 }
 
@@ -25,27 +28,31 @@
 {
     using (Html.BeginForm("AddReservation", "Reservation", FormMethod.Post, new { id = "FormReservation" }))
     {
+        
         <fieldset>
-            <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+                <div>
                 @Html.LabelFor(m => m.Reservation.ContactName, "Nom :")<br>
                 @Html.TextBoxFor(m => m.Reservation.ContactName, new { required = "required" })
                 @Html.ValidationMessageFor(m => m.Reservation.ContactName)
-            </div>
-            <br/>
-            <div>
+                </div>
+                    <br/>
+                <div>
                 @Html.LabelFor(m => m.Reservation.ContactEmail, "Email :")<br>
                 @Html.TextBoxFor(m => m.Reservation.ContactEmail, new { type = "email", required = "required" })
                 @Html.ValidationMessageFor(m => m.Reservation.ContactEmail)
-            </div>
-            <br/>
-            <div>
+                </div>
+                    <br/>
+                <div>
                 @Html.LabelFor(m => m.Reservation.ContactPhone, "Téléphone :")<br>
                 @Html.TextBoxFor(m => m.Reservation.ContactPhone, new { type = "tel", required = "required" })
                 @Html.ValidationMessageFor(m => m.Reservation.ContactPhone)
+                </div>
+                    <br/>
             </div>
-            <br/>
         </fieldset>
         <fieldset>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
             <div>
                 @Html.LabelFor(m => m.Reservation.NameCard, "Nom sur la carte")<br>
                 @Html.TextBoxFor(m => m.Reservation.NameCard, new { required = "required" })
@@ -69,8 +76,12 @@
                 @Html.TextBoxFor(m => m.Reservation.SecurityCode, new { required = "required", pattern = @"\d{3}", title = "Veuillez entrer un code de sécurité valide (3 chiffres)." })
                 @Html.ValidationMessageFor(m => m.Reservation.SecurityCode)
             </div>
+            <br/>
+            <input type="submit" value="Réserver" class="btn btn-primary" />
+            </div>
+            <br/>
         </fieldset>
 
-        <input type="submit" value="Réserver" class="btn btn-primary" />
+        
     }
 }

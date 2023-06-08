@@ -245,11 +245,12 @@ facebook {
     padding: 20px;
 }
 
-footer {
+.footer {
     padding: 20px;
     justify-items: center;
     justify-content: center;
-    background-color: tomato;
+    background-color: #272626;
+    height: 80px;
 }
 
 input {
@@ -286,19 +287,6 @@ h2 {
         background-color: #DF3012;
     }
 
-.video-container {
-    width: 100%;
-    position: relative;
-    padding-bottom: 56.25%; /* Ratio 16:9 pour une vidéo responsive */
-}
-
-    .video-container video {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
 
 select {
     position: relative;
@@ -309,3 +297,18 @@ select {
     font-size: 18px;
     color: #272626;
 }
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio (change as needed) */
+}
+
+    .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
