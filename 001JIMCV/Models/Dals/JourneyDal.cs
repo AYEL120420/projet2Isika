@@ -1,7 +1,10 @@
 ﻿using _001JIMCV.Models.Classes;
 using _001JIMCV.Models.Classes.Enum;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
 using System.Linq;
 using System.Runtime.InteropServices;
 
@@ -55,6 +58,10 @@ namespace _001JIMCV.Models.Dals
         {
             return _bddContext.RestaurationPackServices.ToList();
         }
+        public Journey GetJourney(int id)
+        {
+            return _bddContext.Journeys.FirstOrDefault(r => r.Id == id);
+        }
         public PackServices GetPackServices(int id)
         {
             return _bddContext.PackService.FirstOrDefault(r => r.Id == id);
@@ -77,8 +84,8 @@ namespace _001JIMCV.Models.Dals
         }
         public int AddJourney(string depDate, string returnDate, string country, string city, string departCity, float price, string description, string imagePath)
         {
-            
-            Journey journey = new Journey() { DepartureDate = depDate, ReturnDate = returnDate, CountryDestination = country, CityDestination=city,DepartureCity=departCity,Price=price, Description=description, ImagePath=imagePath };
+
+            Journey journey = new Journey() { DepartureDate = depDate, ReturnDate = returnDate, CountryDestination = country, CityDestination = city, DepartureCity = departCity, Price = price, Description = description, ImagePath = imagePath };
             this._bddContext.Journeys.Add(journey);
             this._bddContext.SaveChanges();
             return journey.Id;
@@ -99,10 +106,10 @@ namespace _001JIMCV.Models.Dals
             this._bddContext.SaveChanges();
             return pack.Id;
         }
-        
+
         public void AddFlightPackServices(int depFlightId, int returnFlightId, int packServiceId)
         {
-            FlightPackServices pack = new FlightPackServices() { DepartureFlightId = depFlightId, ReturnFlightId = returnFlightId, PackServicesId= packServiceId };
+            FlightPackServices pack = new FlightPackServices() { DepartureFlightId = depFlightId, ReturnFlightId = returnFlightId, PackServicesId = packServiceId };
             this._bddContext.FlightPackServices.Add(pack);
             this._bddContext.SaveChanges();
         }
@@ -125,6 +132,70 @@ namespace _001JIMCV.Models.Dals
             RestaurationPackServices RestaurationPackServices = new RestaurationPackServices() { RestaurationId = activityId, PackServicesId = packServiceId };
             this._bddContext.RestaurationPackServices.Add(RestaurationPackServices);
             this._bddContext.SaveChanges();
+        }
+
+        public float GetAccommodationPrice(int accommodationId)
+        {
+
+            Accommodation accommodation = _bddContext.Accommodations.Find(accommodationId);
+            if (accommodation != null)
+            {
+                return accommodation.Price; 
+            }
+
+            return 0;
+        }
+
+       public float GetActivityPrice(int idActivity)
+        {
+            Activity activity = _bddContext.Activities.Find(idActivity);
+            if (activity != null)
+            {
+                return activity.Price;
+            }
+
+            return 0;
+        }
+        public float GetRestaurationPrice(int idRestauration)
+        {
+            Restauration restauration = _bddContext.Restaurations.Find(idRestauration);
+            if (restauration != null)
+            {
+                return restauration.Price;
+            }
+
+            return 0;
+        }
+        public float GetFlightPrice(int idFlight)
+        {
+            Flight flight = _bddContext.Flights.Find(idFlight);
+            if (flight != null)
+            {
+                return flight.Price;
+            }
+
+            return 0;
+        }
+        public void UpdatePricePackService(int IdPackService, float  pricePack)
+        {
+            PackServices packServices =_bddContext.PackService.Find(IdPackService);
+            if 
+                (packServices != null)
+                {
+                packServices.Total_price = pricePack;
+                this._bddContext.SaveChanges(); 
+                }
+            
+        }
+        public void DeleteJourney(int id)
+        {
+            Journey journey = _bddContext.Journeys.Find(id);
+
+        }
+        public void DeleteJourney(Journey journey)
+        {
+            _bddContext.Journeys.Remove(journey);
+            _bddContext.SaveChanges();
         }
     }
 }
