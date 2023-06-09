@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
-
+using Activity = _001JIMCV.Models.Classes.Activity;
 
 namespace _001JIMCV.Controllers
 {
@@ -53,7 +54,6 @@ namespace _001JIMCV.Controllers
 
                 // On récupère le Pack de Service associé à l'id du voyage et qui est clé en main
                 jvm.PackService = JourneyDal.GetAllPacks().Where(r => r.JourneyId == JourneyId & r.AllInclusive == allInclusive).FirstOrDefault();
-
 
                 //On récupère les vols associé au pack de Service
                 FlightPackServices flightPackServices = JourneyDal.GetFLightPackServices(jvm.PackService.Id);
@@ -108,7 +108,7 @@ namespace _001JIMCV.Controllers
             return View("Error");
         }
 
-        
+
         public IActionResult ReservationAllInclusive(int Id)
         {
             LoginViewModel loginViewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
@@ -189,6 +189,7 @@ namespace _001JIMCV.Controllers
         {
             if (ModelState.IsValid)
             {
+                float TotalAmount = 0;
                 LoginViewModel loginViewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
                 string userId = User.FindFirst(ClaimTypes.Name).Value;
                 loginViewModel.User = LoginDal.GetUser(userId);
@@ -196,6 +197,9 @@ namespace _001JIMCV.Controllers
                 int idPackServices = JourneyDal.AddPackServices(jvm.journeyId, loginViewModel.User.Id);
 
                 JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
+                float departureflightPrice = JourneyDal.GetFlightPrice(jvm.DepartureFlightCocheId);
+                float returnflightPrice = JourneyDal.GetFlightPrice(jvm.ReturnFlightCocheId);
+                TotalAmount=departureflightPrice+returnflightPrice;
 
                 foreach (string accomodationId in jvm.AccommodationsCocheIds)
                 {
@@ -204,9 +208,12 @@ namespace _001JIMCV.Controllers
                         int idAccomodation;
                         if (int.TryParse(accomodationId, out idAccomodation))
                         {
+                            float accommodationPrice = JourneyDal.GetAccommodationPrice(idAccomodation);
+                            TotalAmount += accommodationPrice;
                             JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
                         }
                     }
+
                 }
                 foreach (string activityId in jvm.ActivitiesCocheIds)
                 {
@@ -215,6 +222,8 @@ namespace _001JIMCV.Controllers
                         int idActivity;
                         if (int.TryParse(activityId, out idActivity))
                         {
+                            float activityPrice = JourneyDal.GetActivityPrice(idActivity);
+                            TotalAmount += activityPrice;
                             JourneyDal.AddActivityPackServices(idActivity, idPackServices);
                         }
                     }
@@ -226,16 +235,20 @@ namespace _001JIMCV.Controllers
                         int idRestauration;
                         if (int.TryParse(restaurationId, out idRestauration))
                         {
-                            JourneyDal.AddRestaurationPackServices(idRestauration, idPackServices);
+                            float restaurationPrice = JourneyDal.GetRestaurationPrice(idRestauration);
+                            TotalAmount += restaurationPrice;
+                            JourneyDal.AddAccommodationPackServices(idRestauration, idPackServices);
+                      
                         }
                     }
                 }
-
+                JourneyDal.UpdatePricePackService(idPackServices, TotalAmount);
                 return RedirectToAction("Index", "Reservation", new { id = idPackServices });
             }
             return View(jvm);
         }
-        public IActionResult CreateJourney()
+      
+            public IActionResult CreateJourney()
         {
             return View();
         }
@@ -304,6 +317,7 @@ namespace _001JIMCV.Controllers
         {
             if (ModelState.IsValid)
             {
+                float TotalAmount = 0;
                 LoginViewModel loginViewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
                 if (!loginViewModel.Authentified)
                 {
@@ -317,6 +331,9 @@ namespace _001JIMCV.Controllers
                     int idPackServices = JourneyDal.AddPackServicesAllInclusive(jvm.journeyId, loginViewModel.User.Id);
 
                     JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
+                    float departureflightPrice = JourneyDal.GetFlightPrice(jvm.DepartureFlightCocheId);
+                   /* float returnflightPrice = JourneyDal.GetFlightPrice(jvm.ReturnFlightCocheId);
+                    TotalAmount = departureflightPrice + returnflightPrice;*/
 
                     foreach (string accomodationId in jvm.AccommodationsCocheIds)
                     {
@@ -325,6 +342,8 @@ namespace _001JIMCV.Controllers
                             int idAccomodation;
                             if (int.TryParse(accomodationId, out idAccomodation))
                             {
+                                /*float accommodationPrice = JourneyDal.GetAccommodationPrice(idAccomodation);
+                                TotalAmount += accommodationPrice;*/
                                 JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
                             }
                         }
@@ -336,6 +355,8 @@ namespace _001JIMCV.Controllers
                             int idActivity;
                             if (int.TryParse(activityId, out idActivity))
                             {
+                               /* float activityPrice = JourneyDal.GetActivityPrice(idActivity);
+                                TotalAmount += activityPrice;*/
                                 JourneyDal.AddActivityPackServices(idActivity, idPackServices);
                             }
                         }
@@ -347,15 +368,53 @@ namespace _001JIMCV.Controllers
                             int idRestauration;
                             if (int.TryParse(restaurationId, out idRestauration))
                             {
+                               /* float restaurationPrice = JourneyDal.GetRestaurationPrice(idRestauration);
+                                TotalAmount += restaurationPrice;*/
                                 JourneyDal.AddRestaurationPackServices(idRestauration, idPackServices);
                             }
                         }
                     }
-
+                    //JourneyDal.UpdatePricePackService(idPackServices, TotalAmount);
                     return RedirectToAction("GetAllJourneys");
                 }
             }
             return View(jvm);
+        }
+        [HttpGet]
+        public IActionResult DeleteJourney(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            Journey journey = JourneyDal.GetJourney(id);
+
+            if (journey == null)
+            {
+                return View("Error");
+            }
+
+            return View(journey);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteJourney(Journey journey)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(journey);
+            }
+
+            if (journey.Id != 0)
+            {
+                JourneyDal.DeleteJourney(journey);
+                return RedirectToAction("GetAllJourneys", new { id = journey.Id });
+            }
+            else
+            {
+                return View("Error");
+            }
         }
 
     }

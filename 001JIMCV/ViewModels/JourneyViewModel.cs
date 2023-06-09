@@ -27,6 +27,8 @@ namespace _001JIMCV.ViewModels
         public List<string> ActivitiesCocheIds { get; set; }
         public List<string> RestaurationsCocheIds { get; set; }
         public Reservation Reservation { get; set; }
+        public User User { get; set; }
+    
 
     }
 

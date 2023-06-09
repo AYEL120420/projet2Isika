@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using _001JIMCV.Models;
 
 namespace _001JIMCV.Controllers
 {
@@ -88,83 +89,86 @@ namespace _001JIMCV.Controllers
             return jvm;
         }
     
-        private decimal CalculateTotalAmount(int numberOfPassengers)
-        {
-            // Effectuez les calculs appropriés pour déterminer le montant en fonction du nombre de passagers
-            decimal amount = numberOfPassengers;
-            return amount;
-        }
-
+      
         public IActionResult GetReservationsList()
         {
 
             var reservations = reservationDal.GetAllReservations();
-            ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
+            ViewData["Reservations"] = reservations ?? new List<Reservation>();
             return View("List");
 
         }
         public ActionResult GetReservations()
-
         {
-
             LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentified)
             {
                 viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
                 UserEnum role = viewModel.User.Role;
-                switch (role)
+
+                if (role == UserEnum.Admin)
                 {
-                    case UserEnum.Admin:
-                        return RedirectToAction("GetReservationsList");
-                    case UserEnum.Customer:
-
-                        var reservations = reservationDal.GetAllReservations()
-                            .Where(p => p.ClientId == viewModel.User.Id).ToList();
-                        ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
-
-                        return View("ConfirmationPayement");
-                    default:
-
-                        return View("Error");
+                    var reservations = reservationDal.GetAllReservations().ToList();
+                    ViewData["Reservations"] = reservations ?? new List<Reservation>();
+                    return View("List");
                 }
-            }
-
-            return View();
-
-        }
-        public ActionResult GetClientReservation()
-        {
-            LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
-            if (viewModel.Authentified)
-            {
-                viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
-                UserEnum role = viewModel.User.Role;
-
-                if (role == UserEnum.Customer)
+                else if (role == UserEnum.Customer)
                 {
                     var reservations = reservationDal.GetAllReservations()
                         .Where(p => p.ClientId == viewModel.User.Id)
                         .ToList();
-
-                    ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
+                    ViewData["Reservations"] = reservations ?? new List<Reservation>();
+                    return View("List");
+                }
+                else
+                {
+                    return View("Error");
                 }
             }
 
-            return View("List");
+            return View();
         }
 
 
+           public ActionResult GetClientReservation()
+           {
+               LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
+               if (viewModel.Authentified)
+               {
+                   viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
+                   UserEnum role = viewModel.User.Role;
+
+                   if (role == UserEnum.Customer)
+                   {
+                       var reservations = reservationDal.GetAllReservations()
+                           .Where(p => p.ClientId == viewModel.User.Id)
+                           .ToList();
+
+                       ViewData["Reservations"] = reservations ?? new List<_001JIMCV.Models.Classes.Reservation>();
+                   }
+               }
+
+               return View("List");
+           }
+        
         [HttpPost]
-        public IActionResult AddReservation(Reservation reservation)
+        public IActionResult AddReservation(JourneyViewModel jvm)
         {
             LoginViewModel viewModel = new LoginViewModel { Authentified = HttpContext.User.Identity.IsAuthenticated };
             viewModel.User = loginDal.GetUser(HttpContext.User.Identity.Name);
             UserEnum role = viewModel.User.Role;
+            string name = viewModel.User.Name;
+            string email = viewModel.User.Email;
+            string phone = viewModel.User.Phone;
+            ViewData["UserName"] = name;
+            ViewData["UserEmail"] = email;
+            ViewData["UserPhone"] = phone;
+            PackServices packServices = JourneyDal.GetPackServices(jvm.PackService.Id);
+           
+            jvm = GetJourneyViewModelFull(packServices.JourneyId, false);
+            reservationDal.AddReservation(viewModel.User.Id, jvm.Journey.DepartureDate, jvm.Journey.ReturnDate, name, email, phone, jvm.Journey.Price);
 
-            reservationDal.AddReservation(viewModel.User.Id, reservation.TravelStartDate, reservation.TravelEndDate, reservation.ContactName, reservation.ContactEmail, reservation.ContactPhone,
-                reservation.NumberOfPassengers, reservation.TotalAmount);
-
-            return RedirectToAction("GetReservations");
+            return View("ConfirmationPayement");
         }
 
         [HttpGet]
@@ -187,15 +191,17 @@ namespace _001JIMCV.Controllers
 
 
         [HttpPost]
-        public IActionResult EditReservation(Reservation reservation)
+        public IActionResult EditReservation(Reservation reservation, int id)
         {
             if (!ModelState.IsValid)
-                return View(reservation);
+            {
+                return View("Error");
+            }
 
             if (reservation.Id != 0)
             {
-                reservationDal.EditReservation(reservation.Id, reservation.TravelStartDate, reservation.TravelEndDate, reservation.ContactName, reservation.ContactEmail, reservation.ContactPhone,
-                    reservation.NumberOfPassengers, reservation.TotalAmount, reservation.Status);
+                PackServices packServices = JourneyDal.GetPackServices(id);
+                reservationDal.EditReservation(reservation.Id, reservation.ClientId, reservation.Status);
 
                 return RedirectToAction("GetReservations", new { id = reservation.Id });
             }
@@ -204,5 +210,7 @@ namespace _001JIMCV.Controllers
                 return View("Error");
             }
         }
+
     }
+
 }

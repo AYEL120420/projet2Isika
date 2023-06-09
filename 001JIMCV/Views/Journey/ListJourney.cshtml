@@ -6,6 +6,7 @@
 @section ExtraCss{
     <link rel="stylesheet" type="text/css" href="~/Css/Table.css" link />
 }
+<button>@Html.ActionLink("Ajouter", "CreateJourney", "Journey")</button>
 <table>
     <tr>
         <th>Pays de destination</th>
@@ -35,7 +36,7 @@
                 </form>
             </td>
             <td>
-                <form action="@Url.Action("", "", new { id = journey.Id })" method="post">
+                <form action="@Url.Action("DeleteJourney", "Journey", new { id = journey.Id })" method="post">
                     <button type="submit">Supprimer</button>
                 </form>
             </td>
@@ -44,5 +45,5 @@
 </table>
 <br />
 <br />
-<button>@Html.ActionLink("Ajouter", "CreateJourney", "Journey")</button>
+
 

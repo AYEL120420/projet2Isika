@@ -23,6 +23,7 @@
                     <th>Ville d'arrivée</th>
                     <th>Compagnie Aérienne</th>
                     <th>Numéro de vol</th>
+                    <th>Prix</th>
                 </tr>
                 @foreach (_001JIMCV.Models.Classes.Flight flightDep in ViewBag.listFLightsDep)
                 {
@@ -33,6 +34,7 @@
                         <td>@flightDep.DestinationCity</td>
                         <td>@flightDep.Airline</td>
                         <td>@flightDep.FlightNumber</td>
+                        <td>@flightDep.Price</td>
                     </tr>
                 }
 
@@ -49,6 +51,7 @@
                     <th>Ville d'arrivée</th>
                     <th>Compagnie Aérienne</th>
                     <th>Numéro de vol</th>
+                    <th>Prix</th>
                 </tr>
                 @foreach (_001JIMCV.Models.Classes.Flight flightReturn in ViewBag.listFLightsReturn)
                 {
@@ -59,6 +62,7 @@
                         <td>@flightReturn.DestinationCity</td>
                         <td>@flightReturn.Airline</td>
                         <td>@flightReturn.FlightNumber</td>
+                        <td>@flightReturn.Price</td>
                     </tr>
                 }
 
@@ -75,6 +79,7 @@
                 <th>Type</th>
                 <th>Ville</th>
                 <th>Description</th>
+                <th>Prix</th>
             </tr>
             @foreach (_001JIMCV.Models.Classes.Accommodation accommodation in ViewBag.listAccommodations)
             {
@@ -83,6 +88,7 @@
                     <td>@accommodation.Type</td>
                     <td>@accommodation.City</td>
                     <td>@accommodation.Description</td>
+                    <td>@accommodation.Price</td>
                 </tr>
             }
 
@@ -98,6 +104,7 @@
                 <th>Nom</th>
                 <th>Ville</th>
                 <th>Description</th>
+                <th>Prix</th>
             </tr>
             @foreach (_001JIMCV.Models.Classes.Activity activity in ViewBag.listActivities)
             {
@@ -106,6 +113,7 @@
                     <td>@activity.Name</td>
                     <td>@activity.City</td>
                     <td>@activity.Description</td>
+                    <td>@activity.Price</td>
                 </tr>
             }
 
@@ -122,6 +130,7 @@
                 <th>Nom</th>
                 <th>Ville</th>
                 <th>Description</th>
+                <th>Prix</th>
             </tr>
             @foreach (_001JIMCV.Models.Classes.Restauration restaurant in ViewBag.listRestaurants)
             {
@@ -130,6 +139,7 @@
                     <td>@restaurant.Name</td>
                     <td>@restaurant.City</td>
                     <td>@restaurant.Description</td>
+                    <td>@restaurant.Price</td>
                 </tr>
             }
 
