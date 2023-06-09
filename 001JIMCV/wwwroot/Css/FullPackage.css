@@ -27,11 +27,15 @@
 }
 
 .map {
-    height: 350px;
-    width: 100%;
-    background-size: 100% auto;
+/*    height: 350px;
+*/    width: 100%;
+    /*background-size: 100% auto;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center;*/
+}
+.map img{
+    width:100%;
+    height:auto;
 }
 
 .button {
@@ -79,6 +83,6 @@
     transform: translateY(2px);
 }
 
-span{
+.spanProduit{
     padding : 5px;
 }

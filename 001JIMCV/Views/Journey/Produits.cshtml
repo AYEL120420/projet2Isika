@@ -29,19 +29,20 @@
                     <h4>Vols</h4>
                 </div>
                 <div>
-                    <span><strong>Compagnie aérienne : </strong> @Html.DisplayFor(model => model.DepartureFlight.Airline)</span>
-                    <span><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureCity)</span>
-                    <span><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.DepartureFlight.DestinationCity)</span>
-                    <span><strong>Date : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureDate)</span>
-                    <span><strong>N° de vol : </strong>@Html.DisplayFor(model => model.DepartureFlight.FlightNumber)</span>
+                    <span class="spanProduit"><strong>
+                        Compagnie aérienne : </strong> @Html.DisplayFor(model => model.DepartureFlight.Airline)</span>
+                    <span class="spanProduit"><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureCity)</span>
+                    <span class ="spanProduit"><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.DepartureFlight.DestinationCity)</span>
+                    <span class="spanProduit"><strong>Date : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureDate)</span>
+                    <span class="spanProduit"><strong>N° de vol : </strong>@Html.DisplayFor(model => model.DepartureFlight.FlightNumber)</span>
                 </div>
                 <br />
                 <div>
-                    <span><strong>Compagnie aérienne :</strong>>@Html.DisplayFor(model => model.ReturnFlight.Airline)</span>
-                    <span><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureCity)</span>
-                    <span><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.ReturnFlight.DestinationCity)</span>
-                    <span><strong>Date : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureDate)</span>
-                    <span><strong>N° de vol : </strong>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</span>
+                    <span class="spanProduit"><strong>Compagnie aérienne :</strong>>@Html.DisplayFor(model => model.ReturnFlight.Airline)</span>
+                    <span class="spanProduit"><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureCity)</span>
+                    <span class="spanProduit"><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.ReturnFlight.DestinationCity)</span>
+                    <span class="spanProduit"><strong>Date : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureDate)</span>
+                    <span class="spanProduit"><strong>N° de vol : </strong>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</span>
                 </div>
             </div>
             <div class="product-description">
@@ -51,25 +52,25 @@
                 @foreach (var accommodation in Model.Accommodations)
                 {
                     <div>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Nom : </strong>
 
                     @accommodation.Name
 
                     </span>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Type : </strong>
 
                     @accommodation.Type
 
                     </span>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Ville : </strong>
 
                     @accommodation.City
 
                     </span>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Adresse : </strong>
 
                     @accommodation.Adress
@@ -97,19 +98,19 @@
                 @foreach (var activity in Model.Activities)
                 {
                     <div>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Nom : </strong>
 
                     @activity.Name
 
                     </span>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Ville : </strong>
 
                     @activity.City
 
                     </span>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Adresse : </strong>
 
                     @activity.Adress
@@ -131,25 +132,25 @@
                 @foreach (var restaurants in Model.Restaurations)
                 {
                     <div>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Nom : </strong>
 
                     @restaurants.Name
 
                     </span>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Type :</strong>
 
                     @restaurants.Type
 
                     </span>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Ville : </strong>
 
                     @restaurants.City
 
                     </span>
-                        <span>
+                        <span class="spanProduit">
                             <strong>Adresse : </strong>
 
                     @restaurants.Adress

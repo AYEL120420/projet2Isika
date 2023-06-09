@@ -55,7 +55,6 @@ namespace _001JIMCV.Controllers
                 // On récupère le Pack de Service associé à l'id du voyage et qui est clé en main
                 jvm.PackService = JourneyDal.GetAllPacks().Where(r => r.JourneyId == JourneyId & r.AllInclusive == allInclusive).FirstOrDefault();
 
-
                 //On récupère les vols associé au pack de Service
                 FlightPackServices flightPackServices = JourneyDal.GetFLightPackServices(jvm.PackService.Id);
                 jvm.DepartureFlight = JourneyDal.GetFlight(flightPackServices.DepartureFlightId);
