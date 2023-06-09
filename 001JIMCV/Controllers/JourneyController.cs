@@ -16,7 +16,6 @@ namespace _001JIMCV.Controllers
 {
     public class JourneyController : Controller
     {
-        private static string DEPARTURECOUNTRYOFALLJOURNEYS = "France";
         private JourneyDal JourneyDal;
         private LoginDal LoginDal;
         private IWebHostEnvironment _webEnv;
@@ -33,6 +32,7 @@ namespace _001JIMCV.Controllers
             return View();
         }
 
+        //Cette méthode retourne tout les voyages présent sur le site et renvoi vers la vue présentant cette liste (ListJourney)
         public IActionResult GetAllJourneys()
         {
             var journey = JourneyDal.GetAllJourneys();
@@ -40,6 +40,9 @@ namespace _001JIMCV.Controllers
             return View("ListJourney");
         }
 
+
+        //Cette méthode permet de récupérer le ViewModel complet d'un voyage (avec les vols, les hébergements, les activités et les restaurants associés)
+        // permettant l'affichage ou le traitement des données de façon plus simple
         public JourneyViewModel GetJourneyViewModelFull(int JourneyId, Boolean allInclusive)
         {
             JourneyViewModel jvm = new JourneyViewModel();
@@ -55,47 +58,52 @@ namespace _001JIMCV.Controllers
                 // On récupère le Pack de Service associé à l'id du voyage et qui est clé en main
                 jvm.PackService = JourneyDal.GetAllPacks().Where(r => r.JourneyId == JourneyId & r.AllInclusive == allInclusive).FirstOrDefault();
 
-                //On récupère les vols associé au pack de Service
-                FlightPackServices flightPackServices = JourneyDal.GetFLightPackServices(jvm.PackService.Id);
-                jvm.DepartureFlight = JourneyDal.GetFlight(flightPackServices.DepartureFlightId);
-                jvm.ReturnFlight = JourneyDal.GetFlight(flightPackServices.ReturnFlightId);
-
-                // On récupère les Hébergements associés au Pack
-                List<AccommodationPackServices> accommodationsPackServices = JourneyDal.GetAllAccommodationsPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
-                List<Accommodation> accommodations = new List<Accommodation>();
-                foreach (AccommodationPackServices aps in accommodationsPackServices)
+                if (jvm.PackService != null)
                 {
-                    Accommodation accommodation = new Accommodation();
-                    accommodation = JourneyDal.GetAccommodation(aps.AccommodationId);
-                    accommodations.Add(accommodation);
-                }
-                jvm.Accommodations = accommodations;
 
-                // On récupère les Activités associés au Pack
-                List<ActivityPackServices> activityPackServices = JourneyDal.GetAllActivityPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
-                List<Activity> activities = new List<Activity>();
-                foreach (ActivityPackServices aps in activityPackServices)
-                {
-                    Activity activity = new Activity();
-                    activity = JourneyDal.GetActivity(aps.ActivityId);
-                    activities.Add(activity);
-                }
-                jvm.Activities = activities;
+                    //On récupère les vols associé au pack de Service
+                    FlightPackServices flightPackServices = JourneyDal.GetFLightPackServices(jvm.PackService.Id);
+                    jvm.DepartureFlight = JourneyDal.GetFlight(flightPackServices.DepartureFlightId);
+                    jvm.ReturnFlight = JourneyDal.GetFlight(flightPackServices.ReturnFlightId);
 
-                // On récupère les restaurants associés au Pack
-                List<RestaurationPackServices> restaurationPackServices = JourneyDal.GetAllRestaurationPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
-                List<Restauration> restaurations = new List<Restauration>();
-                foreach (RestaurationPackServices aps in restaurationPackServices)
-                {
-                    Restauration restauration = new Restauration();
-                    restauration = JourneyDal.GetRestauration(aps.RestaurationId);
-                    restaurations.Add(restauration);
+                    // On récupère les Hébergements associés au Pack
+                    List<AccommodationPackServices> accommodationsPackServices = JourneyDal.GetAllAccommodationsPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
+                    List<Accommodation> accommodations = new List<Accommodation>();
+                    foreach (AccommodationPackServices aps in accommodationsPackServices)
+                    {
+                        Accommodation accommodation = new Accommodation();
+                        accommodation = JourneyDal.GetAccommodation(aps.AccommodationId);
+                        accommodations.Add(accommodation);
+                    }
+                    jvm.Accommodations = accommodations;
+
+                    // On récupère les Activités associés au Pack
+                    List<ActivityPackServices> activityPackServices = JourneyDal.GetAllActivityPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
+                    List<Activity> activities = new List<Activity>();
+                    foreach (ActivityPackServices aps in activityPackServices)
+                    {
+                        Activity activity = new Activity();
+                        activity = JourneyDal.GetActivity(aps.ActivityId);
+                        activities.Add(activity);
+                    }
+                    jvm.Activities = activities;
+
+                    // On récupère les restaurants associés au Pack
+                    List<RestaurationPackServices> restaurationPackServices = JourneyDal.GetAllRestaurationPackServices().Where(r => r.PackServicesId == jvm.PackService.Id).ToList();
+                    List<Restauration> restaurations = new List<Restauration>();
+                    foreach (RestaurationPackServices aps in restaurationPackServices)
+                    {
+                        Restauration restauration = new Restauration();
+                        restauration = JourneyDal.GetRestauration(aps.RestaurationId);
+                        restaurations.Add(restauration);
+                    }
+                    jvm.Restaurations = restaurations;
                 }
-                jvm.Restaurations = restaurations;
             }
             return jvm;
         }
 
+        //Cette méthode renvoie à la page Produits qui affiche les détails d'un voyage (avec les vols, les hébergements, les activités et les restaurants associés)
         public IActionResult DisplayJourney(int Id)
         {
             if (Id != 0)
@@ -108,6 +116,8 @@ namespace _001JIMCV.Controllers
             return View("Error");
         }
 
+        //Cette méthode permet de créer un pack de service associé à un client qui souhaite réserver un voyage déjà composé sur notre site
+        // elle renvoie vers la page de réservation
 
         public IActionResult ReservationAllInclusive(int Id)
         {
@@ -159,6 +169,9 @@ namespace _001JIMCV.Controllers
 
             return View("Error");
         }
+
+        //cette méthode permet d'afficher les différents services d'un pays permettant au client de personnaliser son voyage comme il le souhaite
+        // elle renvoie vers la page de réservation
         public IActionResult DisplayJourneyPerso(int Id)
         {
             if (!HttpContext.User.Identity.IsAuthenticated)
@@ -184,6 +197,9 @@ namespace _001JIMCV.Controllers
 
             return View("Error");
         }
+
+        //Cette méthode permet de créer un pack de service associé à un client qui vient de personnaliser son voyage afin qu'il retrouve chaque services sélectionnés
+        // elle renvoie vers la page de réservation
         [HttpPost]
         public IActionResult DisplayJourneyPerso(JourneyViewModel jvm)
         {
@@ -196,49 +212,62 @@ namespace _001JIMCV.Controllers
 
                 int idPackServices = JourneyDal.AddPackServices(jvm.journeyId, loginViewModel.User.Id);
 
-                JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
-                float departureflightPrice = JourneyDal.GetFlightPrice(jvm.DepartureFlightCocheId);
-                float returnflightPrice = JourneyDal.GetFlightPrice(jvm.ReturnFlightCocheId);
-                TotalAmount=departureflightPrice+returnflightPrice;
-
-                foreach (string accomodationId in jvm.AccommodationsCocheIds)
+                if(jvm.DepartureFlightCocheId != 0 & jvm.ReturnFlightCocheId != 0)
                 {
-                    if (accomodationId != null)
-                    {
-                        int idAccomodation;
-                        if (int.TryParse(accomodationId, out idAccomodation))
-                        {
-                            float accommodationPrice = JourneyDal.GetAccommodationPrice(idAccomodation);
-                            TotalAmount += accommodationPrice;
-                            JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
-                        }
-                    }
 
+                    JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
+                    float departureflightPrice = JourneyDal.GetFlightPrice(jvm.DepartureFlightCocheId);
+                    float returnflightPrice = JourneyDal.GetFlightPrice(jvm.ReturnFlightCocheId);
+                    TotalAmount = departureflightPrice + returnflightPrice;
                 }
-                foreach (string activityId in jvm.ActivitiesCocheIds)
+
+                if (jvm.AccommodationsCocheIds != null)
                 {
-                    if (activityId != null)
+                    foreach (string accomodationId in jvm.AccommodationsCocheIds)
                     {
-                        int idActivity;
-                        if (int.TryParse(activityId, out idActivity))
+                        if (accomodationId != null)
                         {
-                            float activityPrice = JourneyDal.GetActivityPrice(idActivity);
-                            TotalAmount += activityPrice;
-                            JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                            int idAccomodation;
+                            if (int.TryParse(accomodationId, out idAccomodation))
+                            {
+                                float accommodationPrice = JourneyDal.GetAccommodationPrice(idAccomodation);
+                                TotalAmount += accommodationPrice;
+                                JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
+                            }
                         }
+
                     }
                 }
-                foreach (string restaurationId in jvm.RestaurationsCocheIds)
+                if (jvm.ActivitiesCocheIds != null)
                 {
-                    if (restaurationId != null)
+                    foreach (string activityId in jvm.ActivitiesCocheIds)
                     {
-                        int idRestauration;
-                        if (int.TryParse(restaurationId, out idRestauration))
+                        if (activityId != null)
                         {
-                            float restaurationPrice = JourneyDal.GetRestaurationPrice(idRestauration);
-                            TotalAmount += restaurationPrice;
-                            JourneyDal.AddAccommodationPackServices(idRestauration, idPackServices);
-                      
+                            int idActivity;
+                            if (int.TryParse(activityId, out idActivity))
+                            {
+                                float activityPrice = JourneyDal.GetActivityPrice(idActivity);
+                                TotalAmount += activityPrice;
+                                JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                            }
+                        }
+                    }
+                }
+                if (jvm.RestaurationsCocheIds != null)
+                {
+                    foreach (string restaurationId in jvm.RestaurationsCocheIds)
+                    {
+                        if (restaurationId != null)
+                        {
+                            int idRestauration;
+                            if (int.TryParse(restaurationId, out idRestauration))
+                            {
+                                float restaurationPrice = JourneyDal.GetRestaurationPrice(idRestauration);
+                                TotalAmount += restaurationPrice;
+                                JourneyDal.AddAccommodationPackServices(idRestauration, idPackServices);
+
+                            }
                         }
                     }
                 }
@@ -330,47 +359,59 @@ namespace _001JIMCV.Controllers
 
                     int idPackServices = JourneyDal.AddPackServicesAllInclusive(jvm.journeyId, loginViewModel.User.Id);
 
-                    JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
-                    float departureflightPrice = JourneyDal.GetFlightPrice(jvm.DepartureFlightCocheId);
-                   /* float returnflightPrice = JourneyDal.GetFlightPrice(jvm.ReturnFlightCocheId);
-                    TotalAmount = departureflightPrice + returnflightPrice;*/
+                    if (jvm.DepartureFlightCocheId != 0 & jvm.ReturnFlightCocheId != 0)
+                    {
+                        JourneyDal.AddFlightPackServices(jvm.DepartureFlightCocheId, jvm.ReturnFlightCocheId, idPackServices);
+                        float departureflightPrice = JourneyDal.GetFlightPrice(jvm.DepartureFlightCocheId);
+                        /* float returnflightPrice = JourneyDal.GetFlightPrice(jvm.ReturnFlightCocheId);
+                        TotalAmount = departureflightPrice + returnflightPrice;*/
+                    }
 
-                    foreach (string accomodationId in jvm.AccommodationsCocheIds)
+                    if (jvm.AccommodationsCocheIds != null)
                     {
-                        if (accomodationId != null)
+                        foreach (string accomodationId in jvm.AccommodationsCocheIds)
                         {
-                            int idAccomodation;
-                            if (int.TryParse(accomodationId, out idAccomodation))
+                            if (accomodationId != null)
                             {
-                                /*float accommodationPrice = JourneyDal.GetAccommodationPrice(idAccomodation);
-                                TotalAmount += accommodationPrice;*/
-                                JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
+                                int idAccomodation;
+                                if (int.TryParse(accomodationId, out idAccomodation))
+                                {
+                                    /*float accommodationPrice = JourneyDal.GetAccommodationPrice(idAccomodation);
+                                    TotalAmount += accommodationPrice;*/
+                                    JourneyDal.AddAccommodationPackServices(idAccomodation, idPackServices);
+                                }
                             }
                         }
                     }
-                    foreach (string activityId in jvm.ActivitiesCocheIds)
+                    if (jvm.ActivitiesCocheIds != null)
                     {
-                        if (activityId != null)
+                        foreach (string activityId in jvm.ActivitiesCocheIds)
                         {
-                            int idActivity;
-                            if (int.TryParse(activityId, out idActivity))
+                            if (activityId != null)
                             {
-                               /* float activityPrice = JourneyDal.GetActivityPrice(idActivity);
-                                TotalAmount += activityPrice;*/
-                                JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                                int idActivity;
+                                if (int.TryParse(activityId, out idActivity))
+                                {
+                                    /* float activityPrice = JourneyDal.GetActivityPrice(idActivity);
+                                     TotalAmount += activityPrice;*/
+                                    JourneyDal.AddActivityPackServices(idActivity, idPackServices);
+                                }
                             }
                         }
                     }
-                    foreach (string restaurationId in jvm.RestaurationsCocheIds)
+                    if (jvm.RestaurationsCocheIds != null)
                     {
-                        if (restaurationId != null)
+                        foreach (string restaurationId in jvm.RestaurationsCocheIds)
                         {
-                            int idRestauration;
-                            if (int.TryParse(restaurationId, out idRestauration))
+                            if (restaurationId != null)
                             {
-                               /* float restaurationPrice = JourneyDal.GetRestaurationPrice(idRestauration);
-                                TotalAmount += restaurationPrice;*/
-                                JourneyDal.AddRestaurationPackServices(idRestauration, idPackServices);
+                                int idRestauration;
+                                if (int.TryParse(restaurationId, out idRestauration))
+                                {
+                                    /* float restaurationPrice = JourneyDal.GetRestaurationPrice(idRestauration);
+                                     TotalAmount += restaurationPrice;*/
+                                    JourneyDal.AddRestaurationPackServices(idRestauration, idPackServices);
+                                }
                             }
                         }
                     }

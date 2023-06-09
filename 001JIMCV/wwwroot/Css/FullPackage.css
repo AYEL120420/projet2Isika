@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: column;
     width: calc(3/5 * 100%);
+    padding-left : 20px;
 }
 
 .journey-details,
@@ -85,4 +86,53 @@
 
 .spanProduit{
     padding : 5px;
+}
+
+.ligneRouge::after {
+    width: 80%;
+    height: 3px;
+    display: flex;
+    content: "";
+    position: relative;
+    margin-bottom : 10px;
+    background-color: #DF3012;
+}
+.ligneRougeThin::after {
+    width: 20%;
+    height: 1px;
+    display: flex;
+    content: "";
+    position: relative;
+    margin-bottom: 10px;
+    background-color: #DF3012;
+}
+.btnResa {
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px, rgba(45, 35, 66, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #DF3012;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
 }

@@ -12,8 +12,8 @@
             <img src="@Model.Journey.ImagePath" alt="Image du produit">
         </div>
         <div style="width:60%">
-            <div class="description-section">
-                <h3>@Html.DisplayFor(model => model.Journey.CountryDestination) - @Html.DisplayFor(model => model.Journey.CityDestination)  </h3>
+            <div class="description-section" style="padding-left : 10px">
+                <h2>@Html.DisplayFor(model => model.Journey.CountryDestination) - @Html.DisplayFor(model => model.Journey.CityDestination)  </h2>
                 <p>@Html.DisplayFor(model => model.Journey.Description)</p>
             </div>
         </div>
@@ -25,67 +25,88 @@
         <div style="width:50%">
 
             <div class="product-description">
-                <div>
-                    <h4>Vols</h4>
+                <div class="description-section">
+                    <h3>Vol aller</h3>
                 </div>
-                <div>
-                    <span class="spanProduit"><strong>
-                        Compagnie aérienne : </strong> @Html.DisplayFor(model => model.DepartureFlight.Airline)</span>
+                <div class="ligneRouge"></div>
+                <div >
+                    <span class="spanProduit">
+                        <strong>Compagnie aérienne : </strong> @Html.DisplayFor(model => model.DepartureFlight.Airline)
+                    </span>
                     <span class="spanProduit"><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureCity)</span>
                     <span class ="spanProduit"><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.DepartureFlight.DestinationCity)</span>
+                    <br /><br />
                     <span class="spanProduit"><strong>Date : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureDate)</span>
                     <span class="spanProduit"><strong>N° de vol : </strong>@Html.DisplayFor(model => model.DepartureFlight.FlightNumber)</span>
                 </div>
-                <br />
+                <div class="description-section">
+                    <h3>Vol retour</h3>
+                </div>
+                <div class="ligneRouge"></div>
                 <div>
-                    <span class="spanProduit"><strong>Compagnie aérienne :</strong>>@Html.DisplayFor(model => model.ReturnFlight.Airline)</span>
+                    <span class="spanProduit"><strong>Compagnie aérienne :</strong>@Html.DisplayFor(model => model.ReturnFlight.Airline)</span>
                     <span class="spanProduit"><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureCity)</span>
                     <span class="spanProduit"><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.ReturnFlight.DestinationCity)</span>
+                    <br/><br/>
                     <span class="spanProduit"><strong>Date : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureDate)</span>
                     <span class="spanProduit"><strong>N° de vol : </strong>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</span>
                 </div>
             </div>
+            <br />
+            <br />
+            <br />
             <div class="product-description">
                 <div class="description-section">
-                    <h4>Hébergements</h4>
+                    <h3>Hébergements</h3>
                 </div>
-                @foreach (var accommodation in Model.Accommodations)
+                <div class="ligneRouge"></div>
+                @if(Model.Accommodations != null)
                 {
-                    <div>
-                        <span class="spanProduit">
-                            <strong>Nom : </strong>
+                    @foreach (var accommodation in Model.Accommodations)
+                    {
+                            <div>
+                                <span class="spanProduit">
+                                    <strong>Nom : </strong>
 
-                    @accommodation.Name
+                                    @accommodation.Name
 
-                    </span>
-                        <span class="spanProduit">
-                            <strong>Type : </strong>
+                                </span>
+                                <span class="spanProduit">
+                                    <strong>Type : </strong>
 
-                    @accommodation.Type
+                                    @accommodation.Type
 
-                    </span>
-                        <span class="spanProduit">
-                            <strong>Ville : </strong>
+                                </span>
+                                <span class="spanProduit">
+                                    <strong>Ville : </strong>
 
-                    @accommodation.City
+                                    @accommodation.City
 
-                    </span>
-                        <span class="spanProduit">
-                            <strong>Adresse : </strong>
+                                </span>
+                                <span class="spanProduit">
+                                    <strong>Adresse : </strong>
 
-                    @accommodation.Adress
+                                    @accommodation.Adress
 
-                    </span>
-                    </div>
-                    <div>
-                        <strong>Description : </strong>
-                        @accommodation.Description
-                    </div>
+                                </span>
+                            </div>
+                            <br/>
+                            <div>
+                                <strong>Description : </strong>
+                                @accommodation.Description
+                            </div>
 
-                    <br />
+                            <br />
 
+                        <div class="ligneRougeThin"></div>
+
+                    }
                 }
+                
             </div>
+
+            <br />
+            <br />
 
         </div>
 
@@ -95,86 +116,110 @@
                 <div class="description-section">
                     <h3>Activités</h3>
                 </div>
-                @foreach (var activity in Model.Activities)
+                <div class="ligneRouge"></div>
+                @if (Model.Activities != null)
                 {
-                    <div>
-                        <span class="spanProduit">
-                            <strong>Nom : </strong>
+                    @foreach (var activity in Model.Activities)
+                    {
+                        <div>
+                            <span class="spanProduit">
+                                <strong>Nom : </strong>
 
-                    @activity.Name
+                                @activity.Name
 
-                    </span>
-                        <span class="spanProduit">
-                            <strong>Ville : </strong>
+                            </span>
+                            <span class="spanProduit">
+                                <strong>Ville : </strong>
 
-                    @activity.City
+                                @activity.City
 
-                    </span>
-                        <span class="spanProduit">
-                            <strong>Adresse : </strong>
+                            </span>
+                            <span class="spanProduit">
+                                <strong>Adresse : </strong>
 
-                    @activity.Adress
+                                @activity.Adress
 
-                    </span>
-                    </div>
-                    <div>
-                        <strong>Description : </strong>
-                        @activity.Description
-                    </div>
-                    <br />
+                            </span>
+                        </div>
+                        <br />
+                        <div>
+                            <strong>Description : </strong>
+                            @activity.Description
+                        </div>
+                        <br />
+                        <div class="ligneRougeThin"></div>
 
+                    }
                 }
+                
             </div>
+            <br />
+            <br />
             <div class="product-description">
                 <div class="description-section">
                     <h3>Restaurants</h3>
                 </div>
-                @foreach (var restaurants in Model.Restaurations)
+                <div class="ligneRouge"></div>
+                @if (Model.Restaurations != null)
                 {
-                    <div>
-                        <span class="spanProduit">
-                            <strong>Nom : </strong>
+                    @foreach (var restaurants in Model.Restaurations)
+                    {
+                        <div>
+                            <span class="spanProduit">
+                                <strong>Nom : </strong>
 
-                    @restaurants.Name
+                                @restaurants.Name
 
-                    </span>
-                        <span class="spanProduit">
-                            <strong>Type :</strong>
+                            </span>
+                            <span class="spanProduit">
+                                <strong>Type :</strong>
 
-                    @restaurants.Type
+                                @restaurants.Type
 
-                    </span>
-                        <span class="spanProduit">
-                            <strong>Ville : </strong>
+                            </span>
+                            <span class="spanProduit">
+                                <strong>Ville : </strong>
 
-                    @restaurants.City
+                                @restaurants.City
 
-                    </span>
-                        <span class="spanProduit">
-                            <strong>Adresse : </strong>
+                            </span>
+                            <span class="spanProduit">
+                                <strong>Adresse : </strong>
 
-                    @restaurants.Adress
+                                @restaurants.Adress
 
-                    </span>
-                    </div>
-                    <div>
-                        <strong>Description : </strong>
-                        @restaurants.Description
-                    </div>
-                    <br />
+                            </span>
+                        </div>
+                        <br />
+                        <div>
+                            <strong>Description : </strong>
+                            @restaurants.Description
+                        </div>
+                        <br />
+                        <div class="ligneRougeThin"></div>
 
+                    }
                 }
             </div>
+
+
+            <br />
+            <br />
+
 
         </div>
 
         
     </div>
+    <div style="display:flex">
+        <div style="width:50%">
 
+            <button class="btnResa" onclick="window.location.href='@Url.Action("ReservationAllInclusive","Journey", new { @Id = @Model.Journey.Id })'">Réserver ce voyage</button>
+        </div>
+        <div style="width:50%">
+            <button class="btnResa" onclick="window.location.href='@Url.Action("DisplayJourneyPerso","Journey", new { @Id = @Model.Journey.Id })'">Personnaliser votre voyage</button>
+        </div>
 
-    <div>
-        <button onclick="window.location.href='@Url.Action("ReservationAllInclusive","Journey", new { @Id = @Model.Journey.Id })'">Réserver ce voyage</button>
-        <button onclick="window.location.href='@Url.Action("DisplayJourneyPerso","Journey", new { @Id = @Model.Journey.Id })'">Personnaliser votre voyage</button>
     </div>
 
 </div>

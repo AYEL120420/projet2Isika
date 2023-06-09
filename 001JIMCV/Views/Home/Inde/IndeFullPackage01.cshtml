@@ -38,11 +38,11 @@
 
                 </div>
 
-                <div class="journey-description">
+            <div class="journey-description" >
                     @journey.Description
                 </div>
-                <div>
-                    <button onclick="window.location.href='@Url.Action("DisplayJourney","Journey",  new { @Id = journey.Id })'">Afficher les détails</button>
+            <div >
+                <button class="btnResa" onclick="window.location.href='@Url.Action("DisplayJourney","Journey",  new { @Id = journey.Id })'">Afficher les détails</button>
                 </div>
             </div>
         </div>
