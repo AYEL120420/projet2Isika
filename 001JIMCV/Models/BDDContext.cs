@@ -88,7 +88,7 @@ namespace _001JIMCV.Models
             this.Flights.AddRange(FlightInde, FlightInde2, FlightThailande, FlightMexique, FlightEthiopie, FlightFrance, FlightJapon, FlightMaroc, FlightJapon, FlightItalie, FlightIndeRetour, FlightIndeRetour2, FlightThailandeRetour);  
             
 
-            Accommodation accommodation1 = new Accommodation() {Id=1, Name = "Geetham", Type ="Chez l'habitant", Country ="Inde", City = "Chennai", Adress= "SRI NILAYAM, 2/95B, Rajiv Gandhi Salai, Thoraipakkam", Description ="Bon lit, bonne nourriture et bonne ambiance", Price = 20 };
+            Accommodation accommodation1 = new Accommodation() {Id=1, Name = "Geetham", Type ="Chez l'habitant", Country ="Inde", City = "Chennai", Adress= "Sri Nilayam, 2/95B, Rajiv Gandhi Salai", Description ="Bon lit, bonne nourriture et bonne ambiance", Price = 20 };
             Accommodation accommodation2 = new Accommodation() {Id=2,Name="Rallye 2", Type = "Hôtel", Country = "Inde", City = "Chennai", Adress = "Place des Saveurs, Nungambakkam", Description = "Chambre d'hôtel spacieuse", Price=100 };
             Accommodation accommodation3 = new Accommodation() {Id=3, Name="Sunset Villa", Type= "Chambre d'hôte", Country ="Inde", City = "Chennai", Adress="Oia", Description="Vue imprenable du coucher de soleil sur l'océan indien dans des chambres luxueuses", Price = 200 };
             Accommodation accommodation4 = new Accommodation() { Id = 4, Name = "Villa de plage privée", Type = "Villa", Country = "Inde", City = "Chennai", Adress = "ECR Road", Description = "Évasion paisible sur une plage privée", Price = 120 };
