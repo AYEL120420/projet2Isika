@@ -30,31 +30,31 @@
                 </div>
                 <div class="ligneRouge"></div>
                 <div >
-                    <span class="spanProduit">
+                    <div class="spanProduit">
                         <strong>Compagnie aérienne : </strong> @Html.DisplayFor(model => model.DepartureFlight.Airline)
-                    </span>
-                    <span class="spanProduit"><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureCity)</span>
-                    <span class ="spanProduit"><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.DepartureFlight.DestinationCity)</span>
-                    <br /><br />
-                    <span class="spanProduit"><strong>Date : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureDate)</span>
-                    <span class="spanProduit"><strong>N° de vol : </strong>@Html.DisplayFor(model => model.DepartureFlight.FlightNumber)</span>
-                </div>
+                    </div>
+                    <div class="spanProduit"><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureCity)</div>
+                    <div class ="spanProduit"><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.DepartureFlight.DestinationCity)</div>
+                    
+                    <div class="spanProduit"><strong>Date : </strong>@Html.DisplayFor(model => model.DepartureFlight.DepartureDate)</div>
+                    <div class="spanProduit"><strong>N° de vol : </strong>@Html.DisplayFor(model => model.DepartureFlight.FlightNumber)</div>
+                </div><br />
                 <div class="description-section">
                     <h3>Vol retour</h3>
                 </div>
                 <div class="ligneRouge"></div>
                 <div>
-                    <span class="spanProduit"><strong>Compagnie aérienne :</strong>@Html.DisplayFor(model => model.ReturnFlight.Airline)</span>
-                    <span class="spanProduit"><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureCity)</span>
-                    <span class="spanProduit"><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.ReturnFlight.DestinationCity)</span>
-                    <br/><br/>
-                    <span class="spanProduit"><strong>Date : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureDate)</span>
-                    <span class="spanProduit"><strong>N° de vol : </strong>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</span>
+                    <div class="spanProduit"><strong>Compagnie aérienne :</strong>@Html.DisplayFor(model => model.ReturnFlight.Airline)</div>
+                    <div class="spanProduit"><strong>Ville de départ : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureCity)</div>
+                    <div class="spanProduit"><strong>Ville d'arrivée : </strong>@Html.DisplayFor(model => model.ReturnFlight.DestinationCity)</div>
+              
+                    <div class="spanProduit"><strong>Date : </strong>@Html.DisplayFor(model => model.ReturnFlight.DepartureDate)</div>
+                    <div class="spanProduit"><strong>N° de vol : </strong>@Html.DisplayFor(model => model.ReturnFlight.FlightNumber)</div>
                 </div>
             </div>
             <br />
-            <br />
-            <br />
+   
+            
             <div class="product-description">
                 <div class="description-section">
                     <h3>Hébergements</h3>

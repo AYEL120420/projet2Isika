@@ -48,7 +48,9 @@
             <br>
         </fieldset>*@
         <div style="display:flex; justify-content:space-between; align-items:center; flex-direction: column">
+            <br>
             <fieldset>
+                <br>
                 <div>
                     @Html.LabelFor(m => m.Reservation.NameCard, "Nom sur la carte")<br>
                     @Html.TextBoxFor(m => m.Reservation.NameCard, new { required = "required" })
@@ -72,10 +74,13 @@
                     @Html.TextBoxFor(m => m.Reservation.SecurityCode, new { required = "required", pattern = @"\d{3}", title = "Veuillez entrer un code de sécurité valide (3 chiffres)." })
                     @Html.ValidationMessageFor(m => m.Reservation.SecurityCode)
                 </div>
+                <br>
                 @Html.HiddenFor(m=>m.PackService.Id)
                 @Html.HiddenFor(m=>m.User.Id)
             </fieldset>
-        <input type="submit" value="Réserver" class="btn btn-primary" />
+            <br>
+            <div> <input type="submit" value="Réserver" class="btn btn-primary" /></div>
+            <br>
         </div>
         
     }

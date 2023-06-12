@@ -28,95 +28,96 @@
 {
     <fieldset>
         <div style="display:flex; align-items:center; flex-direction: column">
-        <div>
-            @Html.LabelFor(m => m.ProviderName, "Nom partenaire")<br>
-            @Html.TextBoxFor(m => m.ProviderName)
-            @Html.ValidationMessageFor(m => m.ProviderName)
-        </div>
-        <br/>
-        <div>
+            <div>
+                @Html.LabelFor(m => m.ProviderName, "Nom partenaire")<br>
+                @Html.TextBoxFor(m => m.ProviderName, new { maxlength = 50 })
+                @Html.ValidationMessageFor(m => m.ProviderName)
+            </div>
+            <br />
+            <div>
                 @Html.LabelFor(m => m.ProviderEmail, "Adresse email")<br>
-            @Html.TextBoxFor(m => m.ProviderEmail)
-            @Html.ValidationMessageFor(m => m.ProviderEmail)
-        </div>
-        <br/>
-        <div>
+                @Html.TextBoxFor(m => m.ProviderEmail, new { maxlength = 100 })
+                @Html.ValidationMessageFor(m => m.ProviderEmail)
+            </div>
+            <br />
+            <div>
                 @Html.LabelFor(m => m.Country, "Pays")<br>
-            @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
-            @Html.ValidationMessageFor(m => m.Country)
-        </div>
-        <br/>
-        <div>
+                @Html.DropDownListFor(m => m.Country, new SelectList(countries, "Value", "Text"), "-- Sélectionner --", new { required = "required" })
+                @Html.ValidationMessageFor(m => m.Country)
+            </div>
+            <br />
+            <div>
                 @Html.LabelFor(m => m.City, "Ville")<br>
-            @Html.TextBoxFor(m => m.City, new {required = "required" })
-            @Html.ValidationMessageFor(m => m.City)
-        </div>
-        <br/>
-        <div>
+                @Html.TextBoxFor(m => m.City, new { required = "required", maxlength = 50 })
+                @Html.ValidationMessageFor(m => m.City)
+            </div>
+            <br />
+            <div>
                 @Html.LabelFor(m => m.Type)<br>
-            <span>
-                <label>
-                    @Html.RadioButtonFor(m => m.Type, "Chez l'habitant")
-                    Chez l'habitant
-                </label>
-            </span>
-            <span>
-                <label>
-                    @Html.RadioButtonFor(m => m.Type, "Hôtel")
-                    Hôtel
-                </label>
-            </span>
-            <span class="form-control">
-                <label class="form-check-label">
-                    @Html.RadioButtonFor(m => m.Type, "Chambre d'hôte")
-                Chambre d'hôte
-                </label>
-            </span>
-            @Html.ValidationMessageFor(m => m.Type)
-        </div>
-        <br />
-        <div>
-            <span>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(m => m.Type, "Chez l'habitant")
+                        Chez l'habitant
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(m => m.Type, "Hôtel")
+                        Hôtel
+                    </label>
+                </div>
+                <div class="form-control">
+                    <label class="form-check-label">
+                        @Html.RadioButtonFor(m => m.Type, "Chambre d'hôte")
+                        Chambre d'hôte
+                    </label>
+                </div>
+                @Html.ValidationMessageFor(m => m.Type)
+            </div>
+            <br />
+            <div>
+                <span>
                     @Html.LabelFor(m => m.StartDate, "Disponible de")<br>
-                @Html.TextBoxFor(m => m.StartDate, new { @type = "date" })
-                @Html.ValidationMessageFor(m => m.StartDate)
-            </span>
-
-            <span>
+                    @Html.TextBoxFor(m => m.StartDate, new { @type = "date" })
+                    @Html.ValidationMessageFor(m => m.StartDate)
+                </span>
+                <br>
+                <span>
                     @Html.LabelFor(m => m.EndDate, "A")<br>
-                @Html.TextBoxFor(m => m.EndDate, new { @type = "date" })
-                @Html.ValidationMessageFor(m => m.EndDate)
-            </span>
-        </div>
-        <br />
-        <div>
-                @Html.LabelFor(m => m.Adress, "Adresse" )<br>
-            @Html.TextBoxFor(m => m.Adress)
-            @Html.ValidationMessageFor(m => m.Adress)
-        </div>
-        <br />
-        <div>
+                    @Html.TextBoxFor(m => m.EndDate, new { @type = "date" })
+                    @Html.ValidationMessageFor(m => m.EndDate)
+                </span>
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(m => m.Adress, "Adresse")<br>
+                @Html.TextBoxFor(m => m.Adress, new { maxlength = 100 })
+                @Html.ValidationMessageFor(m => m.Adress)
+            </div>
+            <br />
+            <div>
                 @Html.LabelFor(m => m.Description)<br>
-            @Html.TextAreaFor(m => m.Description)
-            @Html.ValidationMessageFor(m => m.Description)
-        </div>
-        <br />
-        <div>
-                @Html.LabelFor(m => m.Price,"Prix")<br>
-            @Html.TextBoxFor(m => m.Price, new { step = "0.01" })
-            @Html.ValidationMessageFor(m => m.Price)
-        </div>
-        <br/>
-        <div>
-                @Html.LabelFor(m => m.Image)<br>
-            <input type="file" name="Image" id="Image" />
-            @Html.ValidationMessageFor(m => m.Image)
-        </div>
-        <br />
-        <div class="form-control">
-            <input type="submit" value="Envoyer" class="btn btn-primary" />
+                @Html.TextAreaFor(m => m.Description, new { rows = 4, style = "width: 300px; max-width: 100%;" })
+                @Html.ValidationMessageFor(m => m.Description)
+            </div>
 
-        </div>
+            <br />
+            <div>
+                @Html.LabelFor(m => m.Price,"Prix")<br>
+                @Html.TextBoxFor(m => m.Price, new { step = "0.01", maxlength = 10 })
+                @Html.ValidationMessageFor(m => m.Price)
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(m => m.Image)<br>
+                <input type="file" name="Image" id="Image" />
+                @Html.ValidationMessageFor(m => m.Image)
+            </div>
+            <br />
+            <div class="form-control">
+                <input type="submit" value="Envoyer" class="btn btn-primary" />
+            </div>
+
      </div>
     </fieldset>
 }
